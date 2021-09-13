@@ -7,7 +7,7 @@ import Usuario from './usuario';
 class Campanha extends BaseEntity {
   @Field(() => ID, { nullable: false })
   @ObjectIdColumn()
-  id!: ObjectID;
+  _id!: ObjectID;
 
   @Field({ nullable: false })
   @Column()
