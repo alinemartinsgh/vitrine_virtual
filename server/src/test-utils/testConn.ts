@@ -9,6 +9,6 @@ export const testConn = (drop: boolean = false) => {
     useNewUrlParser: true,
     synchronize: drop,
     dropSchema: drop,
-    entities: ['./src/vitrine_virtual_db/entities/*.ts'],
+    entities: [__dirname + '../vitrine_virtual_db/entities/*.ts'],
   });
 };
