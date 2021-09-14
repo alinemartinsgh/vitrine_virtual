@@ -1,4 +1,6 @@
+import { graphql } from 'graphql';
 import { Connection } from 'typeorm';
+
 import { testConn } from '../../test-utils/testConn';
 
 let conn: Connection;
@@ -12,7 +14,5 @@ afterAll(async () => {
 });
 
 describe('Registrar', () => {
-  it("create user", () => {
-
-  })
-})
+  it('create user', () => {});
+});
