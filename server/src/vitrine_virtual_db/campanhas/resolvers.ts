@@ -1,5 +1,5 @@
 import { Query, Resolver } from 'type-graphql';
-import Campanha from '../../entities/campanha';
+import Campanha from '../../entity/Campanha';
 
 @Resolver()
 export class CampanhaResolver {

@@ -3,7 +3,7 @@ import { CampanhaResolver } from './campanhas/resolvers';
 import { UsuarioResolver } from './usuarios/resolvers';
 
 const Schema = async () =>
-  buildSchema({
+  await buildSchema({
     resolvers: [CampanhaResolver, UsuarioResolver],
   });
 

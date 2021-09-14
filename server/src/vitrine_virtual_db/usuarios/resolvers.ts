@@ -1,5 +1,5 @@
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
-import Usuario from '../../entities/usuario';
+import { Usuario } from '../../entity/Usuario';
 
 @Resolver()
 export class UsuarioResolver {
