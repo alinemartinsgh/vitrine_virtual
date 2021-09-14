@@ -14,12 +14,13 @@ const main = async () => {
 
   const schema = await schemas();
 
-  const server = new ApolloServer({ schema });
+  const apolloServer = new ApolloServer({ schema });
 
-  await server.start();
+  await apolloServer.start();
+
   const app = Express();
 
-  server.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app });
 
   app.listen(8000, () => console.log(`Server running`));
 };

@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "db:setup": "ts-node ./src/test-utils/setup.ts",
-    "test": "npm run db:setup && jest"
+    "test": "npm run db:setup && jest",
+    "start": "nodemon --exec ts-node ./src/index.ts"
   },
   "dependencies": {
     "apollo-server": "^3.3.0",
