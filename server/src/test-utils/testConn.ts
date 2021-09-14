@@ -4,8 +4,8 @@ import { createConnection } from 'typeorm';
 export const testConn = (drop: boolean = false) => {
   return createConnection({
     type: 'mongodb',
-    url: process.env.URL,
-    database: process.env.BD,
+    url: 'mongodb+srv://admin:admin@cluster0.wkjar.mongodb.net/Cluster0?retryWrites=true&w=majority',
+    database: 'typegraphql-teste',
     useNewUrlParser: true,
     synchronize: drop,
     dropSchema: drop,
