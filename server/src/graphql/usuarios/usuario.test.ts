@@ -1,4 +1,5 @@
 import { Connection } from 'typeorm';
+import faker from 'faker';
 
 import { gCall } from '../../test-utils/gCall';
 import { testConn } from '../../test-utils/testConn';
@@ -15,14 +16,14 @@ afterAll(async () => {
 
 const registerMutation = `
 mutation(
-  $addUsuarioIsAdmin: Boolean!
-  $addUsuarioSenha: String!
-  $addUsuarioLogin: String!
+  $isAdmin: Boolean!
+  $senha: String!
+  $login: String!
 ) {
   addUsuario(
-    isAdmin: $addUsuarioIsAdmin
-    senha: $addUsuarioSenha
-    login: $addUsuarioLogin
+    isAdmin: $isAdmin
+    senha: $senha
+    login: $login
   ) {
     login
     senha
@@ -30,17 +31,27 @@ mutation(
   }
 }`;
 
-describe('Registrar', () => {
-  it('create user', async () => {
-    console.log(
-      await gCall({
-        source: registerMutation,
-        variableValues: {
-          addUsuarioIsAdmin: true,
-          addUsuarioSenha: '123456',
-          addUsuarioLogin: 'Leon',
-        },
-      }),
-    );
+describe('Registro de usuário', () => {
+  it('criar usuário', async () => {
+    const usuario = {
+      isAdmin: faker.datatype.boolean(),
+      login: faker.internet.userName(),
+      senha: faker.internet.password(),
+    };
+
+    const resposta = await gCall({
+      source: registerMutation,
+      variableValues: {
+        data: usuario,
+      },
+    });
+
+    expect(resposta).toMatchObject({
+      data: {
+        isAdmin: usuario.isAdmin,
+        login: usuario.login,
+        senha: usuario.senha,
+      },
+    });
   });
 });
