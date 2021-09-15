@@ -8,6 +8,13 @@ export class UsuarioResolver {
     return Usuario.find();
   }
 
+  @Query(() => Usuario)
+  async findUserById(
+    @Arg('usuarioId') usuarioId: string,
+  ): Promise<Usuario | undefined | null> {
+    return await Usuario.findOne(usuarioId);
+  }
+
   @Mutation(() => Usuario)
   async addUsuario(
     @Arg('login') login: string,
