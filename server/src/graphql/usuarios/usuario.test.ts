@@ -1,4 +1,3 @@
-//import { graphql } from 'graphql';
 import { Connection } from 'typeorm';
 
 import { gCall } from '../../test-utils/gCall';
