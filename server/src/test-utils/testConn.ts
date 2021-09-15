@@ -4,11 +4,11 @@ import { createConnection } from 'typeorm';
 export const testConn = (drop: boolean = false) => {
   return createConnection({
     type: 'mongodb',
-    url: 'mongodb+srv://admin:admin@cluster0.wkjar.mongodb.net/Cluster0?retryWrites=true&w=majority',
+    url: 'mongodb+srv://admin:admin@cluster0.ybymc.mongodb.net/typegraphql-teste?retryWrites=true&w=majority',
     database: 'typegraphql-teste',
     useNewUrlParser: true,
     synchronize: drop,
     dropSchema: drop,
-    entities: [__dirname + '../vitrine_virtual_db/*/*.ts'],
+    entities: ['../../**/src/entity/*{.ts,.js}'],
   });
 };
