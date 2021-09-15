@@ -9,7 +9,7 @@ export class UsuarioResolver {
   }
 
   @Query(() => Usuario)
-  async findUserById(
+  async buscaUsuarioPorId(
     @Arg('usuarioId') usuarioId: string,
   ): Promise<Usuario | undefined | null> {
     return await Usuario.findOne(usuarioId);
