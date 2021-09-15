@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import Express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 
-import schemas from './vitrine_virtual_db/schemas';
+import schemas from './graphql/schemas';
 import { createConnection } from 'typeorm';
 
 const main = async () => {
