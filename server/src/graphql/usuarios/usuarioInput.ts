@@ -1,9 +1,9 @@
 import { IsEmail } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
-import { Password } from './Password';
+import { Senha } from './Password';
 
 @InputType()
-export class AdicionarUsuarioInput extends Password(class {}) {
+export class AdicionarUsuarioInput extends Senha(class {}) {
   @Field()
   isAdmin: boolean;
 
