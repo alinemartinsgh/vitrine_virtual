@@ -1,6 +1,7 @@
 import { IsEmail } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
-import { Senha } from './Password';
+import { ExisteEmail } from './ExisteEmail';
+import { Senha } from './Senha';
 
 @InputType()
 export class AdicionarUsuarioInput extends Senha(class {}) {
@@ -9,5 +10,6 @@ export class AdicionarUsuarioInput extends Senha(class {}) {
 
   @Field()
   @IsEmail()
+  @ExisteEmail({ message: 'email ja esta em uso, tente outro' })
   email: string;
 }
