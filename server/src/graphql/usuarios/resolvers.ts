@@ -1,5 +1,6 @@
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import { Usuario } from '../../entity/Usuario';
+import { AdicionarUsuarioInput } from './usuarioInput';
 
 @Resolver()
 export class UsuarioResolver {
@@ -16,13 +17,12 @@ export class UsuarioResolver {
   }
 
   @Mutation(() => Usuario)
-  async addUsuario(
-    @Arg('login') login: string,
-    @Arg('senha') senha: string,
-    @Arg('isAdmin') isAdmin: boolean,
+  async adicionarUsuario(
+    @Arg('data')
+    { email, senha, isAdmin }: AdicionarUsuarioInput,
   ): Promise<Usuario> {
     const usuario = await Usuario.create({
-      login,
+      email,
       senha,
       isAdmin,
     }).save();

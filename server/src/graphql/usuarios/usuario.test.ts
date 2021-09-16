@@ -3,6 +3,7 @@ import faker from 'faker';
 
 import { gCall } from '../../test-utils/gCall';
 import { testConn } from '../../test-utils/testConn';
+import { Usuario } from '../../entity/Usuario';
 
 let conn: Connection;
 
@@ -15,17 +16,9 @@ afterAll(async () => {
 });
 
 const registerMutation = `
-mutation(
-  $isAdmin: Boolean!
-  $senha: String!
-  $login: String!
-) {
-  addUsuario(
-    isAdmin: $isAdmin
-    senha: $senha
-    login: $login
-  ) {
-    login
+mutation($data: AdicionarUsuarioInput!) {
+  adicionarUsuario(data: $data) {
+    email
     senha
     isAdmin
   }
@@ -34,9 +27,9 @@ mutation(
 describe('Registro de usuário', () => {
   it('criar usuário', async () => {
     const usuario = {
-      isAdmin: faker.datatype.boolean(),
-      login: faker.internet.userName(),
+      email: faker.internet.email(),
       senha: faker.internet.password(),
+      isAdmin: faker.datatype.boolean(),
     };
 
     const resposta = await gCall({
@@ -48,10 +41,14 @@ describe('Registro de usuário', () => {
 
     expect(resposta).toMatchObject({
       data: {
-        isAdmin: usuario.isAdmin,
-        login: usuario.login,
-        senha: usuario.senha,
+        adicionarUsuario: {
+          email: usuario.email,
+          senha: usuario.senha,
+          isAdmin: usuario.isAdmin,
+        },
       },
     });
+    const dbUser = await Usuario.findOne({ where: { email: usuario.email } });
+    expect(dbUser).toBeDefined();
   });
 });
