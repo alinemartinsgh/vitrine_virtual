@@ -11,7 +11,7 @@ export class Usuario extends BaseEntity {
 
   @Field({ nullable: false })
   @Column()
-  login: string;
+  email: string;
 
   @Field({ nullable: false })
   @Column()
