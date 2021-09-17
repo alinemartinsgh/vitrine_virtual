@@ -4,6 +4,7 @@ import { ApolloServer } from 'apollo-server-express';
 
 import schemas from './graphql/schemas';
 import { createConnection } from 'typeorm';
+import { upload } from './storage/config';
 
 const main = async () => {
   try {
@@ -12,13 +13,17 @@ const main = async () => {
     console.error(err);
   }
 
+  const app = Express();
+
+  app.post('/upload', upload.single('imagemCampanha'), (_, res) => {
+    return res.json({ status: 'ok' });
+  });
+
   const schema = await schemas();
 
   const apolloServer = new ApolloServer({ schema });
 
   await apolloServer.start();
-
-  const app = Express();
 
   apolloServer.applyMiddleware({ app });
 
