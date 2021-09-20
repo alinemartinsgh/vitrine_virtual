@@ -15,8 +15,8 @@ const main = async () => {
 
   const app = Express();
 
-  app.post('/upload', upload.single('imagemCampanha'), (_, res) => {
-    return res.json({ status: 'ok' });
+  app.post('/upload', upload.single('imagemCampanha'), ({ file }, res) => {
+    return res.json({ status: file });
   });
 
   const schema = await schemas();
