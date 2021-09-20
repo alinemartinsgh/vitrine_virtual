@@ -4,7 +4,7 @@ import { Field, ID, ObjectType } from 'type-graphql';
 
 @ObjectType()
 @Entity()
-class Campanha extends BaseEntity {
+export class Campanha extends BaseEntity {
   @Field(() => ID, { nullable: false })
   @ObjectIdColumn()
   id: ObjectID;
@@ -27,11 +27,11 @@ class Campanha extends BaseEntity {
 
   @Field({ nullable: false })
   @Column()
-  dataInicio: Date;
+  dataInicio: string;
 
   @Field({ nullable: false })
   @Column()
-  dataFim: Date;
+  dataFim: string;
 
   //@Field({ nullable: false })
   //@Column()
@@ -39,11 +39,11 @@ class Campanha extends BaseEntity {
 
   @Field({ nullable: true })
   @Column()
-  createdAt: Date;
+  createdAt: string;
 
   @Field({ nullable: true })
   @Column()
-  updatedAt: Date;
+  updatedAt: string;
 }
 
 export default Campanha;
