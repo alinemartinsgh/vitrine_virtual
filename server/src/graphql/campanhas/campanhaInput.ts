@@ -16,17 +16,17 @@ export class AdicionarCampanhaInput {
   imagem: string;
 
   @Field({ nullable: false })
-  dataInicio: Date;
+  dataInicio: string;
 
   @Field({ nullable: false })
-  dataFim: Date;
+  dataFim: string;
 
   //@Field({ nullable: false })
   //criadoPor: Usuario;
 
   @Field({ nullable: true })
-  createdAt: Date;
+  createdAt: string;
 
   @Field({ nullable: true })
-  updatedAt: Date;
+  updatedAt: string;
 }

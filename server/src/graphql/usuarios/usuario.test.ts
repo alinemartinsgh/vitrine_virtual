@@ -15,7 +15,7 @@ afterAll(async () => {
   await conn.close();
 });
 
-const registerMutation = `
+const adicionarUsuarioMutation = `
 mutation($data: AdicionarUsuarioInput!) {
   adicionarUsuario(data: $data) {
     email
@@ -25,7 +25,7 @@ mutation($data: AdicionarUsuarioInput!) {
 }`;
 
 describe('Registro de usuário', () => {
-  it('criar usuário', async () => {
+  it('cria usuário', async () => {
     const usuario = {
       email: faker.internet.email(),
       senha: faker.internet.password(),
@@ -33,7 +33,7 @@ describe('Registro de usuário', () => {
     };
 
     const resposta = await gCall({
-      source: registerMutation,
+      source: adicionarUsuarioMutation,
       variableValues: {
         data: usuario,
       },
