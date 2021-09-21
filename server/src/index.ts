@@ -4,7 +4,7 @@ import { ApolloServer } from 'apollo-server-express';
 
 import schemas from './graphql/schemas';
 import { createConnection } from 'typeorm';
-import { upload } from './storage/config';
+import router from './storage/rotas';
 
 const main = async () => {
   try {
@@ -15,9 +15,7 @@ const main = async () => {
 
   const app = Express();
 
-  app.post('/upload', upload.single('imagemCampanha'), ({ file }, res) => {
-    return res.json({ status: file });
-  });
+  app.use('/', router);
 
   const schema = await schemas();
 
