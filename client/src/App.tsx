@@ -1,6 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { configureStore } from './store';
+
+const { store } = configureStore();
 
 export default function App() {
   return (

@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.15.0"
+    "@babel/preset-typescript": "^7.15.0",
+    "redux-devtools-extension": "^2.13.9"
   }
 }
