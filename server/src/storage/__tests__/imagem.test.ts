@@ -1,5 +1,5 @@
-import { s3 } from './config';
-import { listaImagens, deletaImagem } from './imagem';
+import { s3 } from '../config';
+import { listaImagens, deletaImagem } from '../imagem';
 
 describe('storage-imagem', () => {
   const promise = jest.fn();
