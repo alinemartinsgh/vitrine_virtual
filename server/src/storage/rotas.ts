@@ -1,50 +1,48 @@
 import { Router } from 'express';
-import { s3 } from './config';
 
-import { upload } from './imagem';
+import { uploadImagem, listaImagens, deletaImagem } from './imagem';
 
 const router = Router();
 
 export const uploadImg = router.post(
-  '/upload',
-  upload.single('imagem'),
+  '/uploadImagem',
+  uploadImagem,
   ({ file }, res) => {
-    return res.json({ status: file });
+    return res.json({ file });
   },
 );
 
-export const listarImg = router.get('/listarImg', (_, res) => {
+/* export const uploadImg = router.post('/uploadImagem', async (req, res) => {
+  console.log(req);
+  await upload(req.body.key, req.body.file);
+  res.send(200);
+}); */
+
+export const listarImg = router.get('/listarImagens', async (_, res) => {
   try {
-    s3.listObjects(
-      {
-        Bucket: 'bucketvitrinevirtual',
-      },
-      (err, { Contents }) => {
-        if (err) console.error(err);
-        if (Contents) res.json(Contents);
-      },
-    );
-  } catch (err) {
-    console.error(err);
+    await listaImagens()
+      .then(({ Contents }) => {
+        return res.json(Contents).status(res.statusCode);
+      })
+      .catch((e) => res.json(`Error ${e.statusCode} Message: ${e.message}`));
+  } catch {
+    (e: Error) => console.log(e);
   }
 });
 
-export const rotaIdiota = router.get('/rota', (_, res) =>
-  res.status(200).json({ message: 'ok' }),
+export const deleteImg = router.delete(
+  '/deleteImagem/:key',
+  async ({ params }, res) => {
+    try {
+      await deletaImagem(params.key)
+        .then(() => {
+          return res.status(200).json(`${params.key} deletada`);
+        })
+        .catch((e) => res.json(`Error ${e.statusCode} Message: ${e.message}`));
+    } catch {
+      (e: Error) => console.log(e);
+    }
+  },
 );
-
-export const deleteImg = router.delete('/deleteImg/:key', (req, res) => {
-  try {
-    s3.deleteObject(
-      { Bucket: 'bucketvitrinevirtual', Key: req.params.key },
-      (err, data) => {
-        if (err) console.error(err);
-        if (data) res.json(`${req.params.key} deletada`);
-      },
-    );
-  } catch (err) {
-    console.error(err);
-  }
-});
 
 export default router;

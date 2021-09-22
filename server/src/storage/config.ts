@@ -9,7 +9,6 @@ import {
 export const s3 = new aws.S3({
   apiVersion: '2006-03-01',
   region: REGION,
-  s3ForcePathStyle: true,
   credentials: {
     accessKeyId: AWS_ACCESS_KEY_ID,
     secretAccessKey: AWS_SECRET_KEY,

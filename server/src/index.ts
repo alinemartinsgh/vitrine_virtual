@@ -1,19 +1,19 @@
 import 'reflect-metadata';
 import Express from 'express';
-import { ApolloServer } from 'apollo-server-express';
+/* import { ApolloServer } from 'apollo-server-express';
 
 import schemas from './graphql/schemas';
-import { createConnection } from 'typeorm';
+import { createConnection } from 'typeorm'; */
 import router from './storage/rotas';
 
+const app = Express();
+/*
 const main = async () => {
   try {
     await createConnection();
   } catch (err) {
     console.error(err);
   }
-
-  const app = Express();
 
   app.use('/', router);
 
@@ -25,7 +25,13 @@ const main = async () => {
 
   apolloServer.applyMiddleware({ app });
 
-  app.listen(8000, () => console.log(`Server running`));
+  app.listen(8000, () => console.log(`GraphQL Server running`));
 };
 
-main();
+main(); */
+
+app.use('/', router);
+
+app.listen(4000, () => console.log(`Server running`));
+
+export default app;

@@ -1,10 +1,11 @@
+import { ListObjectsOutput } from 'aws-sdk/clients/s3';
 import multer from 'multer';
 import multerS3 from 'multer-s3';
 import { v4 as uuid } from 'uuid';
 
 import { s3 } from './config';
 
-export const upload = multer({
+export const uploadImagem = multer({
   storage: multerS3({
     s3,
     bucket: 'bucketvitrinevirtual',
@@ -15,4 +16,28 @@ export const upload = multer({
       cb(null, `${uuid()}-${file.originalname}`);
     },
   }),
-});
+}).single('imagem');
+
+/* export const upload = async (key: string, body: any) => {
+  const imagem = await s3
+    .putObject({
+      Bucket: 'bucketvitrinevirtual',
+      Key: key,
+      Body: body,
+    })
+    .promise();
+  return imagem;
+}; */
+
+export const listaImagens = async (): Promise<ListObjectsOutput> => {
+  const res = await s3
+    .listObjectsV2({
+      Bucket: 'bucketvitrinevirtual',
+    })
+    .promise();
+  return res;
+};
+
+export const deletaImagem = async (key: string): Promise<void> => {
+  await s3.deleteObject({ Bucket: 'bucketvitrinevirtual', Key: key }).promise();
+};
