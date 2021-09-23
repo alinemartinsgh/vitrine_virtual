@@ -21,8 +21,3 @@ export type LoginReducer = (
   state: LoginState,
   actions: LoginAction<LoginState>,
 ) => LoginState;
-
-export interface LoginForm {
-  email: string;
-  password: string;
-}
