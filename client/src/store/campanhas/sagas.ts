@@ -1,3 +1,3 @@
-const sagas = {};
+const sagas = [''];
 
 export default sagas;
