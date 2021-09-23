@@ -1,11 +1,13 @@
 import 'reflect-metadata';
 import Express from 'express';
-import { ApolloServer } from 'apollo-server-express';
+/* import { ApolloServer } from 'apollo-server-express';
 
 import schemas from './graphql/schemas';
-import { createConnection } from 'typeorm';
-import { upload } from './storage/config';
+import { createConnection } from 'typeorm'; */
+import router from './storage/rotas';
 
+const app = Express();
+/*
 const main = async () => {
   try {
     await createConnection();
@@ -13,11 +15,7 @@ const main = async () => {
     console.error(err);
   }
 
-  const app = Express();
-
-  app.post('/upload', upload.single('imagemCampanha'), ({ file }, res) => {
-    return res.json({ status: file });
-  });
+  app.use('/', router);
 
   const schema = await schemas();
 
@@ -27,7 +25,13 @@ const main = async () => {
 
   apolloServer.applyMiddleware({ app });
 
-  app.listen(8000, () => console.log(`Server running`));
+  app.listen(8000, () => console.log(`GraphQL Server running`));
 };
 
-main();
+main(); */
+
+app.use('/', router);
+
+app.listen(4000, () => console.log(`Server running`));
+
+export default app;
