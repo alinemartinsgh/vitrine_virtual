@@ -5,29 +5,19 @@ import { v4 as uuid } from 'uuid';
 
 import { s3 } from './config';
 
-export const uploadImagem = multer({
-  storage: multerS3({
-    s3,
-    bucket: 'bucketvitrinevirtual',
-    metadata: (_, file, cb) => {
-      cb(null, { fieldName: file.fieldname });
-    },
-    key: (_, file, cb) => {
-      cb(null, `${uuid()}-${file.originalname}`);
-    },
-  }),
-}).single('imagem');
-
-/* export const upload = async (key: string, body: any) => {
-  const imagem = await s3
-    .putObject({
-      Bucket: 'bucketvitrinevirtual',
-      Key: key,
-      Body: body,
-    })
-    .promise();
-  return imagem;
-}; */
+export const uploadImagem = (): any =>
+  multer({
+    storage: multerS3({
+      s3,
+      bucket: 'bucketvitrinevirtual',
+      metadata: (_, file, cb) => {
+        cb(null, { fieldName: file.fieldname });
+      },
+      key: (_, file, cb) => {
+        cb(null, `${uuid()}-${file.originalname}`);
+      },
+    }),
+  }).single('imagem');
 
 export const listaImagens = async (): Promise<ListObjectsOutput> => {
   const res = await s3
