@@ -9,9 +9,10 @@ const actions = {
   requestLoginEmailPassword: (
     email: string,
     senha: string,
-  ): LoginAction<{ email: string; senha: string }> => ({
+    isAdmin: boolean,
+  ): LoginAction<{ email: string; senha: string; isAdmin: boolean }> => ({
     type: LoginTypes.REQUEST_EMAIL_PASSWORD,
-    payload: { email, senha },
+    payload: { email, senha, isAdmin },
   }),
   loginError: (error: Error) => ({
     type: LoginTypes.LOGIN_ERROR,

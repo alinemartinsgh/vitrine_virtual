@@ -8,6 +8,7 @@ export enum LoginTypes {
 export type LoginState = {
   isLogged: boolean;
   isLoading: boolean;
+  isAdmin: boolean;
   email: string;
   error?: Error;
 };

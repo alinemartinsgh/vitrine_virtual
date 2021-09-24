@@ -4,6 +4,7 @@ import { LoginAction, LoginState, LoginTypes, LoginReducer } from './types';
 const initialState: LoginState = {
   isLogged: false,
   isLoading: false,
+  isAdmin: false,
   email: '',
   error: undefined,
 };
