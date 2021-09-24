@@ -3,6 +3,7 @@ export enum CampanhaTypes {
 
   CREATE_CAMPANHA = '@campanha/CREATE_CAMPANHA',
   DELETE_CAMPANHA = '@campanha/DELETE_CAMPANHA',
+  REQUEST_CAMPANHAS = '@campanha/REQUEST_CAMPANHAS',
   REQUEST_CAMPANHA = '@campanha/REQUEST_CAMPANHA',
   UPDATE_CAMPANHA = '@campanha/UPDATE_CAMPANHA',
 }

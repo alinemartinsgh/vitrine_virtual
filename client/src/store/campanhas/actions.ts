@@ -6,8 +6,13 @@ const actions = {
     payload: { error },
   }),
 
-  requestlistaCampanhas: () => ({
+  buscaCampanhas: () => ({
+    type: CampanhaTypes.REQUEST_CAMPANHAS,
+  }),
+
+  buscaCampanhaPorId: (id: string) => ({
     type: CampanhaTypes.REQUEST_CAMPANHA,
+    payload: id,
   }),
 
   adicionarCampanha: (
@@ -26,7 +31,7 @@ const actions = {
 
   deletarCampanha: (id: string): CampanhaAction<{ id: string }> => ({
     type: CampanhaTypes.DELETE_CAMPANHA,
-    payload: {id}
+    payload: { id },
   }),
 };
 

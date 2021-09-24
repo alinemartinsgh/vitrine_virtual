@@ -15,7 +15,7 @@ export class CampanhaResolver {
   async buscaCampanhaPorId(
     @Arg('id') id: string,
   ): Promise<Campanha | undefined | null> {
-    return await Campanha.findOne(id);
+    return Campanha.findOne(id);
   }
 
   @Mutation(() => Campanha)
