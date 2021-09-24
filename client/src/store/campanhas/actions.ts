@@ -1,4 +1,9 @@
-import { CampanhaAction, CampanhaTypes, Campanha } from './types';
+import {
+  CampanhaAction,
+  CampanhaTypes,
+  Campanha,
+  ListaCampanhas,
+} from './types';
 
 const actions = {
   setError: (error: string): CampanhaAction<{ error?: string }> => ({
@@ -6,13 +11,24 @@ const actions = {
     payload: { error },
   }),
 
-  buscaCampanhas: () => ({
-    type: CampanhaTypes.REQUEST_CAMPANHAS,
+  buscaListaCampanhas: () => ({
+    type: CampanhaTypes.REQUEST_LISTACAMPANHA,
+  }),
+
+  setListaCampanhas: (
+    listaCampanhas: ListaCampanhas,
+  ): CampanhaAction<{ listaCampanhas: ListaCampanhas }> => ({
+    type: CampanhaTypes.SET_LISTACAMPANHA,
+    payload: { listaCampanhas },
   }),
 
   buscaCampanhaPorId: (id: string) => ({
     type: CampanhaTypes.REQUEST_CAMPANHA,
     payload: id,
+  }),
+
+  setCampanhaPorId: () => ({
+    type: CampanhaTypes.SET_CAMPANHA,
   }),
 
   adicionarCampanha: (
