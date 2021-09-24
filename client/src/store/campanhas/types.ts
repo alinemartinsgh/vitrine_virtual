@@ -1,10 +1,10 @@
 export enum CampanhaTypes {
   SET_ERROR = '@campanha/SET_ERROR',
 
-  REQUEST_CAMPANHA = '@campanha/REQUEST_CAMPANHA',
   CREATE_CAMPANHA = '@campanha/CREATE_CAMPANHA',
-  UPDATE_CAMPANHA = '@campanha/UPDATE_CAMPANHA',
   DELETE_CAMPANHA = '@campanha/DELETE_CAMPANHA',
+  REQUEST_CAMPANHA = '@campanha/REQUEST_CAMPANHA',
+  UPDATE_CAMPANHA = '@campanha/UPDATE_CAMPANHA',
 }
 
 export type CampanhaForm = {
