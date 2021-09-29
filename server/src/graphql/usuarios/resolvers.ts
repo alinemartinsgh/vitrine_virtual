@@ -1,3 +1,4 @@
+import { hash } from 'bcryptjs';
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import { Usuario } from '../../entity/Usuario';
 import { AdicionarUsuarioInput } from './usuarioInput';
@@ -21,9 +22,10 @@ export class UsuarioResolver {
     @Arg('data')
     { email, senha, isAdmin }: AdicionarUsuarioInput,
   ): Promise<Usuario> {
+    const hashedSenha = await hash(senha, 13);
     const usuario = await Usuario.create({
       email,
-      senha,
+      senha: hashedSenha,
       isAdmin,
     }).save();
     return usuario;

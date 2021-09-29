@@ -9,7 +9,7 @@ import {
   Ctx,
 } from 'type-graphql';
 import { sign } from 'jsonwebtoken';
-import { hash, compare } from 'bcryptjs';
+import { compare } from 'bcryptjs';
 import { Usuario } from '../../entity/Usuario';
 import { isAuth } from './isAuth';
 import { MyContext } from './MyContext';
@@ -24,10 +24,11 @@ class LoginResponse {
 export class LoginResolver {
   @Query(() => String)
   @UseMiddleware(isAuth)
-  async Me(@Ctx() { payload }: MyContext) {
+  async Me(@Ctx() { payload }: MyContext): Promise<string> {
     return `Id do usuario : ${payload!.userId}`;
   }
 
+  /*
   @Mutation(() => Boolean)
   async Register(
     @Arg('email') email: string,
@@ -48,6 +49,7 @@ export class LoginResolver {
 
     return true;
   }
+  */
 
   @Mutation(() => LoginResponse)
   async Login(
@@ -61,8 +63,6 @@ export class LoginResolver {
     if (!usuario) {
       throw new Error('Could not find user');
     }
-
-    console.log(senha, usuario.senha);
 
     const verify = await compare(senha, usuario.senha);
 
