@@ -4,7 +4,11 @@ import { ApolloServer } from 'apollo-server-express';
 
 import schemas from './graphql/schemas';
 import { createConnection } from 'typeorm';
-import { upload } from './storage/config';
+import router from './storage/rotas';
+
+const app = Express();
+
+app.use('/', router);
 
 const main = async () => {
   try {
@@ -13,21 +17,20 @@ const main = async () => {
     console.error(err);
   }
 
-  const app = Express();
-
-  app.post('/upload', upload.single('imagemCampanha'), ({ file }, res) => {
-    return res.json({ status: file });
-  });
-
   const schema = await schemas();
 
-  const apolloServer = new ApolloServer({ schema });
+  const apolloServer = new ApolloServer({
+    schema,
+    context: ({ req, res }) => ({ req, res }),
+  });
 
   await apolloServer.start();
 
   apolloServer.applyMiddleware({ app });
-
-  app.listen(8000, () => console.log(`Server running`));
 };
 
 main();
+
+app.listen(4000, () => console.log(`GraphQL Server running`));
+
+export default app;
