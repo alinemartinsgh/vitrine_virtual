@@ -1,13 +1,13 @@
 export enum CampanhaTypes {
   SET_ERROR = '@campanha/SET_ERROR',
 
-  CREATE_CAMPANHA = '@campanha/CREATE_CAMPANHA',
+  ADICIONAR_CAMPANHA = '@campanha/ADICIONAR_CAMPANHA',
   DELETE_CAMPANHA = '@campanha/DELETE_CAMPANHA',
-  REQUEST_LISTACAMPANHA = '@campanha/REQUEST_LISTACAMPANHA',
-  SET_LISTACAMPANHA = '@campanha/SET_LISTACAMPANHA',
-  REQUEST_CAMPANHA = '@campanha/REQUEST_CAMPANHA',
+  BUSCA_LISTA_CAMPANHA = '@campanha/BUSCA_LISTACAMPANHA',
+  SET_LISTA_CAMPANHA = '@campanha/SET_LISTACAMPANHA',
+  BUSCA_POR_ID_CAMPANHA = '@campanha/BUSCAPORID_CAMPANHA',
   SET_CAMPANHA = '@campanha/SET_CAMPANHA',
-  UPDATE_CAMPANHA = '@campanha/UPDATE_CAMPANHA',
+  ATUALIZAR_CAMPANHA = '@campanha/ATUALIZAR_CAMPANHA',
 }
 
 export type CampanhaForm = {
@@ -20,12 +20,12 @@ export type CampanhaForm = {
 };
 
 export interface Campanha extends CampanhaForm {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  id?: any;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
-export type ListaCampanhas = Array<Campanha>;
+export type ListaCampanhas = Campanha[];
 
 export interface CampanhaState {
   isLoading: boolean;

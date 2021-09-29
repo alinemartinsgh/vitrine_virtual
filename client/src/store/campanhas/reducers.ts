@@ -12,6 +12,16 @@ const initialState: CampanhaState = {
   error: undefined,
 };
 
+const setError: CampanhaReducer = (state, action) => {
+  const { payload } = action as ReturnType<typeof campanhaAction.setError>;
+
+  return {
+    ...state,
+    isLoading: false,
+    error: payload.error,
+  };
+};
+
 const buscaListaCampanhas: CampanhaReducer = (state) => ({
   ...state,
   isLoading: true,
@@ -31,20 +41,10 @@ const setListaCampanhas: CampanhaReducer = (state, action) => {
   };
 };
 
-const setError: CampanhaReducer = (state, action) => {
-  const { payload } = action as ReturnType<typeof campanhaAction.setError>;
-
-  return {
-    ...state,
-    isLoading: false,
-    error: payload.error,
-  };
-};
-
 const CampanhaMap = new Map([
   [CampanhaTypes.SET_ERROR, setError],
-  [CampanhaTypes.REQUEST_LISTACAMPANHA, buscaListaCampanhas],
-  [CampanhaTypes.SET_LISTACAMPANHA, setListaCampanhas],
+  [CampanhaTypes.BUSCA_LISTA_CAMPANHA, buscaListaCampanhas],
+  [CampanhaTypes.SET_LISTA_CAMPANHA, setListaCampanhas],
 ]);
 
 const reducer = (

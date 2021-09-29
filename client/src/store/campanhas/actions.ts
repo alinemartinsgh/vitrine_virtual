@@ -12,36 +12,37 @@ const actions = {
   }),
 
   buscaListaCampanhas: () => ({
-    type: CampanhaTypes.REQUEST_LISTACAMPANHA,
+    type: CampanhaTypes.BUSCA_LISTA_CAMPANHA,
   }),
 
   setListaCampanhas: (
     listaCampanhas: ListaCampanhas,
   ): CampanhaAction<{ listaCampanhas: ListaCampanhas }> => ({
-    type: CampanhaTypes.SET_LISTACAMPANHA,
+    type: CampanhaTypes.SET_LISTA_CAMPANHA,
     payload: { listaCampanhas },
   }),
 
-  buscaCampanhaPorId: (id: string) => ({
-    type: CampanhaTypes.REQUEST_CAMPANHA,
+  /* buscaPorId: (id: string) => ({
+    type: CampanhaTypes.BUSCA_POR_ID_CAMPANHA,
     payload: id,
   }),
 
   setCampanhaPorId: () => ({
     type: CampanhaTypes.SET_CAMPANHA,
-  }),
+  }), */
 
   adicionarCampanha: (
     campanha: Partial<Campanha>,
   ): CampanhaAction<{ campanha: Partial<Campanha> }> => ({
-    type: CampanhaTypes.CREATE_CAMPANHA,
+    type: CampanhaTypes.ADICIONAR_CAMPANHA,
     payload: { campanha },
   }),
 
   atualizarCampanha: (
+    id: any,
     campanha: Partial<Campanha>,
   ): CampanhaAction<{ campanha: Partial<Campanha> }> => ({
-    type: CampanhaTypes.UPDATE_CAMPANHA,
+    type: CampanhaTypes.ATUALIZAR_CAMPANHA,
     payload: { campanha },
   }),
 

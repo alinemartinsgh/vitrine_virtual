@@ -12,7 +12,7 @@ export class CampanhaResolver {
   }
 
   @Query(() => Campanha, { nullable: true })
-  async buscaCampanhaPorId(
+  async buscaPorId(
     @Arg('id') id: string,
   ): Promise<Campanha | undefined | null> {
     return Campanha.findOne(id);
@@ -28,16 +28,14 @@ export class CampanhaResolver {
       imagem,
       dataInicio,
       dataFim,
-      //criadoPor,
-      createdAt,
-      updatedAt,
+      createdAt = new Date(),
+      updatedAt = new Date(),
     }: AdicionarCampanhaInput,
   ): Promise<Campanha> {
     const campanha = await Campanha.create({
       nome,
       categoria,
       createdAt,
-      //criadoPor,
       dataFim,
       dataInicio,
       descricao,
@@ -58,9 +56,8 @@ export class CampanhaResolver {
       imagem,
       dataInicio,
       dataFim,
-      //criadoPor,
       createdAt,
-      updatedAt,
+      updatedAt = new Date(),
     }: AdicionarCampanhaInput,
   ): Promise<Campanha | null> {
     const campanha = await Campanha.findOne(id);
