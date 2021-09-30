@@ -4,7 +4,7 @@ import { LoginAction, LoginState, LoginTypes, LoginReducer } from './types';
 const initialState: LoginState = {
   isLogged: false,
   isLoading: false,
-  isAdmin: false,
+  currentUser: undefined,
   email: '',
   error: undefined,
 };
@@ -12,6 +12,7 @@ const initialState: LoginState = {
 const logout: LoginReducer = (state) => ({
   ...state,
   isLogged: false,
+  currentUser: undefined,
   isLoading: false,
   error: undefined,
 });
@@ -21,6 +22,7 @@ const login: LoginReducer = (state, action) => {
     ...state,
     isLogged: true,
     isLoading: false,
+    error: undefined,
   };
 };
 

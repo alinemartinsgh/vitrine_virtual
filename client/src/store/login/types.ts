@@ -5,10 +5,16 @@ export enum LoginTypes {
   LOGIN_ERROR = '@login/LOGIN_ERROR',
 }
 
+export type Usuario = {
+  email: string;
+  senha: string;
+  isAdmin: string;
+};
+
 export type LoginState = {
   isLogged: boolean;
   isLoading: boolean;
-  isAdmin: boolean;
+  currentUser: Usuario | undefined;
   email: string;
   error?: Error;
 };
