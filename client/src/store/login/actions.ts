@@ -1,18 +1,18 @@
 import { LoginTypes, LoginAction } from './types';
+import { Usuario } from './types';
 
 const actions = {
   logout: () => ({ type: LoginTypes.LOGOUT }),
-  login: (usuarioAtual: any): LoginAction<{ usuarioAtual: any }> => ({
+  login: (usuarioAtual: Usuario): LoginAction<{ usuarioAtual: Usuario }> => ({
     type: LoginTypes.LOGIN,
     payload: { usuarioAtual },
   }),
   requestLoginEmailPassword: (
     email: string,
     senha: string,
-    isAdmin: boolean,
-  ): LoginAction<{ email: string; senha: string; isAdmin: boolean }> => ({
+  ): LoginAction<{ email: string; senha: string }> => ({
     type: LoginTypes.REQUEST_EMAIL_PASSWORD,
-    payload: { email, senha, isAdmin },
+    payload: { email, senha },
   }),
   loginError: (error: Error) => ({
     type: LoginTypes.LOGIN_ERROR,

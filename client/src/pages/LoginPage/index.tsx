@@ -1,10 +1,24 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as selectors from '../../store/login/selectors';
+import { loginActions } from '../../store/login';
 
 interface loginPageProps {}
 
 const LoginPage: React.FC<loginPageProps> = () => {
+  const dispatch = useDispatch();
+  const users = useSelector(selectors.getCurrentUser);
+  console.log(users);
+
+  const handleLogin = (email: string, senha: string) => {
+    const User = { email, senha };
+    dispatch(loginActions.login(User));
+  };
+
   return (
-    <form>
+    <form
+      onSubmit={(e: React.FormEvent<HTMLFormElement>) => e.preventDefault()}
+    >
       <label>
         Email:
         <input type="text" name="email" />
@@ -17,7 +31,7 @@ const LoginPage: React.FC<loginPageProps> = () => {
         type="submit"
         value="Enviar"
         onClick={() => {
-          console.log('olaaa');
+          handleLogin('admin@gmail.com', '12345');
         }}
       />
     </form>

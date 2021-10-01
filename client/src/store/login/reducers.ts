@@ -18,15 +18,20 @@ const logout: LoginReducer = (state) => ({
 });
 
 const login: LoginReducer = (state, action) => {
+  const { payload } = action as unknown as ReturnType<
+    typeof loginActions.login
+  >;
+
   return {
     ...state,
     isLogged: true,
     isLoading: false,
     error: undefined,
+    currentUser: payload.usuarioAtual,
   };
 };
 
-const requestLoginEmailPassword: LoginReducer = (state) => ({
+const requestEmailPassword: LoginReducer = (state) => ({
   ...state,
   isLogged: false,
   isLoading: false,
@@ -44,7 +49,7 @@ const loginError: LoginReducer = (state, action) => {
 
 const loginReducerMap = new Map<LoginTypes, LoginReducer>([
   [LoginTypes.LOGOUT, logout],
-  [LoginTypes.REQUEST_EMAIL_PASSWORD, requestLoginEmailPassword],
+  [LoginTypes.REQUEST_EMAIL_PASSWORD, requestEmailPassword],
   [LoginTypes.LOGIN, login],
   [LoginTypes.LOGIN_ERROR, loginError],
 ]);

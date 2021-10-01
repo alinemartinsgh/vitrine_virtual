@@ -8,7 +8,6 @@ export enum LoginTypes {
 export type Usuario = {
   email: string;
   senha: string;
-  isAdmin: string;
 };
 
 export type LoginState = {
