@@ -1,7 +1,7 @@
 import { Field, InputType } from 'type-graphql';
 
 @InputType()
-export class AdicionarCampanhaInput {
+export class CampanhaForm {
   @Field({ nullable: false })
   nome: string;
 
@@ -19,10 +19,4 @@ export class AdicionarCampanhaInput {
 
   @Field({ nullable: false })
   dataFim: Date;
-
-  @Field({ nullable: true })
-  createdAt: Date;
-
-  @Field({ nullable: true })
-  updatedAt: Date;
 }

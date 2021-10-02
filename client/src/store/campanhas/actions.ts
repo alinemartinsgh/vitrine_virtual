@@ -3,6 +3,7 @@ import {
   CampanhaTypes,
   Campanha,
   ListaCampanhas,
+  CampanhaForm,
 } from './types';
 
 const actions = {
@@ -22,28 +23,28 @@ const actions = {
     payload: { listaCampanhas },
   }),
 
-  /* buscaPorId: (id: string) => ({
+  buscaPorId: () => ({
     type: CampanhaTypes.BUSCA_POR_ID_CAMPANHA,
-    payload: id,
   }),
 
-  setCampanhaPorId: () => ({
+  setCampanhaPorId: (campanha: Campanha) => ({
     type: CampanhaTypes.SET_CAMPANHA,
-  }), */
+    payload: { campanha },
+  }),
 
   adicionarCampanha: (
-    campanha: Partial<Campanha>,
-  ): CampanhaAction<{ campanha: Partial<Campanha> }> => ({
+    data: CampanhaForm,
+  ): CampanhaAction<{ data: Campanha }> => ({
     type: CampanhaTypes.ADICIONAR_CAMPANHA,
-    payload: { campanha },
+    payload: { data },
   }),
 
   atualizarCampanha: (
     id: any,
     campanha: Partial<Campanha>,
-  ): CampanhaAction<{ campanha: Partial<Campanha> }> => ({
+  ): CampanhaAction<{ id: any; campanha: Partial<Campanha> }> => ({
     type: CampanhaTypes.ATUALIZAR_CAMPANHA,
-    payload: { campanha },
+    payload: { id, campanha },
   }),
 
   deletarCampanha: (id: string): CampanhaAction<{ id: string }> => ({

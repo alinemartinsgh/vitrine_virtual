@@ -41,10 +41,35 @@ const setListaCampanhas: CampanhaReducer = (state, action) => {
   };
 };
 
+const adicionarCampanha: CampanhaReducer = (state, action) => {
+  const { payload } = action as unknown as ReturnType<
+    typeof campanhaAction.adicionarCampanha
+  >;
+  return {
+    ...state,
+    listaCampanhas: [...state.listaCampanhas, payload.data],
+    isLoading: true,
+    error: undefined,
+  };
+};
+
+/* const atualizarCampanha: CampanhaReducer = (state, action) => {
+  const { payload } = action as unknown as ReturnType<
+    typeof campanhaAction.atualizarCampanha
+  >;
+  return {
+    ...state,
+    listaCampanhas: [...state.listaCampanhas, payload.campanha],
+    error: undefined,
+    isLoading: true,
+  };
+}; */
+
 const CampanhaMap = new Map([
   [CampanhaTypes.SET_ERROR, setError],
   [CampanhaTypes.BUSCA_LISTA_CAMPANHA, buscaListaCampanhas],
   [CampanhaTypes.SET_LISTA_CAMPANHA, setListaCampanhas],
+  [CampanhaTypes.ADICIONAR_CAMPANHA, adicionarCampanha],
 ]);
 
 const reducer = (

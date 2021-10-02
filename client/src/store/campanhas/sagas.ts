@@ -1,15 +1,11 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { actions } from '.';
-import {
-  listaTodasCampanhas,
-  criaNovaCampanha,
-  atualizaCampanha,
-} from './repository';
-import { CampanhaForm, CampanhaTypes } from './types';
+import * as repository from './repository';
+import { Campanha, CampanhaTypes } from './types';
 
 export function* buscaCampanhas(): any {
   try {
-    const data = yield call(listaTodasCampanhas);
+    const data = yield call(repository.listaTodasCampanhas);
     if (data) {
       yield put(actions.setListaCampanhas(data));
     }
@@ -18,44 +14,50 @@ export function* buscaCampanhas(): any {
   }
 }
 
-export function* criaCampanha(data: CampanhaForm) {
+export function* buscaCampanhaPorId(id: string): any {
   try {
-    const novaCampanha = yield call(criaNovaCampanha, data);
-    if (novaCampanha) {
-      yield put(actions.adicionarCampanha, data);
-    }
-    yield call(buscaCampanhas);
-  } catch (err: any) {
-    yield put(actions.setError(err.message));
-  }
-}
-
-export function* atualizarCampanha(id: any, data: CampanhaForm): any {
-  try {
-    const updateCampanha = yield call(actions.atualizarCampanha, id, data);
-    if (updateCampanha) {
-      atualizaCampanha(id, data);
-    }
-  } catch (err: any) {
-    yield put(actions.setError(err.message));
-  }
-}
-
-/* export function* buscaCampanhaPorId(id: any) {
-  try {
-    const campanha = yield call(actions.buscaPorId, id);
+    const campanha = yield call(repository.buscaPorId, id);
     if (campanha) {
-      buscaCampanhaPorId(id);
+      yield put(actions.setCampanhaPorId(campanha));
     }
   } catch (err: any) {
     yield put(actions.setError(err.message));
   }
-} */
+}
+
+export function* criaCampanha(data: any) {
+  try {
+    const novaCampanha: Campanha = yield call(
+      repository.criaNovaCampanha,
+      data.payload.data,
+    );
+    if (novaCampanha) {
+      yield call(actions.buscaListaCampanhas);
+    }
+  } catch (err: any) {
+    yield put(actions.setError(err.message));
+  }
+}
+
+export function* atualizarCampanha(id: string, data: any): any {
+  try {
+    const updateCampanha = yield call(
+      repository.atualizaCampanha,
+      id,
+      data.payload.data,
+    );
+    if (updateCampanha) {
+      yield call(actions.buscaListaCampanhas);
+    }
+  } catch (err: any) {
+    yield put(actions.setError(err.message));
+  }
+}
 
 const sagas = [
   takeLatest(CampanhaTypes.BUSCA_LISTA_CAMPANHA, buscaCampanhas),
-  //takeLatest(CampanhaTypes.BUSCA_POR_ID_CAMPANHA, buscaCampanhaPorId),
-  takeLatest(CampanhaTypes.ATUALIZAR_CAMPANHA, atualizarCampanha),
+  takeLatest<any>(CampanhaTypes.BUSCA_POR_ID_CAMPANHA, buscaCampanhaPorId),
+  //takeLatest(CampanhaTypes.ATUALIZAR_CAMPANHA, atualizarCampanha),
   takeLatest(CampanhaTypes.ADICIONAR_CAMPANHA, criaCampanha),
 ];
 

@@ -2,7 +2,7 @@ import { Arg, Query, Resolver, Mutation } from 'type-graphql';
 import { getRepository } from 'typeorm';
 import Campanha from '../../entity/Campanha';
 
-import { AdicionarCampanhaInput } from '../campanhas/campanhaInput';
+import { CampanhaForm } from '../campanhas/campanhaInput';
 
 @Resolver()
 export class CampanhaResolver {
@@ -21,26 +21,15 @@ export class CampanhaResolver {
   @Mutation(() => Campanha)
   async adicionarCampanha(
     @Arg('data')
-    {
-      nome,
-      descricao,
-      categoria,
-      imagem,
-      dataInicio,
-      dataFim,
-      createdAt = new Date(),
-      updatedAt = new Date(),
-    }: AdicionarCampanhaInput,
+    { nome, descricao, categoria, imagem, dataInicio, dataFim }: CampanhaForm,
   ): Promise<Campanha> {
     const campanha = await Campanha.create({
       nome,
       categoria,
-      createdAt,
       dataFim,
       dataInicio,
       descricao,
       imagem,
-      updatedAt,
     }).save();
     return campanha;
   }
@@ -49,16 +38,7 @@ export class CampanhaResolver {
   async atualizarCampanha(
     @Arg('id') id: string,
     @Arg('data')
-    {
-      nome,
-      descricao,
-      categoria,
-      imagem,
-      dataInicio,
-      dataFim,
-      createdAt,
-      updatedAt = new Date(),
-    }: AdicionarCampanhaInput,
+    { nome, descricao, categoria, imagem, dataInicio, dataFim }: CampanhaForm,
   ): Promise<Campanha | null> {
     const campanha = await Campanha.findOne(id);
 
@@ -69,8 +49,6 @@ export class CampanhaResolver {
       campanha.imagem = imagem;
       campanha.dataInicio = dataInicio;
       campanha.dataFim = dataFim;
-      campanha.createdAt = createdAt;
-      campanha.updatedAt = updatedAt;
 
       await getRepository(Campanha).update(id, campanha);
       return campanha;
