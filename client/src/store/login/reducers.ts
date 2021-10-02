@@ -27,7 +27,7 @@ const login: LoginReducer = (state, action) => {
     isLogged: true,
     isLoading: false,
     error: undefined,
-    currentUser: payload.usuarioAtual,
+    token: payload.token,
   };
 };
 

@@ -26,7 +26,7 @@ export class LoginResolver {
   @Query(() => String)
   @UseMiddleware(isAuth)
   async Me(@Ctx() { payload }: MyContext): Promise<string> {
-    return `Id do usuario : ${payload!.userId}`;
+    return payload!.userId;
   }
 
   @Mutation(() => LoginResponse)

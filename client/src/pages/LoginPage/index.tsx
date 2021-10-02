@@ -11,8 +11,7 @@ const LoginPage: React.FC<loginPageProps> = () => {
   console.log(users);
 
   const handleLogin = (email: string, senha: string) => {
-    const User = { email, senha };
-    dispatch(loginActions.login(User));
+    dispatch(loginActions.requestLoginEmailPassword(email, senha));
   };
 
   return (

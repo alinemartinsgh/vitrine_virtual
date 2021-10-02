@@ -1,11 +1,10 @@
 import { LoginTypes, LoginAction } from './types';
-import { Usuario } from './types';
 
 const actions = {
   logout: () => ({ type: LoginTypes.LOGOUT }),
-  login: (usuarioAtual: Usuario): LoginAction<{ usuarioAtual: Usuario }> => ({
+  login: (token: string): LoginAction<{ token: string }> => ({
     type: LoginTypes.LOGIN,
-    payload: { usuarioAtual },
+    payload: { token },
   }),
   requestLoginEmailPassword: (
     email: string,

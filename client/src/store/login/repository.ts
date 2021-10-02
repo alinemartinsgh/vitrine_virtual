@@ -1,5 +1,5 @@
 import { api } from 'src/api';
-import { gql } from '@apollo/client';
+import { FetchResult, gql } from '@apollo/client';
 
 export interface LoginResponse {
   data: Promise<any>;
@@ -8,17 +8,25 @@ export interface LoginResponse {
   senha: '';
 }
 
-const login = gql`
-  mutation ($data: LoginInput!) {
-    Login(data: data) {
-      accessToken
-    }
-  }
-`;
-
-const Login = async () => {
-  const retorno = await api.mutate({ mutation: login });
-  return retorno;
+const parameters = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  // body: JSON.stringify(email, senha),
 };
 
-export { Login };
+const LoginEmailSenha = async (email: string, senha: string) => {
+  return await api.mutate({
+    mutation: gql`
+      mutation ($data: LoginInput!) {
+        Login(data: $data) {
+          accessToken
+        }
+      }
+    `,
+    variables: { data: { email, senha }},
+  });
+};
+
+export { LoginEmailSenha };
