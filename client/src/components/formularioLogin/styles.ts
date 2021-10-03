@@ -28,5 +28,31 @@ export const InputContainer = styled.div`
   align-items: center;
   height: 20%;
   width: 100%;
-`
+`;
 
+export const ReguaHorizontal = styled.hr`
+  width: 90%;
+  height: 1.5%;
+  border-radius: 0.8rem;
+  border: none;
+  background: linear-gradient(to right, #00767f 0%, #0eb5c2 79%);
+  background-color: #ebd0d0;
+  margin: 2rem 0 1rem 0;
+  backdrop-filter: blur(25px);
+`;
+
+export const IconeContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2rem 0 3rem 0;
+  width: 80%;
+  height: 20%;
+`;
+
+export const TituloBemVindo = styled.h2`
+  margin: auto auto;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  height: 10%;
+`;
