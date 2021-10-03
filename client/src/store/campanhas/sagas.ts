@@ -14,7 +14,7 @@ export function* buscaCampanhas(): any {
   }
 }
 
-export function* buscaCampanhaPorId(id: string): any {
+/* export function* buscaCampanhaPorId(id: string): any {
   try {
     const campanha = yield call(repository.buscaPorId, id);
     if (campanha) {
@@ -23,7 +23,7 @@ export function* buscaCampanhaPorId(id: string): any {
   } catch (err: any) {
     yield put(actions.setError(err.message));
   }
-}
+} */
 
 export function* criaCampanha(data: any) {
   try {
@@ -39,11 +39,11 @@ export function* criaCampanha(data: any) {
   }
 }
 
-export function* atualizarCampanha(id: string, data: any): any {
+export function* atualizarCampanha(id: any, data: any) {
   try {
-    const updateCampanha = yield call(
+    const updateCampanha: Campanha = yield call(
       repository.atualizaCampanha,
-      id,
+      id.payload.data,
       data.payload.data,
     );
     if (updateCampanha) {
@@ -54,11 +54,21 @@ export function* atualizarCampanha(id: string, data: any): any {
   }
 }
 
+export function* deletarCampanha(id: any): any {
+  try {
+    const deletaCampanha = yield call(repository.deletaCampanha, id.payload.id);
+    if (deletaCampanha) yield call(actions.buscaListaCampanhas);
+  } catch (err: any) {
+    yield put(actions.setError(err.message));
+  }
+}
+
 const sagas = [
   takeLatest(CampanhaTypes.BUSCA_LISTA_CAMPANHA, buscaCampanhas),
-  takeLatest<any>(CampanhaTypes.BUSCA_POR_ID_CAMPANHA, buscaCampanhaPorId),
-  //takeLatest(CampanhaTypes.ATUALIZAR_CAMPANHA, atualizarCampanha),
+  //takeLatest(CampanhaTypes.BUSCA_POR_ID_CAMPANHA, buscaCampanhaPorId),
+  takeLatest<any>(CampanhaTypes.ATUALIZAR_CAMPANHA, atualizarCampanha),
   takeLatest(CampanhaTypes.ADICIONAR_CAMPANHA, criaCampanha),
+  takeLatest(CampanhaTypes.DELETE_CAMPANHA, deletarCampanha),
 ];
 
 export default sagas;

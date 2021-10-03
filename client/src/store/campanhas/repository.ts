@@ -20,7 +20,9 @@ const buscaCampanhaQuery = gql`
 
 const addCampanhaMutation = gql`
   mutation ($data: CampanhaForm!) {
-    adicionarCampanha(data: $data)
+    adicionarCampanha(data: $data) {
+      id
+    }
   }
 `;
 
@@ -31,7 +33,7 @@ const updateCampanhaMutation = gql`
 `;
 
 const buscaCampanhaPorIdQuery = gql`
-  query ($buscaPorIdId: string) {
+  query ($buscaPorIdId: String!) {
     buscaCampanhaPorId(id: $buscaPorIdId) {
       id
       nome
@@ -46,7 +48,9 @@ const buscaCampanhaPorIdQuery = gql`
 
 const deletaCampanhaMutation = gql`
   mutation ($id: String!) {
-    deletarCampanha(id: $id)
+    deletarCampanha(id: $id) {
+      nome
+    }
   }
 `;
 
@@ -54,7 +58,7 @@ async function listaTodasCampanhas(): Promise<ListaCampanhas> {
   const getListaCampanhas = await api.query({
     query: buscaCampanhaQuery,
   });
-  return getListaCampanhas.data;
+  return getListaCampanhas.data.buscaCampanhas;
 }
 
 async function buscaPorId(id: string): Promise<Campanha> {
@@ -103,10 +107,15 @@ async function atualizaCampanha(id: string, data: Partial<Campanha>) {
 
 async function deletaCampanha(id: string) {
   try {
-    await api.mutate({
+    const campanhaDeletada = await api.mutate({
       mutation: deletaCampanhaMutation,
       variables: { id },
     });
+    if (campanhaDeletada.data) {
+      return campanhaDeletada.data;
+    } else {
+      return campanhaDeletada.errors;
+    }
   } catch (e: any) {
     return e.message;
   }

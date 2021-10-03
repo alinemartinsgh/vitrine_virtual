@@ -23,14 +23,14 @@ const actions = {
     payload: { listaCampanhas },
   }),
 
-  buscaPorId: () => ({
+/*   buscaPorId: () => ({
     type: CampanhaTypes.BUSCA_POR_ID_CAMPANHA,
   }),
 
   setCampanhaPorId: (campanha: Campanha) => ({
     type: CampanhaTypes.SET_CAMPANHA,
     payload: { campanha },
-  }),
+  }), */
 
   adicionarCampanha: (
     data: CampanhaForm,
@@ -40,9 +40,9 @@ const actions = {
   }),
 
   atualizarCampanha: (
-    id: any,
-    campanha: Partial<Campanha>,
-  ): CampanhaAction<{ id: any; campanha: Partial<Campanha> }> => ({
+    id: string,
+    campanha: Campanha,
+  ): CampanhaAction<{ id: any; campanha: Campanha }> => ({
     type: CampanhaTypes.ATUALIZAR_CAMPANHA,
     payload: { id, campanha },
   }),
