@@ -3,7 +3,7 @@ import React from 'react';
 import { IconeEstilizado } from './styles';
 
 interface Props {
-  image: any;
+  image: string;
 }
 
 export const Icone = ({ image }: Props) => {

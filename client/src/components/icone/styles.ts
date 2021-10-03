@@ -7,7 +7,7 @@ interface props {
 export const IconeEstilizado = styled.div<props>`
   height: 3.5rem;
   width: 3.5rem;
-  background-image: ${(props) => `url(${props.background})`};
+  background-image: url(${(props) => props.background});
   display: flex;
   justify-content: center;
   align-items: center;

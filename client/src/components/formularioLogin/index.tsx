@@ -18,6 +18,11 @@ interface Props {
 }
 
 export const FormularioLogin = ({ onClick }: Props) => {
+  const HitssPath = '../../../assets/img/hitss.svg';
+  const ClaroPath = '../../../assets/img/logotipo_da_empresa_claro.svg'
+
+
+
   return (
     <Container>
       <TituloBemVindo> Seja bem vindo! </TituloBemVindo>
@@ -30,8 +35,8 @@ export const FormularioLogin = ({ onClick }: Props) => {
         <Botao conteudo="Login" />
       </BotaoContainer>
       <IconeContainer>
-        <Icone image={'../../../assets/img/hitss.jpeg'} />
-        <Icone image={'../../../assets/img/claro.webp'} />
+        <Icone image={HitssPath} />
+        <Icone image={ClaroPath} />
       </IconeContainer>
     </Container>
   );

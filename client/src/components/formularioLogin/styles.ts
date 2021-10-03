@@ -46,7 +46,7 @@ export const IconeContainer = styled.div`
   justify-content: space-evenly;
   margin: 2rem 0 3rem 0;
   width: 80%;
-  height: 20%;
+  height: 10%;
 `;
 
 export const TituloBemVindo = styled.h2`
