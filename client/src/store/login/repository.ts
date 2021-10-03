@@ -1,20 +1,5 @@
 import { api } from 'src/api';
-import { FetchResult, gql } from '@apollo/client';
-
-export interface LoginResponse {
-  data: Promise<any>;
-  context: unknown;
-  email: '';
-  senha: '';
-}
-
-const parameters = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  // body: JSON.stringify(email, senha),
-};
+import { gql } from '@apollo/client';
 
 const LoginEmailSenha = async (email: string, senha: string) => {
   return await api.mutate({
@@ -25,7 +10,7 @@ const LoginEmailSenha = async (email: string, senha: string) => {
         }
       }
     `,
-    variables: { data: { email, senha }},
+    variables: { data: { email, senha } },
   });
 };
 
