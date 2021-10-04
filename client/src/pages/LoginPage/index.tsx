@@ -11,6 +11,7 @@ const LoginPage: React.FC = () => {
   console.log(users);
 
   const handleLogin = (email: string, senha: string): any => {
+    console.log('oi')
     dispatch(loginActions.requestLoginEmailPassword(email, senha));
   };
 

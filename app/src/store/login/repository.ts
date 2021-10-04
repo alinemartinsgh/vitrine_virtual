@@ -1,5 +1,5 @@
-import { api } from 'src/api';
-import { gql } from '@apollo/client';
+import {api} from '../../api/';
+import {gql} from '@apollo/client';
 
 const LoginEmailSenha = async (email: string, senha: string) => {
   return await api.mutate({
@@ -10,10 +10,11 @@ const LoginEmailSenha = async (email: string, senha: string) => {
         }
       }
     `,
-    variables: { data: { email, senha } },
+    variables: {data: {email, senha}},
   });
 };
 
+/*
 const Me = async (token: string) => {
   return await api.query({
     query: gql`
@@ -21,5 +22,6 @@ const Me = async (token: string) => {
     `,
   });
 };
+*/
 
-export { LoginEmailSenha };
+export {LoginEmailSenha};

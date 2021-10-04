@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
+
 
 import { BotaoCustomizado } from './styles';
 
 interface Props {
   conteudo: string;
   type: 'submit' | 'button';
-  enviarForm?: () => {};
+  enviarForm?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export const Botao = ({ conteudo, type, enviarForm }: Props) => {
@@ -14,4 +15,4 @@ export const Botao = ({ conteudo, type, enviarForm }: Props) => {
       {conteudo}
     </BotaoCustomizado>
   );
-};
+
