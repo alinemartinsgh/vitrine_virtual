@@ -4,7 +4,7 @@ import { InputCustomizado } from './styles';
 
 interface Props {
   type: string;
-  placeholder: string;
+  placeholder?: string;
   nome: string;
   onchange?: ChangeEventHandler<HTMLInputElement>;
 }

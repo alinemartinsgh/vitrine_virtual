@@ -1,7 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { FormContainer } from './style';
+import {
+  DataContainer,
+  DataInput,
+  FormContainer,
+  ImagemContainer,
+  ImagemInput,
+  ImagemLabel,
+  Select,
+} from './style';
 import Categorias from './CategoriaEnum';
 import { actions } from 'src/store/campanhas';
 import { CampanhaForm } from 'src/store/campanhas/types';
@@ -39,12 +47,22 @@ const FormCampanha: React.FC = () => {
         onchange={() => {}}
         placeholder="Descrição"
       />
-      <select>
+      <Select>
+        <option selected value="" hidden>
+          Selecione
+        </option>
         {_.map(Categorias, (categoria, key) => (
           <option value={key}>{categoria}</option>
         ))}
-      </select>
-      <button type="submit">enviar</button>
+      </Select>
+      <DataContainer>
+        <DataInput name="dataInicio" type="date" />
+        <DataInput name="dataFim" type="date" />
+      </DataContainer>
+      <ImagemContainer>
+        <ImagemLabel htmlFor="imagem">Selecione sua imagem</ImagemLabel>
+        <ImagemInput type="file" name="imagem" id="imagem" />
+      </ImagemContainer>
     </FormContainer>
   );
 };

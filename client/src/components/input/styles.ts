@@ -11,6 +11,5 @@ export const InputCustomizado = styled.input`
   outline: none;
   color: #3c354e;
   font-size: 1rem;
-  font-weight: bold;
   margin: 0.5rem 0;
 `;
