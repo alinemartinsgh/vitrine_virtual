@@ -27,7 +27,7 @@ export const FormularioLogin = ({ onClick }: Props) => {
     <Container>
       <TituloBemVindo> Seja bem vindo! </TituloBemVindo>
       <InputContainer>
-        <Input type="text" placeholder="Email" />
+        <Input type="text" placeholder="Email"/>
         <Input type="text" placeholder="Senha" />
       </InputContainer>
       <ReguaHorizontal />

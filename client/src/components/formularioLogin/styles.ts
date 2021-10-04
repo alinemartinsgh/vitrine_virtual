@@ -35,7 +35,7 @@ export const ReguaHorizontal = styled.hr`
   height: 1.5%;
   border-radius: 0.8rem;
   border: none;
-  background: linear-gradient(to right, #00767f 0%, #0eb5c2 79%);
+  background: linear-gradient(to right, #e3262e 0%, #a61d19 79%);
   background-color: #ebd0d0;
   margin: 2rem 0 1rem 0;
   backdrop-filter: blur(25px);
@@ -50,6 +50,7 @@ export const IconeContainer = styled.div`
 `;
 
 export const TituloBemVindo = styled.h2`
+  font-family: Tahoma, sans-serif;
   margin: auto auto;
   color: black;
   text-transform: uppercase;
