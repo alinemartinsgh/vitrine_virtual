@@ -57,7 +57,9 @@ const reducer = (
   action: LoginAction<LoginState>,
 ): LoginState => {
   const loginReducer = loginReducerMap.get(action.type);
-  if (loginReducer) return loginReducer(state, action);
+  if (loginReducer) {
+    return loginReducer(state, action);
+  }
   return state;
 };
 

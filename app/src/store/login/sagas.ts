@@ -14,6 +14,7 @@ export function* requestEmailPassword(
     const response: any = yield call(repository.LoginEmailSenha, email, senha);
     let token = response.data.Login.accessToken;
 
+    console.log(token);
     if (email && senha) {
       if (token) {
         yield put(loginActions.login(token));

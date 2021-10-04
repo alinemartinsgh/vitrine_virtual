@@ -6,7 +6,7 @@ const actions = {
     type: LoginTypes.LOGIN,
     payload: {token},
   }),
-  requestLoginEmailPassword: (
+  requestEmailPassword: (
     email: string,
     senha: string,
   ): LoginAction<{email: string; senha: string}> => ({
