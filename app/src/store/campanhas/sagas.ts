@@ -1,7 +1,7 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { actions } from '.';
+import {call, put, takeLatest} from 'redux-saga/effects';
+import {actions} from '.';
 import * as repository from './repository';
-import { Campanha, CampanhaTypes } from './types';
+import {Campanha, CampanhaTypes} from './types';
 
 export function* buscaCampanhas(): any {
   try {

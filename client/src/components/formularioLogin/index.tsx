@@ -14,7 +14,7 @@ import { Botao } from '../botao';
 import { Icone } from '../icone';
 
 interface Props {
-  onClick: MouseEventHandler<HTMLInputElement> | undefined;
+  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export const FormularioLogin = ({ onClick }: Props) => {
@@ -32,7 +32,7 @@ export const FormularioLogin = ({ onClick }: Props) => {
       </InputContainer>
       <ReguaHorizontal />
       <BotaoContainer>
-        <Botao conteudo="Login" />
+        <Botao conteudo="Login" onClick={onClick} />
       </BotaoContainer>
       <IconeContainer>
         <Icone image={HitssPath} />
