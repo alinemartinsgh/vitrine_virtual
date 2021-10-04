@@ -27,11 +27,11 @@ export class Campanha extends BaseEntity {
 
   @Field({ nullable: false })
   @Column()
-  dataInicio: string;
+  dataInicio: Date;
 
   @Field({ nullable: false })
   @Column()
-  dataFim: string;
+  dataFim: Date;
 
   //@Field({ nullable: false })
   //@Column()
@@ -39,11 +39,11 @@ export class Campanha extends BaseEntity {
 
   @Field({ nullable: true })
   @Column()
-  createdAt: string;
+  createdAt: Date;
 
   @Field({ nullable: true })
   @Column()
-  updatedAt: string;
+  updatedAt: Date;
 }
 
 export default Campanha;

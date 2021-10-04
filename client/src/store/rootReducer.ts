@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-// import campanhaReducer from './campanhas/reducers';
 import loginReducer from './login/reducers';
+import campanhaReducer from './campanhas/reducers';
 
 export const rootReducer = combineReducers({
+  campanhaReducer,
   loginReducer,
-  //campanhaReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
