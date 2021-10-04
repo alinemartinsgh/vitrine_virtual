@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BotaoCustomizado = styled.button`
-  background: linear-gradient(to right, #00767F 0%, #0eb5c2 79%);
+  background: #e3262e;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   width: 65%;
@@ -10,4 +10,8 @@ export const BotaoCustomizado = styled.button`
   color: white;
   border-radius: 2rem;
   cursor: pointer;
+
+  :hover {
+    background: #A61D19;
+  }
 `;

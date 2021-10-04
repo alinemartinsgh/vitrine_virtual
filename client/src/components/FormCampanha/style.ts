@@ -7,7 +7,9 @@ export const FormContainer = styled.form`
   align-items: center;
   max-width: 60vh;
   min-height: 40vh;
-  margin: 0 auto;
+  margin: 3rem auto;
   border: 1px solid;
-  border-radius: 8px;
+  border-radius: 0.5rem;
 `;
+
+export const Select = styled.select``;

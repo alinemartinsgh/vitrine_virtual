@@ -4,7 +4,7 @@ import { configureStore } from './store';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import FormCampanha from './pages/FormCampanha';
+import CampanhaPage from './pages/CampanhaPage';
 
 const { store } = configureStore();
 
@@ -15,7 +15,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={LoginPage} />
           <Route exact path="/homePage" component={HomePage} />
-          <Route exact path="/FormCampanha" component={FormCampanha} />
+          <Route exact path="/novaCampanha" component={CampanhaPage} />
         </Switch>
       </BrowserRouter>
     </Provider>

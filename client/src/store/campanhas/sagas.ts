@@ -66,7 +66,7 @@ export function* deletarCampanha(id: any): any {
 const sagas = [
   takeLatest(CampanhaTypes.BUSCA_LISTA_CAMPANHA, buscaCampanhas),
   //takeLatest(CampanhaTypes.BUSCA_POR_ID_CAMPANHA, buscaCampanhaPorId),
-  // takeLatest(CampanhaTypes.ATUALIZAR_CAMPANHA, atualizarCampanha),
+  //takeLatest(CampanhaTypes.ATUALIZAR_CAMPANHA, atualizarCampanha),
   takeLatest(CampanhaTypes.ADICIONAR_CAMPANHA, criaCampanha),
   takeLatest(CampanhaTypes.DELETE_CAMPANHA, deletarCampanha),
 ];

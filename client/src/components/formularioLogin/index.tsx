@@ -7,6 +7,7 @@ import {
   ReguaHorizontal,
   IconeContainer,
   TituloBemVindo,
+  FormContainer,
 } from './styles';
 
 import { Input } from '../input';
@@ -19,21 +20,21 @@ interface Props {
 
 export const FormularioLogin = ({ onClick }: Props) => {
   const HitssPath = '../../../assets/img/hitss.svg';
-  const ClaroPath = '../../../assets/img/logotipo_da_empresa_claro.svg'
-
-
+  const ClaroPath = '../../../assets/img/logotipo_da_empresa_claro.svg';
 
   return (
     <Container>
       <TituloBemVindo> Seja bem vindo! </TituloBemVindo>
-      <InputContainer>
-        <Input type="text" placeholder="Email" />
-        <Input type="text" placeholder="Senha" />
-      </InputContainer>
-      <ReguaHorizontal />
-      <BotaoContainer>
-        <Botao conteudo="Login" onClick={onClick} />
-      </BotaoContainer>
+      <FormContainer>
+        <InputContainer>
+          <Input nome="email" type="text" placeholder="Email" />
+          <Input nome= "senha" type="text" placeholder="Senha" />
+        </InputContainer>
+        <ReguaHorizontal />
+        <BotaoContainer>
+          <Botao type="submit" conteudo="Login" />
+        </BotaoContainer>
+      </FormContainer>
       <IconeContainer>
         <Icone image={HitssPath} />
         <Icone image={ClaroPath} />

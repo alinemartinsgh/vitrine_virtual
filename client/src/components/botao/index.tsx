@@ -5,9 +5,14 @@ import { BotaoCustomizado } from './styles';
 
 interface Props {
   conteudo: string;
-  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+  type: 'submit' | 'button';
+  enviarForm?: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-export const Botao = ({ conteudo, onClick }: Props) => {
-  return <BotaoCustomizado onClick={onClick}>{conteudo}</BotaoCustomizado>;
-};
+export const Botao = ({ conteudo, type, enviarForm }: Props) => {
+  return (
+    <BotaoCustomizado type={type} onClick={enviarForm}>
+      {conteudo}
+    </BotaoCustomizado>
+  );
+
