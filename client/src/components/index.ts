@@ -1,6 +1,3 @@
-import Input from './Input';
-import Botao from './Botao';
-
-const components = { Input, Botao };
+const components = {};
 
 export default components;

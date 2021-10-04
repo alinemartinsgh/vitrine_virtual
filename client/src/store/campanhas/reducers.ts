@@ -32,7 +32,6 @@ const setListaCampanhas: CampanhaReducer = (state, action) => {
   const { payload } = action as ReturnType<
     typeof campanhaAction.setListaCampanhas
   >;
-
   return {
     ...state,
     listaCampanhas: payload.listaCampanhas,
@@ -52,12 +51,21 @@ const adicionarCampanha: CampanhaReducer = (state, action) => {
 };
 
 const atualizarCampanha: CampanhaReducer = (state, action) => {
-  action as unknown as ReturnType<typeof campanhaAction.atualizarCampanha>;
+  const { payload } = action as unknown as ReturnType<
+    typeof campanhaAction.atualizarCampanha
+  >;
+  const novaListaCampanhas = [...state.listaCampanhas];
+
+  let index = novaListaCampanhas.findIndex(
+    (campanha) => campanha.id === payload.id,
+  );
+
+  novaListaCampanhas[index] = payload.campanha;
   return {
     ...state,
-    listaCampanhas: [...state.listaCampanhas],
-    error: undefined,
+    listaCampanhas: novaListaCampanhas,
     isLoading: true,
+    error: undefined,
   };
 };
 

@@ -42,7 +42,7 @@ const actions = {
   atualizarCampanha: (
     id: string,
     campanha: Campanha,
-  ): CampanhaAction<{ id: any; campanha: Campanha }> => ({
+  ): CampanhaAction<{ id: string, campanha: Campanha }> => ({
     type: CampanhaTypes.ATUALIZAR_CAMPANHA,
     payload: { id, campanha },
   }),

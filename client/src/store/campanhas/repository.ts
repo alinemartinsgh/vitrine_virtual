@@ -89,7 +89,7 @@ async function criaNovaCampanha(data: CampanhaForm) {
   }
 }
 
-async function atualizaCampanha(id: string, data: Partial<Campanha>) {
+async function atualizaCampanha(id: string, data: CampanhaForm) {
   try {
     const campanhaAtualizada = await api.mutate({
       mutation: updateCampanhaMutation,
