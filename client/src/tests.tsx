@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FormCampanha from './pages/FormCampanha';
+import FormCampanha from './components/FormCampanha';
 import actions from './store/campanhas/actions';
 import { getListaCampanhas } from './store/campanhas/selectors';
 import { CampanhaForm } from './store/campanhas/types';

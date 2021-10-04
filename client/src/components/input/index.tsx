@@ -5,12 +5,14 @@ import { InputCustomizado } from './styles';
 interface Props {
   type: string;
   placeholder: string;
+  nome: string;
   onchange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export const Input = ({ type, placeholder, onchange }: Props) => {
+export const Input = ({ nome, type, placeholder, onchange }: Props) => {
   return (
     <InputCustomizado
+      name={nome}
       type={type}
       placeholder={placeholder}
       onChange={onchange}
