@@ -13,6 +13,7 @@ import { compare } from 'bcryptjs';
 import { Usuario } from '../../entity/Usuario';
 import { isAuth } from './isAuth';
 import { MyContext } from './MyContext';
+import { LoginInput } from './loginInput';
 
 @ObjectType()
 class LoginResponse {
@@ -25,36 +26,13 @@ export class LoginResolver {
   @Query(() => String)
   @UseMiddleware(isAuth)
   async Me(@Ctx() { payload }: MyContext): Promise<string> {
-    return `Id do usuario : ${payload!.userId}`;
+    return payload!.userId;
   }
-
-  /*
-  @Mutation(() => Boolean)
-  async Register(
-    @Arg('email') email: string,
-    @Arg('senha') senha: string,
-    @Arg('isAdmin') isAdmin: boolean,
-  ) {
-    const hashedSenha = await hash(senha, 13);
-    try {
-      await Usuario.insert({
-        email,
-        senha: hashedSenha,
-        isAdmin,
-      });
-    } catch (err) {
-      console.log(err);
-      return false;
-    }
-
-    return true;
-  }
-  */
 
   @Mutation(() => LoginResponse)
   async Login(
-    @Arg('email') email: string,
-    @Arg('senha') senha: string,
+    @Arg('data')
+    { email, senha }: LoginInput,
   ): Promise<{
     accessToken: string;
   }> {
