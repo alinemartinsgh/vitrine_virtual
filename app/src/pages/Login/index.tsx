@@ -1,14 +1,17 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import * as selectors from '../../store/login/selectors';
+import {useDispatch} from 'react-redux';
 import {loginActions} from '../../store/login';
 
-import {View, Button} from 'react-native';
+import {View, Button, SafeAreaView} from 'react-native';
+
+import CustomCarousel from '../../components/Carrocel';
+import {useSelector} from 'react-redux';
+import * as selectors from '../../store/campanhas/selectors';
 
 const Login: React.FC = () => {
+  const listaCampanha = useSelector(selectors.getListaCampanhas);
+  console.warn(listaCampanha);
   const dispatch = useDispatch();
-  const users = useSelector(selectors.getCurrentUser);
-  console.log(users);
 
   const handleLogin = (email: string, senha: string): any => {
     try {
@@ -18,9 +21,17 @@ const Login: React.FC = () => {
     }
   };
   return (
-    <View>
-      <Button onPress={handleLogin('admin@gmail.com', '12345')} title={'OI'} />
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={{flex: 0.8}}>
+        <CustomCarousel />
+      </View>
+      <View>
+        <Button
+          onPress={handleLogin('admin@gmail.com', '12345')}
+          title={'OI'}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 

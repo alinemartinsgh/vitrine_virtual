@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import {actions} from '.';
 import * as repository from './repository';
-import {Campanha, CampanhaTypes} from './types';
+import {CampanhaTypes} from './types';
 
 export function* buscaCampanhas(): any {
   try {
@@ -14,61 +14,4 @@ export function* buscaCampanhas(): any {
   }
 }
 
-/* export function* buscaCampanhaPorId(id: string): any {
-  try {
-    const campanha = yield call(repository.buscaPorId, id);
-    if (campanha) {
-      yield put(actions.setCampanhaPorId(campanha));
-    }
-  } catch (err: any) {
-    yield put(actions.setError(err.message));
-  }
-} */
-
-export function* criaCampanha(data: any) {
-  try {
-    const novaCampanha: Campanha = yield call(
-      repository.criaNovaCampanha,
-      data.payload.data,
-    );
-    if (novaCampanha) {
-      yield call(actions.buscaListaCampanhas);
-    }
-  } catch (err: any) {
-    yield put(actions.setError(err.message));
-  }
-}
-
-export function* atualizarCampanha(id: any, data: any) {
-  try {
-    const updateCampanha: Campanha = yield call(
-      repository.atualizaCampanha,
-      id.payload.data,
-      data.payload.data,
-    );
-    if (updateCampanha) {
-      yield call(actions.buscaListaCampanhas);
-    }
-  } catch (err: any) {
-    yield put(actions.setError(err.message));
-  }
-}
-
-export function* deletarCampanha(id: any): any {
-  try {
-    const deletaCampanha = yield call(repository.deletaCampanha, id.payload.id);
-    if (deletaCampanha) yield call(actions.buscaListaCampanhas);
-  } catch (err: any) {
-    yield put(actions.setError(err.message));
-  }
-}
-
-const sagas = [
-  takeLatest(CampanhaTypes.BUSCA_LISTA_CAMPANHA, buscaCampanhas),
-  //takeLatest(CampanhaTypes.BUSCA_POR_ID_CAMPANHA, buscaCampanhaPorId),
-  // takeLatest(CampanhaTypes.ATUALIZAR_CAMPANHA, atualizarCampanha),
-  takeLatest(CampanhaTypes.ADICIONAR_CAMPANHA, criaCampanha),
-  takeLatest(CampanhaTypes.DELETE_CAMPANHA, deletarCampanha),
-];
-
-export default sagas;
+export default [takeLatest(CampanhaTypes.BUSCA_LISTA_CAMPANHA, buscaCampanhas)];

@@ -4,6 +4,5 @@ import sagasCampanha from './campanhas/sagas';
 import sagasLogin from './login/sagas';
 
 export function* rootSagas() {
-  yield all([...sagasLogin]);
-  yield all([...sagasCampanha]);
+  yield all([...sagasLogin, ...sagasCampanha]);
 }

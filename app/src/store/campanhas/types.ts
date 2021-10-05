@@ -1,16 +1,13 @@
 export enum CampanhaTypes {
   SET_ERROR = '@campanha/SET_ERROR',
-
-  ADICIONAR_CAMPANHA = '@campanha/ADICIONAR_CAMPANHA',
-  DELETE_CAMPANHA = '@campanha/DELETE_CAMPANHA',
-  BUSCA_LISTA_CAMPANHA = '@campanha/BUSCA_LISTACAMPANHA',
+  BUSCA_LISTA_CAMPANHA = '@campanha/BUSCA_LISTA_CAMPANHA',
   SET_LISTA_CAMPANHA = '@campanha/SET_LISTACAMPANHA',
-  /* BUSCA_POR_ID_CAMPANHA = '@campanha/BUSCAPORID_CAMPANHA',
-  SET_CAMPANHA = '@campanha/SET_CAMPANHA', */
-  ATUALIZAR_CAMPANHA = '@campanha/ATUALIZAR_CAMPANHA',
 }
 
-export type CampanhaForm = {
+export type Campanha = {
+  id?: any;
+  createdAt?: string;
+  updatedAt?: string;
   nome: string;
   descricao: string;
   categoria: string;
@@ -18,12 +15,6 @@ export type CampanhaForm = {
   dataInicio: Date;
   dataFim: Date;
 };
-
-export interface Campanha extends CampanhaForm {
-  id?: any;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
 
 export type ListaCampanhas = Campanha[];
 
