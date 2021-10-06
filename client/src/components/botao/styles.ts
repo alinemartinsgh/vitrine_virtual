@@ -7,7 +7,7 @@ export const BotaoCustomizado = styled.button`
   width: 65%;
   height: 3rem;
   border: none;
-  color: white;
+  color: #fff;
   border-radius: 2rem;
   cursor: pointer;
 

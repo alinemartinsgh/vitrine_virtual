@@ -10,6 +10,7 @@ const buscaCampanhaQuery = gql`
       nome
       descricao
       categoria
+      urlDestino
       dataInicio
       dataFim
       createdAt
@@ -38,6 +39,7 @@ const buscaCampanhaPorIdQuery = gql`
       id
       nome
       descricao
+      urlDestino
       categoria
       imagem
       dataInicio
@@ -55,69 +57,53 @@ const deletaCampanhaMutation = gql`
 `;
 
 async function listaTodasCampanhas(): Promise<ListaCampanhas> {
-  const getListaCampanhas = await api.query({
+  const listaCampanhas = await api.query({
     query: buscaCampanhaQuery,
   });
-  return getListaCampanhas.data.buscaCampanhas;
+  return listaCampanhas.data.buscaCampanhas;
 }
 
 async function buscaPorId(id: string): Promise<Campanha> {
-  try {
-    const campanha = await api.query({
-      query: buscaCampanhaPorIdQuery,
-      variables: { id },
-    });
-    return campanha.data;
-  } catch (e: any) {
-    return e.message;
-  }
+  const campanha = await api.query({
+    query: buscaCampanhaPorIdQuery,
+    variables: { id },
+  });
+  return campanha.data;
 }
 
 async function criaNovaCampanha(data: CampanhaForm) {
-  try {
-    const novaCampanha = await api.mutate({
-      mutation: addCampanhaMutation,
-      variables: { data },
-    });
-    if (novaCampanha.data) {
-      return novaCampanha.data;
-    } else {
-      return novaCampanha.errors;
-    }
-  } catch (e: any) {
-    return e.message;
+  const novaCampanha = await api.mutate({
+    mutation: addCampanhaMutation,
+    variables: { data },
+  });
+  if (novaCampanha.data) {
+    return novaCampanha.data;
+  } else {
+    return novaCampanha.errors;
   }
 }
 
 async function atualizaCampanha(id: string, data: CampanhaForm) {
-  try {
-    const campanhaAtualizada = await api.mutate({
-      mutation: updateCampanhaMutation,
-      variables: { id, data },
-    });
-    if (campanhaAtualizada.data) {
-      return campanhaAtualizada.data;
-    } else {
-      return campanhaAtualizada.errors;
-    }
-  } catch (e: any) {
-    return e.message;
+  const campanhaAtualizada = await api.mutate({
+    mutation: updateCampanhaMutation,
+    variables: { id, data },
+  });
+  if (campanhaAtualizada.data) {
+    return campanhaAtualizada.data;
+  } else {
+    return campanhaAtualizada.errors;
   }
 }
 
 async function deletaCampanha(id: string) {
-  try {
-    const campanhaDeletada = await api.mutate({
-      mutation: deletaCampanhaMutation,
-      variables: { id },
-    });
-    if (campanhaDeletada.data) {
-      return campanhaDeletada.data;
-    } else {
-      return campanhaDeletada.errors;
-    }
-  } catch (e: any) {
-    return e.message;
+  const campanhaDeletada = await api.mutate({
+    mutation: deletaCampanhaMutation,
+    variables: { id },
+  });
+  if (campanhaDeletada.data) {
+    return campanhaDeletada.data;
+  } else {
+    return campanhaDeletada.errors;
   }
 }
 
