@@ -23,7 +23,7 @@ export const Select = styled.select`
   height: 0.3rem;
   line-height: 1.1;
   padding: 1rem;
-  width: 90%;
+  width: 85%;
 `;
 
 export const ImagemContainer = styled.div``;
@@ -31,16 +31,15 @@ export const ImagemContainer = styled.div``;
 export const ImagemLabel = styled.label`
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 0.5rem;
-  width: 20vw;
-  background: #e3262e;
+  width: 18vw;
+  background: #212529;
   color: #fff;
   border-radius: 0.2rem;
-  text-transform: uppercase;
   text-align: center;
   display: block;
   cursor: pointer;
   :hover {
-    background: #a61d19;
+    opacity: 0.9;
   }
 `;
 
