@@ -4,7 +4,7 @@ import {loginActions} from '../../store/login';
 
 import {View, Button, SafeAreaView} from 'react-native';
 
-import CustomCarousel from '../../components/Carrocel';
+import CustomCarousel from '../../components/carrosel';
 import {useSelector} from 'react-redux';
 import * as selectors from '../../store/campanhas/selectors';
 
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
   };
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 0.8}}>
+      <View style={{flex: 1}}>
         <CustomCarousel />
       </View>
       <View>
