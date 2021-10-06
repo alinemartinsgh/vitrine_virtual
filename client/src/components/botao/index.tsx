@@ -5,7 +5,7 @@ import { BotaoCustomizado } from './styles';
 interface Props {
   conteudo: string;
   type: 'submit' | 'button';
-  enviarForm?: MouseEventHandler<HTMLButtonElement> | undefined;
+  enviarForm?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export const Botao = ({ conteudo, type, enviarForm }: Props) => {

@@ -15,8 +15,8 @@ export type CampanhaForm = {
   descricao: string;
   categoria: string;
   imagem: string;
-  dataInicio: Date;
-  dataFim: Date;
+  dataInicio: string;
+  dataFim: string;
 };
 
 export interface Campanha extends CampanhaForm {
