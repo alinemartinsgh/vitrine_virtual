@@ -10,6 +10,7 @@ const buscaCampanhaQuery = gql`
       nome
       descricao
       categoria
+      urlDestino
       dataInicio
       dataFim
       createdAt
@@ -38,6 +39,7 @@ const buscaCampanhaPorIdQuery = gql`
       id
       nome
       descricao
+      urlDestino
       categoria
       imagem
       dataInicio

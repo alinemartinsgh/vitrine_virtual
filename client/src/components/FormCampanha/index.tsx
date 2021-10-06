@@ -25,6 +25,7 @@ const FormCampanha: React.FC = () => {
     nome: '',
     descricao: '',
     categoria: '',
+    urlDestino: '',
     imagem,
     dataInicio: '',
     dataFim: '',
@@ -57,6 +58,13 @@ const FormCampanha: React.FC = () => {
         value={formData.descricao}
         onchange={handleInputText}
         placeholder="Descrição"
+      />
+      <Input
+        nome="urlDestino"
+        type="text"
+        value={formData.urlDestino}
+        onchange={handleInputText}
+        placeholder="URL de Destino"
       />
       <Select
         onChange={handleInputText}

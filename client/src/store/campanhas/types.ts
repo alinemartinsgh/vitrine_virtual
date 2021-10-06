@@ -14,6 +14,7 @@ export type CampanhaForm = {
   nome: string;
   descricao: string;
   categoria: string;
+  urlDestino: string;
   imagem: string;
   dataInicio: string;
   dataFim: string;
