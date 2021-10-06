@@ -9,7 +9,6 @@ export function* requestEmailPassword(
 ): any {
   const email = props.payload?.email;
   const senha = props.payload?.senha;
-
   try {
     const response: any = yield call(repository.LoginEmailSenha, email, senha);
     let token = response.data.Login.accessToken;
