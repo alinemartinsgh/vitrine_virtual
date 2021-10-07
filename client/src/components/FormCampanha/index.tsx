@@ -49,12 +49,10 @@ const FormCampanha: React.FC = () => {
   };
 
   function handleInput(e: any) {
-    if (e.target.value.length() > 3) {
-      setdadosCampanha({
-        ...dadosCampanha,
-        [e.target.name]: e.target.value,
-      });
-    }
+    setdadosCampanha({
+      ...dadosCampanha,
+      [e.target.name]: e.target.value,
+    });
 
     if (e.target.type === 'file') {
       handleUploadImage(e.target.files[0]);
@@ -67,8 +65,21 @@ const FormCampanha: React.FC = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    dispatch(actions.adicionarCampanha(dadosCampanha));
+    const envio = dispatch(actions.adicionarCampanha(dadosCampanha));
+    if (envio.payload.data !== null) {
+      console.log('form enviado com sucesso');
+    }
   };
+
+  const listaCategorias = [
+    'Bem-estar',
+    'Entretenimento',
+    'Esporte',
+    'Conectividade',
+    'Viagem',
+    'Gastronomia',
+    'Varejo',
+  ];
 
   return (
     <FormContainer onSubmit={handleSubmit} method="POST">
@@ -99,10 +110,26 @@ const FormCampanha: React.FC = () => {
         value={dadosCampanha.categoria}
         required
       >
-        {_.map(Categorias, (categoriaItem, key) => (
-          <option value={key}>{categoriaItem}</option>
+        <option defaultValue="" disabled hidden>
+          Selecione
+        </option>
+        {listaCategorias.map((item, key) => (
+          <option value={item} key={key}>
+            {item}
+          </option>
         ))}
       </Select>
+
+      {/*    <select name="categoria" id="categoria" onChange={handleInput}>
+        <option defaultValue="" disabled selected>
+          Selecione...
+        </option>
+        {listaCategorias.map((item, key) => (
+          <option value={item} key={key}>
+            {item}
+          </option>
+        ))}
+      </select> */}
       <DataContainer>
         <DataInput
           name="dataInicio"
