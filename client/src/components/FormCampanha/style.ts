@@ -5,8 +5,8 @@ export const FormContainer = styled.form`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  max-width: 60vh;
-  min-height: 40vh;
+  width: 40vw;
+  height: 80vh;
   margin: 3rem auto;
   border: 1px solid;
   border-radius: 0.5rem;

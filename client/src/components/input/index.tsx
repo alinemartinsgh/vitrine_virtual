@@ -18,6 +18,7 @@ export const Input = ({ nome, type, placeholder, onchange, value }: Props) => {
       placeholder={placeholder}
       onChange={onchange}
       value={value}
+      required
     />
   );
 };
