@@ -113,23 +113,12 @@ const FormCampanha: React.FC = () => {
         <option defaultValue="" disabled hidden>
           Selecione
         </option>
-        {listaCategorias.map((item, key) => (
+        {_.map(Categorias, (item, key) => (
           <option value={item} key={key}>
             {item}
           </option>
         ))}
       </Select>
-
-      {/*    <select name="categoria" id="categoria" onChange={handleInput}>
-        <option defaultValue="" disabled selected>
-          Selecione...
-        </option>
-        {listaCategorias.map((item, key) => (
-          <option value={item} key={key}>
-            {item}
-          </option>
-        ))}
-      </select> */}
       <DataContainer>
         <DataInput
           name="dataInicio"
