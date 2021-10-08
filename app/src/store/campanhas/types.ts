@@ -12,8 +12,8 @@ export type Campanha = {
   descricao: string;
   categoria: string;
   imagem: string;
-  dataInicio: Date;
-  dataFim: Date;
+  dataInicio: string;
+  dataFim: string;
 };
 
 export type ListaCampanhas = Campanha[];

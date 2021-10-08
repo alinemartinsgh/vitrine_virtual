@@ -19,7 +19,6 @@ const buscaCampanhaQuery = gql`
 `;
 
 async function listaTodasCampanhas(): Promise<ListaCampanhas> {
-  console.warn('oi');
   const getListaCampanhas = await api.query({
     query: buscaCampanhaQuery,
   });

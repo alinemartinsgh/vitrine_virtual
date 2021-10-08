@@ -5,12 +5,12 @@ import { BotaoCustomizado } from './styles';
 interface Props {
   conteudo: string;
   type: 'submit' | 'button';
-  enviarForm?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: () => void;
 }
 
-export const Botao = ({ conteudo, type, enviarForm }: Props) => {
+export const Botao = ({ conteudo, type, onClick }: Props) => {
   return (
-    <BotaoCustomizado type={type} onClick={enviarForm}>
+    <BotaoCustomizado type={type} onClick={onClick}>
       {conteudo}
     </BotaoCustomizado>
   );
