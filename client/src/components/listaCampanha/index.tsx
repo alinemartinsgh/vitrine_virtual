@@ -12,6 +12,8 @@ const ListaCampanha: React.FC = () => {
   const dispatch = useDispatch();
   const listaCampanhas = useSelector(getListaCampanhas);
 
+  console.log(listaCampanhas);
+
   useEffect(() => {
     dispatch(actions.buscaListaCampanhas());
   }, [dispatch]);
@@ -25,7 +27,6 @@ const ListaCampanha: React.FC = () => {
   const editar = (campanha: Campanha, id: string) => {
     dispatch(actions.atualizarCampanha(id, campanha));
   };
-
   */
 
   return (
