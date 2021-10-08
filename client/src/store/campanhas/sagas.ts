@@ -6,7 +6,6 @@ import { Campanha, CampanhaTypes } from './types';
 export function* buscaCampanhas(): any {
   try {
     const data = yield call(repository.listaTodasCampanhas);
-    console.log(data);
     if (data) {
       yield put(actions.setListaCampanhas(data));
     }
@@ -50,6 +49,7 @@ export function* atualizarCampanha(
       id,
       campanha,
     );
+    console.log('saga result', updateCampanha);
     if (updateCampanha) {
       yield call(actions.buscaListaCampanhas);
     }

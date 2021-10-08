@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import _ from 'lodash';
+import React, { FormEventHandler, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -16,7 +15,27 @@ import { Input } from '../input';
 import { Botao } from '../botao';
 import apiStorage from 'src/api/apiStorage';
 
-const FormCampanha: React.FC = () => {
+interface FormCampanhaProps {
+  valueNomeCampanha: string;
+  valueDescricaoCampanha: string;
+  valueCategoriaCampanha: string;
+  valueURLDestinoCampanha: string;
+  valueDataInicioCampanha: string;
+  valueDataFimCampanha: string;
+  onsubmit: FormEventHandler;
+  conteudoBotao: string;
+}
+
+const FormCampanha = ({
+  valueNomeCampanha,
+  valueDescricaoCampanha,
+  valueCategoriaCampanha,
+  valueURLDestinoCampanha,
+  valueDataInicioCampanha,
+  valueDataFimCampanha,
+  onsubmit,
+  conteudoBotao,
+}: FormCampanhaProps) => {
   const dispatch = useDispatch();
 
   const [imagem] = useState('');
@@ -70,67 +89,59 @@ const FormCampanha: React.FC = () => {
     }
   };
 
-  const listaCategorias = [
-    'Bem-estar',
-    'Entretenimento',
-    'Esporte',
-    'Conectividade',
-    'Viagem',
-    'Gastronomia',
-    'Varejo',
-  ];
-
   return (
-    <FormContainer onSubmit={handleSubmit} method="POST">
+    <FormContainer onSubmit={onsubmit} method="POST">
       <Input
         nome="nome"
         type="text"
-        value={dadosCampanha.nome}
+        value={valueNomeCampanha}
         onchange={handleInput}
         placeholder="Campanha"
       />
       <Input
         nome="descricao"
         type="text"
-        value={dadosCampanha.descricao}
+        value={valueDescricaoCampanha}
         onchange={handleInput}
         placeholder="Descrição"
       />
       <Input
         nome="urlDestino"
         type="text"
-        value={dadosCampanha.urlDestino}
+        value={valueURLDestinoCampanha}
         onchange={handleInput}
         placeholder="URL de Destino"
       />
       <Select
         onChange={handleInput}
         name="categoria"
-        value={dadosCampanha.categoria}
+        value={valueCategoriaCampanha}
         required
       >
-        <option defaultValue="" disabled hidden>
-          Selecione
+        <option selected={true} value="" hidden disabled>
+          Selecione a categoria
         </option>
-        {_.map(listaCategorias, (item, key) => (
-          <option value={item} key={key}>
-            {item}
-          </option>
-        ))}
+        <option value="Bem-Estar">Bem-Estar</option>
+        <option value="Entretenimento">Entretenimento</option>
+        <option value="Esporte">Esporte</option>
+        <option value="Conectividade">Conectividade</option>
+        <option value="Viagem">Viagem</option>
+        <option value="Gastronomia">Gastronomia</option>
+        <option value="Varejo">Varejo</option>
       </Select>
       <DataContainer>
         <DataInput
           name="dataInicio"
           type="date"
           onChange={handleInput}
-          value={dadosCampanha.dataInicio}
+          value={valueDataInicioCampanha}
           required
         />
         <DataInput
           name="dataFim"
           type="date"
           onChange={handleInput}
-          value={dadosCampanha.dataFim}
+          value={valueDataFimCampanha}
           required
         />
       </DataContainer>
@@ -144,7 +155,7 @@ const FormCampanha: React.FC = () => {
           required
         />
       </ImagemContainer>
-      <Botao conteudo="Enviar" type="submit" />
+      <Botao conteudo={conteudoBotao} type="submit" />
     </FormContainer>
   );
 };
