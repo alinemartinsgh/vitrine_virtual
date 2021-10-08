@@ -12,8 +12,10 @@ const buscaCampanhaQuery = gql`
       categoria
       urlDestino
       dataInicio
+      imagem
       dataFim
       createdAt
+      urlDestino
       updatedAt
     }
   }
