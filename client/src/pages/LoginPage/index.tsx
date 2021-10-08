@@ -8,10 +8,8 @@ import { FormularioLogin } from '../../components/formularioLogin';
 const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
   const users = useSelector(selectors.getCurrentUser);
-  console.log(users);
 
   const handleLogin = (email: string, senha: string): any => {
-    console.log('oi')
     dispatch(loginActions.requestLoginEmailPassword(email, senha));
   };
 

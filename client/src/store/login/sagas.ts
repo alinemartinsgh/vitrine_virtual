@@ -1,9 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
+import { setToken } from 'src/utils/token';
 import { loginActions } from '.';
 
 import * as repository from './repository';
 import { LoginAction, LoginTypes } from './types';
-
 
 export function* requestEmailPassword(
   props: LoginAction<{ email: string; senha: string }>,
@@ -17,6 +17,7 @@ export function* requestEmailPassword(
 
     if (email && senha) {
       if (token) {
+        yield call(setToken, token);
         yield put(loginActions.login(token));
       }
     }
