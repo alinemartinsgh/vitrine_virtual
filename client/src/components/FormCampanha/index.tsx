@@ -11,7 +11,6 @@ import {
   ImagemLabel,
   Select,
 } from './style';
-import Categorias from './CategoriaEnum';
 import { actions } from 'src/store/campanhas';
 import { Input } from '../input';
 import { Botao } from '../botao';
@@ -113,7 +112,7 @@ const FormCampanha: React.FC = () => {
         <option defaultValue="" disabled hidden>
           Selecione
         </option>
-        {_.map(Categorias, (item, key) => (
+        {_.map(listaCategorias, (item, key) => (
           <option value={item} key={key}>
             {item}
           </option>
