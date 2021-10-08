@@ -11,88 +11,138 @@ import {
   ImagemLabel,
   Select,
 } from './style';
-import Categorias from './CategoriaEnum';
 import { actions } from 'src/store/campanhas';
 import { Input } from '../input';
 import { Botao } from '../botao';
+import apiStorage from 'src/api/apiStorage';
 
 const FormCampanha: React.FC = () => {
   const dispatch = useDispatch();
 
-  const [imagem, setImagem] = useState('');
+  const [imagem] = useState('');
 
-  const [formData, setFormData] = useState({
+  const [dadosCampanha, setdadosCampanha] = useState({
     nome: '',
     descricao: '',
     categoria: '',
     urlDestino: '',
-    imagem,
+    imagem: '',
     dataInicio: '',
     dataFim: '',
   });
 
-  function handleInputText(e: any) {
-    setFormData({
-      ...formData,
+  const handleUploadImage = (imagemUpload: any) => {
+    try {
+      const formData = new FormData();
+      formData.append('imagem', imagemUpload);
+      apiStorage.post('/uploadImagem', formData).then((res) => {
+        const data: any = res.data;
+        setdadosCampanha({
+          ...dadosCampanha,
+          imagem: data.location,
+        });
+      });
+    } catch (err: any) {
+      return err.message;
+    }
+  };
+
+  function handleInput(e: any) {
+    setdadosCampanha({
+      ...dadosCampanha,
       [e.target.name]: e.target.value,
     });
+
+    if (e.target.type === 'file') {
+      handleUploadImage(e.target.files[0]);
+      setdadosCampanha({
+        ...dadosCampanha,
+        imagem,
+      });
+    }
   }
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    dispatch(actions.adicionarCampanha(formData));
+    const envio = dispatch(actions.adicionarCampanha(dadosCampanha));
+    if (envio.payload.data !== null) {
+      console.log('form enviado com sucesso');
+    }
   };
 
+  const listaCategorias = [
+    'Bem-estar',
+    'Entretenimento',
+    'Esporte',
+    'Conectividade',
+    'Viagem',
+    'Gastronomia',
+    'Varejo',
+  ];
+
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <FormContainer onSubmit={handleSubmit} method="POST">
       <Input
         nome="nome"
         type="text"
-        value={formData.nome}
-        onchange={handleInputText}
+        value={dadosCampanha.nome}
+        onchange={handleInput}
         placeholder="Campanha"
       />
       <Input
         nome="descricao"
         type="text"
-        value={formData.descricao}
-        onchange={handleInputText}
+        value={dadosCampanha.descricao}
+        onchange={handleInput}
         placeholder="Descrição"
       />
       <Input
         nome="urlDestino"
         type="text"
-        value={formData.urlDestino}
-        onchange={handleInputText}
+        value={dadosCampanha.urlDestino}
+        onchange={handleInput}
         placeholder="URL de Destino"
       />
       <Select
-        onChange={handleInputText}
+        onChange={handleInput}
         name="categoria"
-        value={formData.categoria}
+        value={dadosCampanha.categoria}
+        required
       >
-        <option disabled>Selecione</option>
-        {_.map(Categorias, (categoriaItem, key) => (
-          <option value={categoriaItem}>{categoriaItem}</option>
+        <option defaultValue="" disabled hidden>
+          Selecione
+        </option>
+        {_.map(listaCategorias, (item, key) => (
+          <option value={item} key={key}>
+            {item}
+          </option>
         ))}
       </Select>
       <DataContainer>
         <DataInput
           name="dataInicio"
           type="date"
-          onChange={handleInputText}
-          value={formData.dataInicio}
+          onChange={handleInput}
+          value={dadosCampanha.dataInicio}
+          required
         />
         <DataInput
           name="dataFim"
           type="date"
-          onChange={handleInputText}
-          value={formData.dataFim}
+          onChange={handleInput}
+          value={dadosCampanha.dataFim}
+          required
         />
       </DataContainer>
       <ImagemContainer>
         <ImagemLabel htmlFor="imagem">Selecione sua imagem</ImagemLabel>
-        <ImagemInput type="file" name="imagem" id="imagem" />
+        <ImagemInput
+          type="file"
+          name="imagem"
+          id="imagem"
+          onChange={handleInput}
+          required
+        />
       </ImagemContainer>
       <Botao conteudo="Enviar" type="submit" />
     </FormContainer>

@@ -5,25 +5,29 @@ export const FormContainer = styled.form`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  max-width: 60vh;
-  min-height: 40vh;
+  width: 40vw;
+  height: 80vh;
   margin: 3rem auto;
   border: 1px solid;
   border-radius: 0.5rem;
 `;
 
 export const Select = styled.select`
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  border-radius: 0.2rem;
-  box-shadow: 0px 0px 9px 1px rgba(198, 198, 204, 1);
-  color: #3c354e;
-  cursor: pointer;
-  font-size: 1rem;
-  height: 0.3rem;
-  line-height: 1.1;
-  padding: 1rem;
   width: 85%;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0px 0px 9px 1px rgba(198, 198, 204, 1);
+  border-radius: 0.2rem;
+  border: none;
+  height: 2.5rem;
+  line-height: 1.1;
+  font-size: 1rem;
+  color: #3c354e;
+
+  option {
+    color: #3c354e;
+    background: rgba(255, 255, 255, 0.15);
+    padding-left: 0.5rem;
+  }
 `;
 
 export const ImagemContainer = styled.div``;
