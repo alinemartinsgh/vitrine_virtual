@@ -19,6 +19,7 @@ export function* requestEmailPassword(
       if (token) {
         yield call(setToken, token);
         yield put(loginActions.login(token));
+        window.location.pathname = '/homePage';
       }
     }
   } catch (err) {

@@ -15,7 +15,6 @@ import {
 import { Input } from '../../components/input';
 import { Botao } from '../../components/botao';
 import { Icone } from '../../components/icone';
-import { Link } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
   const [dadosLogin, setDadosLogin] = useState({
@@ -37,7 +36,7 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = (e: any): void => {
     e.preventDefault();
-    const envio = dispatch(
+    dispatch(
       loginActions.requestLoginEmailPassword(
         dadosLogin.email,
         dadosLogin.senha,
