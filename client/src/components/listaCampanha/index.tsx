@@ -12,8 +12,6 @@ const ListaCampanha: React.FC = () => {
   const dispatch = useDispatch();
   const listaCampanhas = useSelector(getListaCampanhas);
 
-  console.log(listaCampanhas);
-
   useEffect(() => {
     dispatch(actions.buscaListaCampanhas());
   }, [dispatch]);
