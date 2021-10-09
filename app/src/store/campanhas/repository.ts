@@ -14,6 +14,8 @@ const buscaCampanhaQuery = gql`
       dataFim
       createdAt
       updatedAt
+      urlDestino
+      imagem
     }
   }
 `;
