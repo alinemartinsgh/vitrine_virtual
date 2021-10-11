@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 import { api } from 'src/api';
 import { Campanha, CampanhaForm, ListaCampanhas } from './types';
 
-const buscaCampanhaQuery = gql`
+export const buscaCampanhaQuery = gql`
   query {
     buscaCampanhas {
       id
@@ -11,33 +11,44 @@ const buscaCampanhaQuery = gql`
       descricao
       categoria
       urlDestino
-      dataInicio
       imagem
+      dataInicio
       dataFim
       createdAt
-      urlDestino
       updatedAt
     }
   }
 `;
 
-const addCampanhaMutation = gql`
+export const addCampanhaMutation = gql`
   mutation ($data: CampanhaForm!) {
     adicionarCampanha(data: $data) {
-      id
+      nome
+      descricao
+      categoria
+      urlDestino
+      imagem
+      dataInicio
+      dataFim
     }
   }
 `;
 
-const updateCampanhaMutation = gql`
+export const updateCampanhaMutation = gql`
   mutation ($data: CampanhaForm!, $id: String!) {
     atualizarCampanha(data: $data, id: $id) {
       nome
+      descricao
+      categoria
+      urlDestino
+      imagem
+      dataInicio
+      dataFim
     }
   }
 `;
 
-const buscaCampanhaPorIdQuery = gql`
+export const buscaCampanhaPorIdQuery = gql`
   query ($buscaPorIdId: String!) {
     buscaCampanhaPorId(id: $buscaPorIdId) {
       id
@@ -52,7 +63,7 @@ const buscaCampanhaPorIdQuery = gql`
   }
 `;
 
-const deletaCampanhaMutation = gql`
+export const deletaCampanhaMutation = gql`
   mutation ($id: String!) {
     deletarCampanha(id: $id) {
       nome

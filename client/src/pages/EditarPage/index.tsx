@@ -42,10 +42,7 @@ const EditarCampanha: React.FC = () => {
   });
 
   const handleUploadImage = (imagemUpload: any) => {
-    let urlImg = state.Campanha.imagem.split('/');
-    let key = urlImg[urlImg.length - 1];
     try {
-      apiStorage.delete('/deletarImagem/', { data: { key } });
       const formData = new FormData();
       formData.append('imagem', imagemUpload);
       apiStorage.post('/uploadImagem', formData).then((res) => {
