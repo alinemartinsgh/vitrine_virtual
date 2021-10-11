@@ -3,9 +3,11 @@ import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router';
 import apiStorage from 'src/api/apiStorage';
 import { Botao } from 'src/components/botao';
+import Categorias from 'src/components/FormCampanha/Categoria';
 import {
   DataContainer,
   DataInput,
+  DataLabel,
   FormContainer,
   ImagemContainer,
   ImagemInput,
@@ -15,6 +17,7 @@ import {
 import { Input } from 'src/components/input';
 import { actions } from 'src/store/campanhas';
 import { Campanha } from 'src/store/campanhas/types';
+import { CampanhaImgMini, CampanhaImgMiniContainer } from './style';
 
 interface CustomState {
   id: '';
@@ -39,7 +42,10 @@ const EditarCampanha: React.FC = () => {
   });
 
   const handleUploadImage = (imagemUpload: any) => {
+    let urlImg = state.Campanha.imagem.split('/');
+    let key = urlImg[urlImg.length - 1];
     try {
+      apiStorage.delete('/deletarImagem/', { data: { key } });
       const formData = new FormData();
       formData.append('imagem', imagemUpload);
       apiStorage.post('/uploadImagem', formData).then((res) => {
@@ -102,15 +108,18 @@ const EditarCampanha: React.FC = () => {
         defaultValue={state.Campanha.categoria}
         required
       >
-        <option value="Bem-Estar">Bem-Estar</option>
-        <option value="Entretenimento">Entretenimento</option>
-        <option value="Esporte">Esporte</option>
-        <option value="Conectividade">Conectividade</option>
-        <option value="Viagem">Viagem</option>
-        <option value="Gastronomia">Gastronomia</option>
-        <option value="Varejo">Varejo</option>
+        {Categorias.map((item, index) => (
+          <option
+            value={item}
+            defaultValue={state.Campanha.categoria}
+            key={index}
+          >
+            {item}
+          </option>
+        ))}
       </Select>
       <DataContainer>
+        <DataLabel>Início da Campanha</DataLabel>
         <DataInput
           name="dataInicio"
           type="date"
@@ -118,6 +127,7 @@ const EditarCampanha: React.FC = () => {
           defaultValue={state.Campanha.dataInicio}
           required
         />
+        <DataLabel>Final da Campanha</DataLabel>
         <DataInput
           name="dataFim"
           type="date"
@@ -126,6 +136,9 @@ const EditarCampanha: React.FC = () => {
           required
         />
       </DataContainer>
+      <CampanhaImgMiniContainer>
+        <CampanhaImgMini src={state.Campanha.imagem} />
+      </CampanhaImgMiniContainer>
       <ImagemContainer>
         <ImagemLabel htmlFor="imagem">Selecione sua imagem</ImagemLabel>
         <ImagemInput

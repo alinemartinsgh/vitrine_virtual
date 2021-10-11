@@ -12,7 +12,7 @@ interface Props {
 const CampanhaItem = ({ nome, categoria, dataInicio, dataFim }: Props) => {
   return (
     <Item>
-      {nome} {categoria} {dataInicio} {dataFim}
+      {nome} | {categoria} | {dataInicio} | {dataFim}
     </Item>
   );
 };

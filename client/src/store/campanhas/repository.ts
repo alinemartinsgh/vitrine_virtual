@@ -31,7 +31,7 @@ const addCampanhaMutation = gql`
 
 const updateCampanhaMutation = gql`
   mutation ($data: CampanhaForm!, $id: String!) {
-    atualizarCampanha(data: $data, id: $id){
+    atualizarCampanha(data: $data, id: $id) {
       nome
     }
   }
@@ -88,17 +88,13 @@ async function criaNovaCampanha(data: CampanhaForm) {
 }
 
 async function atualizaCampanha(id: string, data: CampanhaForm) {
-  console.log('entrou no repository', id);
-  console.log('entrou no repository', data);
   const campanhaAtualizada = await api.mutate({
     mutation: updateCampanhaMutation,
     variables: { id, data },
   });
   if (campanhaAtualizada.data) {
-    console.log('respository Data', campanhaAtualizada.data);
     return campanhaAtualizada.data;
   } else {
-    console.log('respository ERROR', campanhaAtualizada.errors);
     return campanhaAtualizada.errors;
   }
 }
