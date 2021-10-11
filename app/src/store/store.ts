@@ -1,11 +1,11 @@
-import { createStore, applyMiddleware, Store } from 'redux';
+import {createStore, applyMiddleware, Store} from 'redux';
 import createSagaMiddleware from '@redux-saga/core';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
-import { rootReducer, RootState } from './rootReducer';
-import { rootSagas } from './rootSagas';
+import {rootReducer, RootState} from './rootReducer';
+import {rootSagas} from './rootSagas';
 
-export const configureStore = (): { store: Store } => {
+export const configureStore = (): {store: Store} => {
   const sagaMiddleware = createSagaMiddleware();
   const store: Store<RootState> = createStore(
     rootReducer,
@@ -14,5 +14,5 @@ export const configureStore = (): { store: Store } => {
   );
   sagaMiddleware.run(rootSagas);
 
-  return { store };
+  return {store};
 };

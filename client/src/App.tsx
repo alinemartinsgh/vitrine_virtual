@@ -20,7 +20,6 @@ export default function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={LoginPage} />
-
           <Route exact path="/homePage" component={HomePage} />
           <Route exact path="/novaCampanha" component={CampanhaPage} />
           <Route exact path="/editar" component={EditarPage} />
