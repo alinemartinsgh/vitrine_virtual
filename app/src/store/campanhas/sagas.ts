@@ -8,6 +8,7 @@ export function* buscaCampanhas(): any {
     yield put(actions.setError());
 
     const data = yield call(repository.listaTodasCampanhas);
+
     if (data) {
       yield put(actions.setListaCampanhas(data));
     }
