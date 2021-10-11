@@ -14,13 +14,14 @@ describe('Fluxo da store', () => {
     const {store} = configureStore();
     const sagaMiddleware = createSagaMiddleware.mock.results[0].value;
 
-    expect(store).toHaveBeenCalledWith(store, rootReducer);
     expect(createSagaMiddleware).toHaveBeenCalled();
     expect(applyMiddleware).toHaveBeenCalledWith(sagaMiddleware);
 
-    expect(createStore).toHaveBeenCalledWith({}, expect.any(Function));
-
-    expect(store).toHaveBeenCalledWith(createStore.mock.results[0].value);
+    expect(createStore).toHaveBeenCalledWith(
+      rootReducer,
+      {},
+      expect.any(Function),
+    );
 
     expect(store).toEqual(createStore.mock.results[0].value);
   });
