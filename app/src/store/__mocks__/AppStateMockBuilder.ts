@@ -5,7 +5,7 @@ import {initialAppState} from './initialAppState.mock';
 export class AppStateMockBuilder {
   campanhaReducer: CampanhaState = initialAppState.campanhaReducer;
 
-  withCharacter(state: CampanhaState) {
+  withCampanha(state: CampanhaState) {
     this.campanhaReducer = state;
     return this;
   }
