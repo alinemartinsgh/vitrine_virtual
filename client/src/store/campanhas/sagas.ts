@@ -6,6 +6,7 @@ import { Campanha, CampanhaTypes } from './types';
 export function* buscaCampanhas(): any {
   try {
     //TODO setar erro campanha
+    yield put(actions.setError());
     const data = yield call(repository.listaTodasCampanhas);
     if (data) {
       yield put(actions.setListaCampanhas(data));

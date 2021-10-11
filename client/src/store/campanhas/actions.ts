@@ -8,7 +8,7 @@ import {
 
 const actions = {
   //TODO setar error opcional
-  setError: (error: string): CampanhaAction<{ error?: string }> => ({
+  setError: (error?: string): CampanhaAction<{ error?: string }> => ({
     type: CampanhaTypes.SET_ERROR,
     payload: { error },
   }),
