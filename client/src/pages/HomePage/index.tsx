@@ -8,16 +8,18 @@ interface HomePageProps {}
 const HomePage: React.FC<HomePageProps> = () => {
   const accessToken = localStorage.getItem('ACCESS_TOKEN_KEY');
 
-  if (accessToken) {
-    const decodedToken = jwt_decode(accessToken);
-    console.log(decodedToken);
-  }
+  const destroyToken = () => {
+    localStorage.removeItem('ACCESS_TOKEN_KEY');
+  };
 
   return (
-    <div>
-      <h1>HomePage</h1>
-      <ListaCampanha />
-    </div>
+    <>
+      <div>
+        <h1>HomePage</h1>
+        <ListaCampanha />
+        <button onClick={destroyToken}> Destroy token here </button>
+      </div>
+    </>
   );
 };
 

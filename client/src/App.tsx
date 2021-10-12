@@ -6,23 +6,28 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import CampanhaPage from './pages/CampanhaPage';
 import EditarPage from './pages/EditarPage';
+import { Redirect } from 'react-router';
 
 const { store } = configureStore();
 
 export default function App() {
-  useEffect(() => {
-    const token = localStorage.getItem('ACCESS_TOKEN_KEY');
-    console.log(token);
-  });
+  const isLogged = localStorage.getItem('ACCESS_TOKEN_KEY');
+  console.log(isLogged);
 
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={LoginPage} />
-          <Route exact path="/homePage" component={HomePage} />
-          <Route exact path="/novaCampanha" component={CampanhaPage} />
-          <Route exact path="/editar" component={EditarPage} />
+          <Route exact path="/homePage" component={HomePage}>
+            {isLogged ? null : <Redirect exact to="/" />}
+          </Route>
+          <Route exact path="/novaCampanha" component={CampanhaPage}>
+            {isLogged ? null : <Redirect exact to="/" />}
+          </Route>
+          <Route exact path="/editar" component={EditarPage}>
+            {isLogged ? null : <Redirect exact to="/" />}
+          </Route>
         </Switch>
       </BrowserRouter>
     </Provider>
