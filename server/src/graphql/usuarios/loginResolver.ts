@@ -39,18 +39,18 @@ export class LoginResolver {
     const usuario = await Usuario.findOne({ where: { email } });
 
     if (!usuario) {
-      throw new Error('Could not find user');
+      throw new Error('Usuário não encontrado');
     }
 
     const verify = await compare(senha, usuario.senha);
 
     if (!verify) {
-      throw new Error('Bad password');
+      throw new Error('Senha ruim');
     }
 
     return {
       accessToken: sign({ userId: usuario.id }, 'MySecretKey', {
-        expiresIn: '15m',
+        expiresIn: '60m',
       }),
     };
   }

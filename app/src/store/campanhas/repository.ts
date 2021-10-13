@@ -3,7 +3,7 @@ import {gql} from '@apollo/client';
 import {api} from '../../api';
 import {ListaCampanhas} from './types';
 
-const buscaCampanhaQuery = gql`
+export const buscaCampanhaQuery = gql`
   query {
     buscaCampanhas {
       id
@@ -14,6 +14,8 @@ const buscaCampanhaQuery = gql`
       dataFim
       createdAt
       updatedAt
+      urlDestino
+      imagem
     }
   }
 `;

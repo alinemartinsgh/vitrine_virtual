@@ -35,7 +35,7 @@ const setListaCampanhas: CampanhaReducer = (state, action) => {
   return {
     ...state,
     listaCampanhas: payload.listaCampanhas,
-    isLoading: true,
+    isLoading: false,
     error: undefined,
   };
 };

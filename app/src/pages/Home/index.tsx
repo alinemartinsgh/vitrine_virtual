@@ -1,13 +1,15 @@
 import React from 'react';
 
-import {View, Text} from 'react-native';
+import {SafeAreaView} from 'react-native';
 
-const Home: React.FC = () => {
+import CustomCarousel from '../../components/carrosel';
+
+const Login: React.FC = () => {
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <CustomCarousel />
+    </SafeAreaView>
   );
 };
 
-export default Home;
+export default Login;

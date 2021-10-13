@@ -1,7 +1,7 @@
 import {CampanhaAction, CampanhaTypes, ListaCampanhas} from './types';
 
 const actions = {
-  setError: (error: string): CampanhaAction<{error?: string}> => ({
+  setError: (error?: string): CampanhaAction<{error?: string}> => ({
     type: CampanhaTypes.SET_ERROR,
     payload: {error},
   }),

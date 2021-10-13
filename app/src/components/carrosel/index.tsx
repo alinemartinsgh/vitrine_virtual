@@ -1,6 +1,8 @@
 import React, {useState, useCallback, useRef, useEffect} from 'react';
 
-// import * as selectors from '../../store/campanhas/selectors';
+import * as selectors from '../../store/campanhas/selectors';
+
+import {useSelector} from 'react-redux';
 
 import {
   ViewCarrosel,
@@ -28,6 +30,7 @@ interface RenderItemProps {
   index: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const exampleItems = [
   {
     nome: 'HBO Max',
@@ -61,7 +64,7 @@ const exampleItems = [
   },
 ];
 
-const CustomCarousel: React.FC<CustomCarouselProps> = () => {
+const Carrossel: React.FC<CustomCarouselProps> = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeIndex, setActiveIndex] = useState<number>(0);
   // const [carouselItems, setCarouselItems] = useState<ItemProps[]>(exampleItems);
@@ -72,7 +75,7 @@ const CustomCarousel: React.FC<CustomCarouselProps> = () => {
     dispatch(actions.buscaListaCampanhas());
   }, [dispatch]);
 
-  // const listaCampanhas = useSelector(selectors.getListaCampanhas);
+  const listaCampanhas = useSelector(selectors.getListaCampanhas);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const renderItem = useCallback(({item, index}: RenderItemProps) => {
@@ -97,7 +100,7 @@ const CustomCarousel: React.FC<CustomCarouselProps> = () => {
       <Carousel
         layout={'default'}
         ref={ref}
-        data={exampleItems}
+        data={listaCampanhas}
         sliderWidth={300}
         itemWidth={300}
         renderItem={renderItem}
@@ -108,4 +111,4 @@ const CustomCarousel: React.FC<CustomCarouselProps> = () => {
   );
 };
 
-export default CustomCarousel;
+export default Carrossel;

@@ -8,7 +8,7 @@ export const Container = styled.div`
   height: 60vh;
   width: 30vw;
   background: #fff;
-  box-shadow: 0px 0px 10px 2px rgba(30,30,36,0.43);;
+  box-shadow: 0px 0px 10px 2px rgba(30, 30, 36, 0.43);
   border-radius: 0.5rem;
   margin: 3rem auto;
   padding: 2.5rem 0.5rem;
@@ -62,7 +62,7 @@ export const IconeContainer = styled.div`
 
 export const TituloBemVindo = styled.h2`
   font-family: Tahoma, sans-serif;
-  margin:  auto;
+  margin: auto;
   color: #1e1e24;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
