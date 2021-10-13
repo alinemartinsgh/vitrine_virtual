@@ -1,7 +1,6 @@
 /* eslint-disable jest/no-mocks-import */
 import { CampanhaBuilderMock } from '../__mocks__/campanha.mock';
 import { CampanhaFormBuilderMock } from '../__mocks__/campanhaForm.mock ';
-import {} from '../types';
 import {
   buscaCampanhaQuery,
   addCampanhaMutation,
@@ -42,15 +41,27 @@ describe('Repository Campanha', () => {
   });
 
   it('Mutation atualizaCampanha', async () => {
-    const mockApollo = createMockClient(
-      mockCampanha,
-      updateCampanhaMutation,
+    const mockApollo = createMockClient(mockCampanha, updateCampanhaMutation, {
+      id: '12345',
       mockCampanhaForm,
-    );
+    });
     const { data } = await mockApollo.mutate({
       mutation: updateCampanhaMutation,
       variables: { id: '12345', mockCampanhaForm },
     });
-    expect(data).toEqual(mockCampanhaForm);
+    expect(data).toEqual(mockCampanha);
+  });
+
+  it('Mutation deletaCampanha', async () => {
+    const mockApollo = createMockClient(mockCampanha, deletaCampanhaMutation, {
+      id: '12345',
+    });
+    const { data } = await mockApollo.mutate({
+      mutation: deletaCampanhaMutation,
+      variables: {
+        id: '12345',
+      },
+    });
+    expect(data).toEqual(mockCampanha);
   });
 });
