@@ -65,6 +65,13 @@ const CampanhaPage: React.FC = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+
+    if (dadosCampanha.dataInicio > dadosCampanha.dataFim) {
+      //TODO avisar de alguma forma ao usuário
+      alert('nao foi');
+      return;
+    }
+
     const envio = dispatch(actions.adicionarCampanha(dadosCampanha));
     if (envio.payload.data !== null) {
       console.log('form enviado com sucesso');

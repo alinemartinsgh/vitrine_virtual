@@ -12,6 +12,7 @@ export const configureStore = (): { store: Store } => {
     {},
     composeWithDevTools(applyMiddleware(sagaMiddleware)),
   );
+
   sagaMiddleware.run(rootSagas);
 
   return { store };

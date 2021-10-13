@@ -14,12 +14,4 @@ const LoginEmailSenha = async (email: string, senha: string) => {
   });
 };
 
-const Me = async (token: string) => {
-  return await api.query({
-    query: gql`
-        Me
-    `,
-  });
-};
-
 export { LoginEmailSenha };

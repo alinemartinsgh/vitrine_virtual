@@ -16,12 +16,16 @@ import {
 import {actions} from '../../store/campanhas';
 import {useDispatch} from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
+import {formatarData} from '../../utils/formataDate';
 
 interface ItemProps {
   nome: string;
   descricao: string;
   categoria: string;
   imagem: string;
+  dataInicio: string;
+  dataFim: string;
+  urlDestino: string;
 }
 
 interface CustomCarouselProps {}
@@ -77,23 +81,33 @@ const Carrossel: React.FC<CustomCarouselProps> = () => {
 
   const listaCampanhas = useSelector(selectors.getListaCampanhas);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const renderItem = useCallback(({item, index}: RenderItemProps) => {
-    return (
-      <ViewCarrosel>
-        <ImageContainer
-          source={{
-            uri: `${item.imagem}`,
-          }}
-        />
-        <TextContainer>
-          <TituloCampanha>{item.nome}</TituloCampanha>
-          <TextCampanha>{item.descricao}</TextCampanha>
-          <TextCampanha>{item.categoria}</TextCampanha>
-        </TextContainer>
-      </ViewCarrosel>
-    );
-  }, []);
+  const getDate = new Date();
+  const diatual = formatarData(getDate);
+  console.warn(diatual);
+
+  const renderItem: any = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    ({item, index}: RenderItemProps) => {
+      item.dataFim > diatual && item.dataInicio <= diatual ? (
+        <ViewCarrosel>
+          <ImageContainer
+            source={{
+              uri: `${item.imagem}`,
+            }}
+          />
+          <TextContainer>
+            <TituloCampanha>{item.nome}</TituloCampanha>
+            <TextCampanha>{item.descricao}</TextCampanha>
+            <TextCampanha>{item.categoria}</TextCampanha>
+            <TextCampanha>{item.dataFim}</TextCampanha>
+          </TextContainer>
+        </ViewCarrosel>
+      ) : (
+        <></>
+      );
+    },
+    [diatual],
+  );
 
   return (
     <Container>
