@@ -1,7 +1,20 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import { useDispatch } from 'react-redux';
 import apiStorage from 'src/api/apiStorage';
-import FormCampanha from 'src/components/FormCampanha';
+import { Botao } from 'src/components/botao';
+import Categorias from 'src/components/FormCampanha/Categoria';
+import {
+  DataContainer,
+  DataInput,
+  DataLabel,
+  FormContainer,
+  ImagemContainer,
+  ImagemInput,
+  ImagemLabel,
+  Select,
+} from 'src/components/FormCampanha/style';
+import { Input } from 'src/components/input';
 import { actions } from 'src/store/campanhas';
 
 const CampanhaPage: React.FC = () => {
@@ -59,16 +72,74 @@ const CampanhaPage: React.FC = () => {
   };
 
   return (
-    <FormCampanha
-      onsubmit={handleSubmit}
-      valueNomeCampanha={dadosCampanha.nome}
-      valueDescricaoCampanha={dadosCampanha.descricao}
-      valueCategoriaCampanha={dadosCampanha.categoria}
-      valueURLDestinoCampanha={dadosCampanha.urlDestino}
-      valueDataInicioCampanha={dadosCampanha.dataInicio}
-      valueDataFimCampanha={dadosCampanha.dataFim}
-      conteudoBotao="Enviar"
-    />
+    <FormContainer onSubmit={handleSubmit} method="POST">
+      <Input
+        nome="nome"
+        type="text"
+        value={dadosCampanha.nome}
+        onchange={handleInput}
+        placeholder="Campanha"
+      />
+      <Input
+        nome="descricao"
+        type="text"
+        onchange={handleInput}
+        value={dadosCampanha.descricao}
+        placeholder="Descrição"
+      />
+      <Input
+        nome="urlDestino"
+        type="text"
+        onchange={handleInput}
+        value={dadosCampanha.urlDestino}
+        placeholder="URL de Destino"
+      />
+      <Select
+        onChange={handleInput}
+        name="categoria"
+        value={dadosCampanha.categoria}
+        required
+      >
+        <option value="" disabled hidden>
+          Selecione...
+        </option>
+        {Categorias.map((item, index) => (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        ))}
+      </Select>
+      <DataContainer>
+        <DataLabel>Início da Campanha</DataLabel>
+
+        <DataInput
+          name="dataInicio"
+          type="date"
+          onChange={handleInput}
+          value={dadosCampanha.dataInicio}
+          required
+        />
+        <DataLabel>Final da Campanha</DataLabel>
+
+        <DataInput
+          name="dataFim"
+          type="date"
+          onChange={handleInput}
+          value={dadosCampanha.dataFim}
+          required
+        />
+      </DataContainer>
+      <ImagemContainer>
+        <ImagemLabel htmlFor="imagem">Selecione sua imagem</ImagemLabel>
+        <ImagemInput
+          type="file"
+          name="imagem"
+          id="imagem"
+          onChange={handleInput}
+        />
+      </ImagemContainer>
+      <Botao conteudo="Enviar" type="submit" />
+    </FormContainer>
   );
 };
 

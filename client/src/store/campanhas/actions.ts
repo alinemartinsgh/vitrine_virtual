@@ -7,7 +7,7 @@ import {
 } from './types';
 
 const actions = {
-  setError: (error: string): CampanhaAction<{ error?: string }> => ({
+  setError: (error?: string): CampanhaAction<{ error?: string }> => ({
     type: CampanhaTypes.SET_ERROR,
     payload: { error },
   }),
@@ -23,7 +23,7 @@ const actions = {
     payload: { listaCampanhas },
   }),
 
-/*   buscaPorId: () => ({
+  /*   buscaPorId: () => ({
     type: CampanhaTypes.BUSCA_POR_ID_CAMPANHA,
   }),
 
@@ -42,7 +42,7 @@ const actions = {
   atualizarCampanha: (
     id: string,
     campanha: Campanha,
-  ): CampanhaAction<{ id: string, campanha: Campanha }> => ({
+  ): CampanhaAction<{ id: string; campanha: Campanha }> => ({
     type: CampanhaTypes.ATUALIZAR_CAMPANHA,
     payload: { id, campanha },
   }),

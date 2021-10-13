@@ -5,6 +5,7 @@ import { Campanha, CampanhaTypes } from './types';
 
 export function* buscaCampanhas(): any {
   try {
+    yield put(actions.setError());
     const data = yield call(repository.listaTodasCampanhas);
     if (data) {
       yield put(actions.setListaCampanhas(data));
@@ -27,6 +28,7 @@ export function* buscaCampanhas(): any {
 
 export function* criaCampanha(data: any) {
   try {
+    yield put(actions.setError());
     const novaCampanha: Campanha = yield call(
       repository.criaNovaCampanha,
       data.payload.data,
@@ -43,6 +45,7 @@ export function* atualizarCampanha(
   action: ReturnType<typeof actions.atualizarCampanha>,
 ) {
   try {
+    yield put(actions.setError());
     const { id, campanha } = action.payload;
     const updateCampanha: Campanha = yield call(
       repository.atualizaCampanha,
@@ -60,6 +63,7 @@ export function* atualizarCampanha(
 
 export function* deletarCampanha(id: any): any {
   try {
+    yield put(actions.setError());
     const deletaCampanha = yield call(repository.deletaCampanha, id.payload.id);
     if (deletaCampanha) yield call(actions.buscaListaCampanhas);
   } catch (err: any) {
