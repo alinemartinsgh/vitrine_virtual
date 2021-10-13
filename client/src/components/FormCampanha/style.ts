@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const FormContainer = styled.form`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   width: 40vw;
   height: 80vh;
@@ -54,9 +54,13 @@ export const ImagemInput = styled.input`
 export const DataContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
-  width: 30vw;
 `;
 
+export const DataLabel = styled.label`
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #3c354e;
+  padding-left: 1.5rem;
+`;
 export const DataInput = styled.input`
   padding: 0.5rem;
   color: #3c354e;

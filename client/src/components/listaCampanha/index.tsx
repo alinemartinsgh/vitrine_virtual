@@ -1,11 +1,9 @@
-import React, { Children, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { actions } from 'src/store/campanhas';
 import { useDispatch, useSelector } from 'react-redux';
 import { getListaCampanhas } from 'src/store/campanhas/selectors';
 import CampanhaItem from '../campanhaItem';
 import { ListaContainer } from './styles';
-import { Campanha } from 'src/store/campanhas/types';
-import { Botao } from '../botao';
 import { Link } from 'react-router-dom';
 
 const ListaCampanha: React.FC = () => {
@@ -17,15 +15,8 @@ const ListaCampanha: React.FC = () => {
   }, [dispatch]);
 
   const deletar = (id: string) => {
-    console.log('fui chamado');
     dispatch(actions.deletarCampanha(id));
   };
-
-  /*
-  const editar = (campanha: Campanha, id: string) => {
-    dispatch(actions.atualizarCampanha(id, campanha));
-  };
-  */
 
   return (
     <ListaContainer>
@@ -39,9 +30,6 @@ const ListaCampanha: React.FC = () => {
               dataFim={item.dataFim}
               categoria={item.categoria}
             />
-            <button key={item.nome} onClick={() => deletar(item.id)}>
-              Deletar
-            </button>
 
             <Link
               to={{
@@ -51,6 +39,9 @@ const ListaCampanha: React.FC = () => {
             >
               <button key={item.categoria}>Editar</button>
             </Link>
+            <button key={item.nome} onClick={() => deletar(item.id)}>
+              Deletar
+            </button>
           </>
         );
       })}
