@@ -29,6 +29,7 @@ export function* buscaCampanhas(): any {
 export function* criaCampanha(data: any) {
   try {
     yield put(actions.setError());
+    console.log(data.payload.data);
     const novaCampanha: Campanha = yield call(
       repository.criaNovaCampanha,
       data.payload.data,

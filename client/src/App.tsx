@@ -12,7 +12,6 @@ const { store } = configureStore();
 
 export default function App() {
   const isLogged = localStorage.getItem('ACCESS_TOKEN_KEY');
-  console.log(isLogged);
 
   return (
     <Provider store={store}>

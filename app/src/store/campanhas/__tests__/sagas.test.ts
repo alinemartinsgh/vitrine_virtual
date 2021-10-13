@@ -9,7 +9,7 @@ import * as repository from '../repository';
 const campanha = new CampanhaBuildMock().withNome('boticario').build();
 
 describe('Campanha Sagas', () => {
-  test('deve realizar o request de Characters corretamente', () => {
+  test('deve realizar o request de Campanhas corretamente', () => {
     const gen = sagas.buscaCampanhas();
 
     expect(gen.next().value).toEqual(put(actions.setError()));
