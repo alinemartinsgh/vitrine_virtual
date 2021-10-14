@@ -24,6 +24,8 @@ interface CustomState {
   Campanha: Campanha;
 }
 
+//TODO validação de data na atualização
+
 const EditarCampanha: React.FC = () => {
   const dispatch = useDispatch();
 
@@ -73,6 +75,13 @@ const EditarCampanha: React.FC = () => {
   }
   const handleSubmit = (e: any) => {
     e.preventDefault();
+
+    if (dadosCampanha.dataInicio > dadosCampanha.dataFim) {
+      //TODO avisar de alguma forma ao usuário
+      alert('nao foi');
+      return;
+    }
+
     dispatch(actions.atualizarCampanha(state.id, dadosCampanha));
   };
 

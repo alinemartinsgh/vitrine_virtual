@@ -23,6 +23,7 @@ export const buscaCampanhaQuery = gql`
 async function listaTodasCampanhas(): Promise<ListaCampanhas> {
   const getListaCampanhas = await api.query({
     query: buscaCampanhaQuery,
+    fetchPolicy: 'network-only',
   });
   return getListaCampanhas.data.buscaCampanhas;
 }

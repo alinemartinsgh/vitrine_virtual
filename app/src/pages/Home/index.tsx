@@ -2,7 +2,7 @@ import React from 'react';
 
 import {SafeAreaView} from 'react-native';
 
-import CustomCarousel from '../../components/carrosel';
+import CustomCarousel from '../../components/carrossel';
 
 const Login: React.FC = () => {
   return (

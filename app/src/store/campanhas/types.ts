@@ -14,6 +14,7 @@ export type Campanha = {
   imagem: string;
   dataInicio: string;
   dataFim: string;
+  urlDestino: string;
 };
 
 export type ListaCampanhas = Campanha[];
