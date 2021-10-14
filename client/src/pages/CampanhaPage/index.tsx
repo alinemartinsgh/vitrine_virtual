@@ -22,6 +22,8 @@ const CampanhaPage: React.FC = () => {
 
   const [imagem] = useState('');
 
+  const [erroData, setErroData] = useState('');
+
   const [dadosCampanha, setdadosCampanha] = useState({
     nome: '',
     descricao: '',
@@ -67,14 +69,18 @@ const CampanhaPage: React.FC = () => {
     e.preventDefault();
 
     if (dadosCampanha.dataInicio > dadosCampanha.dataFim) {
-      //TODO avisar de alguma forma ao usuário
-      alert('nao foi');
+      setErroData('Data de fim da campanha vêm antes da data de início');
+      return;
+    }
+
+    if (dadosCampanha.imagem === '') {
+      setErroData('Imagem não selecionada');
       return;
     }
 
     const envio = dispatch(actions.adicionarCampanha(dadosCampanha));
     if (envio.payload.data !== null) {
-      console.log('form enviado com sucesso');
+      setErroData('');
     }
   };
 
@@ -145,6 +151,7 @@ const CampanhaPage: React.FC = () => {
           onChange={handleInput}
         />
       </ImagemContainer>
+      {erroData === '' ? null : <div>{erroData}</div>}
       <Botao conteudo="Enviar" type="submit" />
     </FormContainer>
   );
