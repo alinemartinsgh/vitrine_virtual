@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useRef} from 'react';
+import React, {useState, useCallback, useRef, useEffect} from 'react';
 
 import {RefreshControl} from 'react-native';
 
@@ -39,18 +39,23 @@ interface RenderItemProps {
 const Carrossel: React.FC<CustomCarouselProps> = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  // const [carouselItems, setCarouselItems] = useState<ItemProps[]>(exampleItems);
+
   const ref = useRef(null);
   const dispatch = useDispatch();
 
-  const [listaCampanhas, setListaCampanha] = useState(
-    useSelector(selectors.getListaCampanhas),
-  );
+  const listaCampanhas = useSelector(selectors.getListaCampanhas);
 
   const getDate = new Date();
+
   const diatual = formatarData(getDate);
-  const [refreshing, setRefreshing] = React.useState(false);
-  console.warn(diatual);
+
+  const campanhasAtuais = listaCampanhas.filter(
+    ({dataFim, dataInicio}) => dataFim > diatual && dataInicio < diatual,
+  );
+
+  console.log(campanhasAtuais);
+
+  const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = React.useCallback(async () => {
     setRefreshing(true);
@@ -62,7 +67,13 @@ const Carrossel: React.FC<CustomCarouselProps> = () => {
     setRefreshing(false);
   }, [dispatch]);
 
-  const renderItem: any = useCallback(
+  useEffect(() => {
+    onRefresh();
+  }, [onRefresh]);
+
+  //item.dataFim > diatual && item.dataInicio < diatual
+
+  const renderItem = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ({item, index}: RenderItemProps) => {
       return (
@@ -89,7 +100,7 @@ const Carrossel: React.FC<CustomCarouselProps> = () => {
       <Carousel
         layout={'default'}
         ref={ref}
-        data={listaCampanhas}
+        data={campanhasAtuais}
         sliderWidth={300}
         itemWidth={300}
         renderItem={renderItem}
