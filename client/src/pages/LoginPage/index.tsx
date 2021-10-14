@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginActions } from '../../store/login';
+import * as selectors from '../../store/login/selectors';
 
 import {
   Container,
@@ -21,6 +22,8 @@ const LoginPage: React.FC = () => {
     email: '',
     senha: '',
   });
+
+  const erroLogin = useSelector(selectors.getError);
 
   function handleInput(e: any) {
     setDadosLogin({
@@ -73,6 +76,7 @@ const LoginPage: React.FC = () => {
         <Icone image={HitssPath} />
         <Icone image={ClaroPath} />
       </IconeContainer>
+      {erroLogin !== undefined ? <div>{erroLogin.message}</div> : null}
     </Container>
   );
 };

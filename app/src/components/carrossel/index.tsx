@@ -71,8 +71,6 @@ const Carrossel: React.FC<CustomCarouselProps> = () => {
     onRefresh();
   }, [onRefresh]);
 
-  //item.dataFim > diatual && item.dataInicio < diatual
-
   const renderItem = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     ({item, index}: RenderItemProps) => {
