@@ -29,7 +29,6 @@ export function* buscaCampanhas(): any {
 export function* criaCampanha(data: any) {
   try {
     yield put(actions.setError());
-    console.log(data.payload.data);
     const novaCampanha: Campanha = yield call(
       repository.criaNovaCampanha,
       data.payload.data,
@@ -53,7 +52,6 @@ export function* atualizarCampanha(
       id,
       campanha,
     );
-    console.log('saga result', updateCampanha);
     if (updateCampanha) {
       yield call(actions.buscaListaCampanhas);
     }

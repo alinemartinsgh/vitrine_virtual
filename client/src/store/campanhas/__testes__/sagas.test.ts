@@ -7,8 +7,13 @@ import { actions } from '../';
 import { CampanhaBuilderMock } from '../__mocks__/campanha.mock';
 import { CampanhaFormBuilderMock } from '../__mocks__/campanhaForm.mock ';
 
-const campanha = new CampanhaBuilderMock().withNome('campanha teste').build();
-const data = new CampanhaFormBuilderMock().withNome('campanha teste').build();
+const campanha = new CampanhaBuilderMock()
+  .withId('12345')
+  .withNome('campanha teste')
+  .build();
+const campanhaForm: any = new CampanhaFormBuilderMock()
+  .withNome('campanha teste')
+  .build();
 
 describe('Campanha Sagas', () => {
   test('deve realizar o request de Campanhas corretamente', () => {
@@ -26,17 +31,48 @@ describe('Campanha Sagas', () => {
     expect(gen.next().done).toBe(true);
   });
 
-  test('deve fazer a criação de Campanhas corretamente', () => {
-    const gen = sagas.criaCampanha(actions.adicionarCampanha);
+  test('deve realizar a criação de Campanhas corretamente', () => {
+    const gen = sagas.criaCampanha(actions.adicionarCampanha(campanhaForm));
 
     expect(gen.next().value).toEqual(put(actions.setError()));
-    console.log(call(repository.criaNovaCampanha, data));
 
-    expect(gen.next().value).toEqual(call(repository.criaNovaCampanha, data));
-    const response = data;
+    expect(gen.next().value).toEqual(
+      call(repository.criaNovaCampanha, campanhaForm),
+    );
 
+    const response = campanhaForm;
     expect(gen.next(response).value).toEqual(call(actions.buscaListaCampanhas));
 
+    expect(gen.next().done).toBe(true);
+  });
+
+  test('deve realizar a atualização de Campanhas corretamente', () => {
+    const gen = sagas.atualizarCampanha(
+      actions.atualizarCampanha(campanha.id, campanha),
+    );
+
+    expect(gen.next().value).toEqual(put(actions.setError()));
+
+    expect(gen.next().value).toEqual(
+      call(repository.atualizaCampanha, campanha.id, campanha),
+    );
+
+    const response = campanha;
+    expect(gen.next(response).value).toEqual(call(actions.buscaListaCampanhas));
+    expect(gen.next().done).toBe(true);
+  });
+
+  test('deve realizar a deleção de Campanhas corretamente', () => {
+    const gen = sagas.deletarCampanha(actions.deletarCampanha(campanha.id));
+
+    expect(gen.next().value).toEqual(put(actions.setError()));
+
+    expect(gen.next().value).toEqual(
+      call(repository.deletaCampanha, campanha.id),
+    );
+
+    const response = campanha;
+    expect(gen.next(response).value).toEqual(call(actions.buscaListaCampanhas));
     expect(gen.next().done).toBe(true);
   });
 });
