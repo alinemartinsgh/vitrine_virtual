@@ -52,7 +52,6 @@ export function* atualizarCampanha(
       id,
       campanha,
     );
-    console.log('saga result', updateCampanha);
     if (updateCampanha) {
       yield call(actions.buscaListaCampanhas);
     }

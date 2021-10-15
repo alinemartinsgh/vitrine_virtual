@@ -6,7 +6,7 @@ import {
   CampanhaTypes,
 } from './types';
 
-const initialState: CampanhaState = {
+export const initialState: CampanhaState = {
   isLoading: false,
   listaCampanhas: [],
   error: undefined,

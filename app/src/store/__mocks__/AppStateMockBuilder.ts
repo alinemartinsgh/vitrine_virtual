@@ -1,6 +1,6 @@
 import {CampanhaState} from '../campanhas/types';
 
-import {initialAppState} from './initialAppState.mock';
+import {initialAppState} from './initialState.mock';
 
 export class AppStateMockBuilder {
   campanhaReducer: CampanhaState = initialAppState.campanhaReducer;

@@ -19,7 +19,7 @@ describe('Repository Campanha', () => {
     .withNome('Teste Campanha')
     .build();
 
-  it('Query listaTodasCampanhas', async () => {
+  test('Query listaTodasCampanhas', async () => {
     const mockApollo = createMockClient([mockCampanha], buscaCampanhaQuery);
     const { data } = await mockApollo.query({
       query: buscaCampanhaQuery,
@@ -27,7 +27,7 @@ describe('Repository Campanha', () => {
     expect(data).toEqual([mockCampanha]);
   });
 
-  it('Mutation criaNovaCampanha', async () => {
+  test('Mutation criaNovaCampanha', async () => {
     const mockApollo = createMockClient(
       mockCampanhaForm,
       addCampanhaMutation,
@@ -40,7 +40,7 @@ describe('Repository Campanha', () => {
     expect(data).toEqual(mockCampanhaForm);
   });
 
-  it('Mutation atualizaCampanha', async () => {
+  test('Mutation atualizaCampanha', async () => {
     const mockApollo = createMockClient(mockCampanha, updateCampanhaMutation, {
       id: '12345',
       mockCampanhaForm,
@@ -52,7 +52,7 @@ describe('Repository Campanha', () => {
     expect(data).toEqual(mockCampanha);
   });
 
-  it('Mutation deletaCampanha', async () => {
+  test('Mutation deletaCampanha', async () => {
     const mockApollo = createMockClient(mockCampanha, deletaCampanhaMutation, {
       id: '12345',
     });
