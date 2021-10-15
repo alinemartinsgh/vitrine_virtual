@@ -13,7 +13,7 @@ const actions = {
     type: LoginTypes.REQUEST_EMAIL_PASSWORD,
     payload: { email, senha },
   }),
-  loginError: (error: Error) => ({
+  loginError: (error: any) => ({
     type: LoginTypes.LOGIN_ERROR,
     payload: { error },
   }),

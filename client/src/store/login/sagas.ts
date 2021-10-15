@@ -23,7 +23,7 @@ export function* requestEmailPassword(
       }
     }
   } catch (err) {
-    console.log(err);
+    yield put(loginActions.loginError(err))
   }
 }
 

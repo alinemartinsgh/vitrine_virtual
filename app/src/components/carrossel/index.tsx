@@ -46,14 +46,11 @@ const Carrossel: React.FC<CustomCarouselProps> = () => {
   const listaCampanhas = useSelector(selectors.getListaCampanhas);
 
   const getDate = new Date();
-
   const diatual = formatarData(getDate);
 
   const campanhasAtuais = listaCampanhas.filter(
-    ({dataFim, dataInicio}) => dataFim > diatual && dataInicio < diatual,
+    ({dataFim, dataInicio}) => dataFim > diatual && dataInicio <= diatual,
   );
-
-  console.log(campanhasAtuais);
 
   const [refreshing, setRefreshing] = useState(false);
 
@@ -70,8 +67,6 @@ const Carrossel: React.FC<CustomCarouselProps> = () => {
   useEffect(() => {
     onRefresh();
   }, [onRefresh]);
-
-  //item.dataFim > diatual && item.dataInicio < diatual
 
   const renderItem = useCallback(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
