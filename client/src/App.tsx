@@ -7,26 +7,23 @@ import LoginPage from './pages/LoginPage';
 import CampanhaPage from './pages/CampanhaPage';
 import EditarPage from './pages/EditarPage';
 import { Redirect } from 'react-router';
+import { getToken } from './utils/token';
 
 const { store } = configureStore();
 
 export default function App() {
-  const isLogged = localStorage.getItem('ACCESS_TOKEN_KEY');
+  //
+  const isLogged = getToken();
 
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={LoginPage} />
-          <Route exact path="/homePage" component={HomePage}>
-            {isLogged ? null : <Redirect exact to="/" />}
-          </Route>
-          <Route exact path="/novaCampanha" component={CampanhaPage}>
-            {isLogged ? null : <Redirect exact to="/" />}
-          </Route>
-          <Route exact path="/editar" component={EditarPage}>
-            {isLogged ? null : <Redirect exact to="/" />}
-          </Route>
+          {isLogged ? null : <Redirect exact to="/" />}
+          <Route exact path="/homePage" component={HomePage} />
+          <Route exact path="/novaCampanha" component={CampanhaPage} />
+          <Route exact path="/editar" component={EditarPage} />
         </Switch>
       </BrowserRouter>
     </Provider>

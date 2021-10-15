@@ -14,6 +14,7 @@ const CampanhaItem = ({ nome, categoria, dataInicio, dataFim }: Props) => {
     <Item>
       {nome} | {categoria} | {dataInicio} | {dataFim}
     </Item>
+
   );
 };
 
