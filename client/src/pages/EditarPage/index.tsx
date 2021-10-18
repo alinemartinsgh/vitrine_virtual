@@ -108,24 +108,25 @@ const EditarCampanha: React.FC = () => {
         onchange={handleInput}
         placeholder="URL de Destino"
       />
-      <Select
-        onChange={handleInput}
-        name="categoria"
-        defaultValue={state.Campanha.categoria}
-        required
-      >
-        {Categorias.map((item, index) => (
-          <option
-            value={item}
-            defaultValue={state.Campanha.categoria}
-            key={index}
-          >
-            {item}
-          </option>
-        ))}
-      </Select>
       <DataContainer>
-        <DataLabel>Início da Campanha</DataLabel>
+         <DataLabel>Categoria:</DataLabel>
+        <Select
+          onChange={handleInput}
+          name="categoria"
+          defaultValue={state.Campanha.categoria}
+          required
+        >
+          {Categorias.map((item, index) => (
+            <option
+              value={item}
+              defaultValue={state.Campanha.categoria}
+              key={index}
+            >
+              {item}
+            </option>
+          ))}
+        </Select>
+        <DataLabel>Início da Campanha:</DataLabel>
         <DataInput
           name="dataInicio"
           type="date"
@@ -133,7 +134,7 @@ const EditarCampanha: React.FC = () => {
           defaultValue={state.Campanha.dataInicio}
           required
         />
-        <DataLabel>Final da Campanha</DataLabel>
+        <DataLabel>Final da Campanha:</DataLabel>
         <DataInput
           name="dataFim"
           type="date"

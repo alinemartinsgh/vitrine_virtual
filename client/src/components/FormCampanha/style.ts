@@ -5,15 +5,17 @@ export const FormContainer = styled.form`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 40vw;
+  width: 70vw;
   height: 80vh;
   margin: 3rem auto;
-  border: 1px solid;
+  background: #fff;
+  box-shadow: 0px 0px 10px 2px rgba(30, 30, 36, 0.43);
   border-radius: 0.5rem;
+  padding: 2.5rem 0.5rem;
 `;
 
 export const Select = styled.select`
-  width: 85%;
+  width: 20%;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0px 0px 9px 1px rgba(198, 198, 204, 1);
   border-radius: 0.2rem;
@@ -54,13 +56,16 @@ export const ImagemInput = styled.input`
 export const DataContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
 `;
 
 export const DataLabel = styled.label`
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #3c354e;
-  padding-left: 1.5rem;
+  margin-left: 2%;
 `;
+
 export const DataInput = styled.input`
   padding: 0.5rem;
   color: #3c354e;
