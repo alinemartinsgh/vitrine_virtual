@@ -1,10 +1,10 @@
 import React, {useState, useCallback, useRef, useEffect} from 'react';
-
-import {RefreshControl} from 'react-native';
+import {Linking, RefreshControl} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import Carousel from 'react-native-snap-carousel';
 
 import * as selectors from '../../store/campanhas/selectors';
-
-import {useSelector} from 'react-redux';
+import {actions} from '../../store/campanhas';
 
 import {
   ViewCarrosel,
@@ -13,11 +13,11 @@ import {
   TituloCampanha,
   TextContainer,
   TextCampanha,
+  CategoriaCampanha,
+  Btn,
+  BtnContent,
 } from './styles';
 
-import {actions} from '../../store/campanhas';
-import {useDispatch} from 'react-redux';
-import Carousel from 'react-native-snap-carousel';
 import {formatarData} from '../../utils/formataDate';
 
 interface ItemProps {
@@ -52,6 +52,18 @@ const Carrossel: React.FC<CustomCarouselProps> = () => {
     ({dataFim, dataInicio}) => dataFim > diatual && dataInicio <= diatual,
   );
 
+  const campanhaDefault = [
+    {
+      nome: 'Claro clube',
+      descricao: 'Conheça o Claro clube',
+      categoria: 'Claro clube',
+      imagem: '../../assets/img/claro-clube.png',
+      dataInicio: '',
+      dataFim: '',
+      urlDestino: 'https://www.claro.com.br/claro-clube',
+    },
+  ];
+
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = React.useCallback(async () => {
@@ -73,21 +85,28 @@ const Carrossel: React.FC<CustomCarouselProps> = () => {
     ({item, index}: RenderItemProps) => {
       return (
         <ViewCarrosel>
-          <ImageContainer
-            source={{
-              uri: `${item.imagem}`,
-            }}
-          />
+          {campanhasAtuais.length !== 0 ? (
+            <ImageContainer source={{uri: `${item.imagem}`}} />
+          ) : (
+            <ImageContainer
+              source={require('../../assets/img/claro-clube.png')}
+            />
+          )}
           <TextContainer>
             <TituloCampanha>{item.nome}</TituloCampanha>
             <TextCampanha>{item.descricao}</TextCampanha>
-            <TextCampanha>{item.categoria}</TextCampanha>
-            <TextCampanha>{item.dataFim}</TextCampanha>
+            <CategoriaCampanha>{item.categoria}</CategoriaCampanha>
+            <Btn
+              onPress={() => {
+                Linking.openURL(item.urlDestino);
+              }}>
+              <BtnContent>Saiba mais</BtnContent>
+            </Btn>
           </TextContainer>
         </ViewCarrosel>
       );
     },
-    [],
+    [campanhasAtuais.length],
   );
 
   return (
@@ -95,7 +114,7 @@ const Carrossel: React.FC<CustomCarouselProps> = () => {
       <Carousel
         layout={'default'}
         ref={ref}
-        data={campanhasAtuais}
+        data={campanhasAtuais.length !== 0 ? campanhasAtuais : campanhaDefault}
         sliderWidth={300}
         itemWidth={300}
         renderItem={renderItem}
