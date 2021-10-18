@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import claro from '../../assets/Claro.png';
+import hitss from '../../assets/gh.png';
 
 export const Container = styled.div`
   display: flex;
@@ -6,7 +8,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   height: 60vh;
-  width: 30vw;
+  width: 25vw;
   background: #fff;
   box-shadow: 0px 0px 10px 2px rgba(30, 30, 36, 0.43);
   border-radius: 0.5rem;
@@ -19,8 +21,7 @@ export const FormContainer = styled.form`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: 50vh;
-  min-width: 50vh;
+  width: 100vw;
 `;
 
 export const BotaoContainer = styled.div`
@@ -43,7 +44,7 @@ export const InputContainer = styled.div`
 
 export const ReguaHorizontal = styled.hr`
   width: 90%;
-  height: 1.5%;
+  height: 0.1rem;
   border-radius: 0.8rem;
   border: none;
   background: linear-gradient(to right, #e3262e 0%, #a61d19 79%);
@@ -55,9 +56,7 @@ export const ReguaHorizontal = styled.hr`
 export const IconeContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
-  margin: 2rem 0 3rem 0;
-  width: 80%;
-  height: 10%;
+  width: 100vw;
 `;
 
 export const TituloBemVindo = styled.h2`
@@ -67,4 +66,20 @@ export const TituloBemVindo = styled.h2`
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   height: 10%;
+`;
+
+export const IconClaro = styled.div`
+  background-image: url(${claro});
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 3.5rem;
+  width: 3.5rem;
+`;
+
+export const IconHitss = styled.div`
+  background-image: url(${hitss});
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 3.5rem;
+  width: 3.5rem;
 `;
