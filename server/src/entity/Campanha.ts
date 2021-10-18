@@ -1,6 +1,5 @@
 import { Entity, BaseEntity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
 import { Field, ID, ObjectType } from 'type-graphql';
-//import { Usuario } from './Usuario';
 
 @ObjectType()
 @Entity()
@@ -23,6 +22,10 @@ export class Campanha extends BaseEntity {
 
   @Field({ nullable: false })
   @Column()
+  urlDestino: string;
+
+  @Field({ nullable: false })
+  @Column()
   imagem: string;
 
   @Field({ nullable: false })
@@ -33,17 +36,13 @@ export class Campanha extends BaseEntity {
   @Column()
   dataFim: string;
 
-  //@Field({ nullable: false })
-  //@Column()
-  //criadoPor: Usuario;
+  @Field({ nullable: true })
+  @Column()
+  createdAt: Date;
 
   @Field({ nullable: true })
   @Column()
-  createdAt: string;
-
-  @Field({ nullable: true })
-  @Column()
-  updatedAt: string;
+  updatedAt: Date;
 }
 
 export default Campanha;

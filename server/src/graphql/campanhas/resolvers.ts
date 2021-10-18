@@ -2,7 +2,7 @@ import { Arg, Query, Resolver, Mutation } from 'type-graphql';
 import { getRepository } from 'typeorm';
 import Campanha from '../../entity/Campanha';
 
-import { AdicionarCampanhaInput } from '../campanhas/campanhaInput';
+import { CampanhaForm } from './campanhaForm';
 
 @Resolver()
 export class CampanhaResolver {
@@ -12,10 +12,10 @@ export class CampanhaResolver {
   }
 
   @Query(() => Campanha, { nullable: true })
-  async buscaCampanhaPorId(
+  async buscaPorId(
     @Arg('id') id: string,
   ): Promise<Campanha | undefined | null> {
-    return await Campanha.findOne(id);
+    return Campanha.findOne(id);
   }
 
   @Mutation(() => Campanha)
@@ -25,24 +25,22 @@ export class CampanhaResolver {
       nome,
       descricao,
       categoria,
+      urlDestino,
       imagem,
       dataInicio,
       dataFim,
-      //criadoPor,
-      createdAt,
-      updatedAt,
-    }: AdicionarCampanhaInput,
+    }: CampanhaForm,
   ): Promise<Campanha> {
     const campanha = await Campanha.create({
       nome,
+      descricao,
       categoria,
-      createdAt,
-      //criadoPor,
+      urlDestino,
       dataFim,
       dataInicio,
-      descricao,
       imagem,
-      updatedAt,
+      createdAt: new Date(Date.now()),
+      updatedAt: new Date(Date.now()),
     }).save();
     return campanha;
   }
@@ -56,12 +54,10 @@ export class CampanhaResolver {
       descricao,
       categoria,
       imagem,
+      urlDestino,
       dataInicio,
       dataFim,
-      //criadoPor,
-      createdAt,
-      updatedAt,
-    }: AdicionarCampanhaInput,
+    }: CampanhaForm,
   ): Promise<Campanha | null> {
     const campanha = await Campanha.findOne(id);
 
@@ -69,11 +65,11 @@ export class CampanhaResolver {
       campanha.nome = nome;
       campanha.descricao = descricao;
       campanha.categoria = categoria;
+      campanha.urlDestino = urlDestino;
       campanha.imagem = imagem;
       campanha.dataInicio = dataInicio;
       campanha.dataFim = dataFim;
-      campanha.createdAt = createdAt;
-      campanha.updatedAt = updatedAt;
+      campanha.updatedAt = new Date(Date.now());
 
       await getRepository(Campanha).update(id, campanha);
       return campanha;

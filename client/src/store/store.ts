@@ -7,11 +7,13 @@ import { rootSagas } from './rootSagas';
 
 export const configureStore = (): { store: Store } => {
   const sagaMiddleware = createSagaMiddleware();
+
   const store: Store<RootState> = createStore(
     rootReducer,
     {},
     composeWithDevTools(applyMiddleware(sagaMiddleware)),
   );
+
   sagaMiddleware.run(rootSagas);
 
   return { store };

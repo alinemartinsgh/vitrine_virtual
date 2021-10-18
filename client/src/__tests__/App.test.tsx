@@ -4,6 +4,6 @@ import App from '../App';
 
 test('renderizar componente App com texto vitrine virtual', () => {
   render(<App />);
-  const texto = screen.getByText(/vitrine virtual/i);
+  const texto = screen.getByText(/bem vindo/i);
   expect(texto).toBeInTheDocument();
 });

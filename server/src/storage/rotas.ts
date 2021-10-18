@@ -8,7 +8,7 @@ export const uploadImg = router.post(
   '/uploadImagem',
   uploadImagem(),
   ({ file }, res) => {
-    return res.json({ file });
+    return res.json(file).status(res.statusCode);
   },
 );
 
