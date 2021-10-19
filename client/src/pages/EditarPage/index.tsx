@@ -29,6 +29,8 @@ interface CustomState {
 const EditarCampanha: React.FC = () => {
   const dispatch = useDispatch();
 
+  const [confirmacaoEnvio, setConfirmacaoEnvio] = useState(false);
+
   let data = useLocation();
   const state = data.state as CustomState;
 
@@ -73,16 +75,19 @@ const EditarCampanha: React.FC = () => {
       });
     }
   }
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
     if (dadosCampanha.dataInicio > dadosCampanha.dataFim) {
-      //TODO avisar de alguma forma ao usuário
-      alert('nao foi');
+      setConfirmacaoEnvio(false);
       return;
     }
 
-    dispatch(actions.atualizarCampanha(state.id, dadosCampanha));
+    if (dadosCampanha) {
+      dispatch(actions.atualizarCampanha(state.id, dadosCampanha));
+      setConfirmacaoEnvio(true);
+    }
   };
 
   return (
@@ -109,7 +114,7 @@ const EditarCampanha: React.FC = () => {
         placeholder="URL de Destino"
       />
       <DataContainer>
-         <DataLabel>Categoria:</DataLabel>
+        <DataLabel>Categoria:</DataLabel>
         <Select
           onChange={handleInput}
           name="categoria"
@@ -156,6 +161,11 @@ const EditarCampanha: React.FC = () => {
         />
       </ImagemContainer>
       <Botao conteudo="Atualizar" type="submit" />
+      {confirmacaoEnvio ? (
+        <div>Campanha Atualizada</div>
+      ) : (
+        <div>Falha na atualização</div>
+      )}
     </FormContainer>
   );
 };
