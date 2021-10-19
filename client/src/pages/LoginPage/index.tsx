@@ -67,7 +67,7 @@ const LoginPage: React.FC = () => {
         </InputContainer>
         <ReguaHorizontal />
         <BotaoContainer>
-          <Botao type="submit" conteudo="Login" />
+          <Botao bgColor="enviar" type="submit" conteudo="Login" />
         </BotaoContainer>
       </FormContainer>
       <IconeContainer>
