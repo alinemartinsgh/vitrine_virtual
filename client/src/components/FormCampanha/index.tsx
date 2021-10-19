@@ -155,7 +155,7 @@ const FormCampanha = ({
           required
         />
       </ImagemContainer>
-      <Botao conteudo={conteudoBotao} type="submit" />
+      <Botao bgColor="enviar" conteudo={conteudoBotao} type="submit" />
     </FormContainer>
   );
 };

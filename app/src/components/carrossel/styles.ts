@@ -19,7 +19,7 @@ export const ViewCarrosel = styled.View`
 `;
 
 export const ImageContainer = styled.Image`
-  width: 100%;
+  width: 60%;
   height: 50%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;

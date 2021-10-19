@@ -10,10 +10,10 @@ import {
   TableR,
   TableD,
   TableB,
-  ButtonEditing,
-  ButtonDeleting,
+  ButtonContainer,
 } from './styles';
 import { Link } from 'react-router-dom';
+import { Botao } from '../botao';
 
 const ListaCampanha: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ const ListaCampanha: React.FC = () => {
 
   const deletar = (id: string) => {
     dispatch(actions.deletarCampanha(id));
+    window.location.reload();
   };
 
   return (
@@ -33,10 +34,10 @@ const ListaCampanha: React.FC = () => {
         <TableH>
           <TableR>
             <TableD>Nome</TableD>
-            <TableD>Dada de Início</TableD>
-            <TableD>Data de Fim</TableD>
+            <TableD>Início</TableD>
+            <TableD>Fim</TableD>
             <TableD>Categoria</TableD>
-            <TableD colSpan={2}>Ações</TableD>
+            <TableD>Ações</TableD>
           </TableR>
         </TableH>
         {listaCampanhas.map((item) => {
@@ -48,23 +49,23 @@ const ListaCampanha: React.FC = () => {
                 <TableD>{item.dataFim}</TableD>
                 <TableD>{item.categoria}</TableD>
                 <TableD>
-                  <Link
-                    to={{
-                      pathname: '/editar',
-                      state: { id: item.id, Campanha: item },
-                    }}
-                  >
-                    <ButtonEditing type="button"> Editar </ButtonEditing>
-                  </Link>
-                </TableD>
-                <TableD>
-                  <ButtonDeleting
-                    key={item.id}
-                    type="button"
-                    onClick={() => deletar(item.id)}
-                  >
-                    Deletar
-                  </ButtonDeleting>
+                  <ButtonContainer>
+                    <Link
+                      to={{
+                        pathname: '/editar',
+                        state: { id: item.id, Campanha: item },
+                      }}
+                    >
+                      <Botao bgColor="editar" conteudo="Editar" type="button" />
+                    </Link>
+                    <Botao
+                      bgColor="deletar"
+                      conteudo="Excluir"
+                      key={item.id}
+                      type="button"
+                      onClick={() => deletar(item.id)}
+                    />
+                  </ButtonContainer>
                 </TableD>
               </TableR>
             </TableB>

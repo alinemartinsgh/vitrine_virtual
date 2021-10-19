@@ -1,17 +1,27 @@
 import styled from 'styled-components';
 
-export const BotaoCustomizado = styled.button`
-  background: #e3262e;
+interface props {
+  bgColor: string;
+}
+
+export const BotaoCustomizado = styled.button<props>`
+  background: ${(props) =>
+    props.bgColor === 'enviar'
+      ? '#e3262e'
+      : props.bgColor === 'editar'
+      ? '#ffb703'
+      : '#000814'};
   text-transform: uppercase;
   letter-spacing: 0.2rem;
-  width: 65%;
-  height: 3rem;
+  width: 10rem;
+  padding: 0.5rem 1rem;
   border: none;
   color: #fff;
   border-radius: 2rem;
   cursor: pointer;
+  font-weight: 500;
 
   :hover {
-    background: #A61D19;
+    opacity: 0.75;
   }
 `;

@@ -1,17 +1,16 @@
 import styled from 'styled-components';
+import claro from '../../assets/Claro.png';
+import hitss from '../../assets/gh.png';
 
 interface props {
   background: string;
 }
 
 export const IconeEstilizado = styled.div<props>`
-  height: 3.5rem;
-  width: 3.5rem;
-  background-image: url(${(props) => props.background});
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4rem;
-  color: white;
-  cursor: pointer;
+  background-image: url(${(props) => props.background === 'claro' ? { claro } : { hitss }});
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50px;
+  width: 50px;
+  border: 1px solid;
 `;
