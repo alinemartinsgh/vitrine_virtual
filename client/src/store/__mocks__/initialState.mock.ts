@@ -1,15 +1,18 @@
-import { RootState } from '../rootReducer';
+import { RootState } from 'src/store/rootReducer';
 
-export const initialState: RootState = {
+export const InitialState: RootState = {
   campanhaReducer: {
     isLoading: false,
     listaCampanhas: [],
     error: undefined,
   },
   loginReducer: {
-    currentUser: undefined,
     isLogged: false,
     isLoading: false,
-    email: '',
+    currentUser: {
+      email: 'email@email.com',
+      senha: '12345',
+    },
+    email: 'email@email.com',
   },
 };

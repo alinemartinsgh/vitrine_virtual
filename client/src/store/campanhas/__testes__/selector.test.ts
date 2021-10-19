@@ -1,7 +1,7 @@
 /* eslint-disable jest/no-mocks-import */
 
 import { CampanhaBuilderMock } from '../__mocks__/campanha.mock';
-import { StateMockBuilder } from '../__mocks__/initialState.mock';
+import { StateMockBuilder } from '../../__mocks__/StateMockBuilder';
 
 import * as selectors from '../selectors';
 
@@ -16,7 +16,8 @@ describe('Selector para Campanha', () => {
       isLoading: false,
       listaCampanhas: [mockCampanha],
       error: undefined,
-    }).build();
+    })
+    .build();
 
   const getListaCampanhas = [
     'getListaCampanhas',
