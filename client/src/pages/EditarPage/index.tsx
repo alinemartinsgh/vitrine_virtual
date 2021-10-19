@@ -27,8 +27,6 @@ interface CustomState {
   Campanha: Campanha;
 }
 
-//TODO validação de data na atualização
-
 const EditarCampanha: React.FC = () => {
   const dispatch = useDispatch();
 

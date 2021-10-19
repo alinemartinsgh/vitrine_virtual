@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface props {
+interface Props {
   bgColor: string;
 }
 
-export const BotaoCustomizado = styled.button<props>`
+export const BotaoCustomizado = styled.button<Props>`
   background: ${(props) =>
     props.bgColor === 'enviar'
       ? '#e3262e'

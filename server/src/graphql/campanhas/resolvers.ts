@@ -31,7 +31,7 @@ export class CampanhaResolver {
       dataFim,
     }: CampanhaForm,
   ): Promise<Campanha> {
-    const campanha = await Campanha.create({
+    return Campanha.create({
       nome,
       descricao,
       categoria,
@@ -42,7 +42,6 @@ export class CampanhaResolver {
       createdAt: new Date(Date.now()),
       updatedAt: new Date(Date.now()),
     }).save();
-    return campanha;
   }
 
   @Mutation(() => Campanha)

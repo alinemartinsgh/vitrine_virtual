@@ -10,7 +10,7 @@ export const LoginMutation = gql`
 `;
 
 const LoginEmailSenha = async (email: string, senha: string) => {
-  return await api.mutate({
+  return api.mutate({
     mutation: LoginMutation,
     variables: { data: { email, senha } },
   });

@@ -92,15 +92,15 @@ describe('Registro de campanha', () => {
     const dbUser = await Campanha.findOne({ where: { nome: campanha.nome } });
 
     expect(dbUser).toBeDefined();
-    expect(dbUser!.id).toBeDefined();
-    expect(dbUser!.nome).toBe(campanha.nome);
-    expect(dbUser!.categoria).toBe(campanha.categoria);
-    expect(dbUser!.dataInicio).toBe(campanha.dataInicio);
-    expect(dbUser!.dataFim).toBe(campanha.dataFim);
-    expect(dbUser!.descricao).toBe(campanha.descricao);
-    expect(dbUser!.imagem).toBe(campanha.imagem);
-    expect(dbUser!.createdAt).toBe(campanha.createdAt);
-    expect(dbUser!.updatedAt).toBe(campanha.updatedAt);
+    expect(dbUser?.id).toBeDefined();
+    expect(dbUser?.nome).toBe(campanha.nome);
+    expect(dbUser?.categoria).toBe(campanha.categoria);
+    expect(dbUser?.dataInicio).toBe(campanha.dataInicio);
+    expect(dbUser?.dataFim).toBe(campanha.dataFim);
+    expect(dbUser?.descricao).toBe(campanha.descricao);
+    expect(dbUser?.imagem).toBe(campanha.imagem);
+    expect(dbUser?.createdAt).toBe(campanha.createdAt);
+    expect(dbUser?.updatedAt).toBe(campanha.updatedAt);
 
     const campanhaEditada = {
       nome: faker.name.firstName(),
@@ -141,15 +141,15 @@ describe('Registro de campanha', () => {
     });
 
     expect(dbUserEditado).toBeDefined();
-    expect(dbUserEditado!.id).toBeDefined();
-    expect(dbUserEditado!.nome).toBe(campanhaEditada.nome);
-    expect(dbUserEditado!.categoria).toBe(campanhaEditada.categoria);
-    expect(dbUserEditado!.dataInicio).toBe(campanhaEditada.dataInicio);
-    expect(dbUserEditado!.dataFim).toBe(campanhaEditada.dataFim);
-    expect(dbUserEditado!.descricao).toBe(campanhaEditada.descricao);
-    expect(dbUserEditado!.imagem).toBe(campanhaEditada.imagem);
-    expect(dbUserEditado!.createdAt).toBe(campanhaEditada.createdAt);
-    expect(dbUserEditado!.updatedAt).toBe(campanhaEditada.updatedAt);
+    expect(dbUserEditado?.id).toBeDefined();
+    expect(dbUserEditado?.nome).toBe(campanhaEditada.nome);
+    expect(dbUserEditado?.categoria).toBe(campanhaEditada.categoria);
+    expect(dbUserEditado?.dataInicio).toBe(campanhaEditada.dataInicio);
+    expect(dbUserEditado?.dataFim).toBe(campanhaEditada.dataFim);
+    expect(dbUserEditado?.descricao).toBe(campanhaEditada.descricao);
+    expect(dbUserEditado?.imagem).toBe(campanhaEditada.imagem);
+    expect(dbUserEditado?.createdAt).toBe(campanhaEditada.createdAt);
+    expect(dbUserEditado?.updatedAt).toBe(campanhaEditada.updatedAt);
 
     const deletarResposta = await gCall({
       source: exclusaoCampanhaMutation,

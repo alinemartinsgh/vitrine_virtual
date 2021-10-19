@@ -52,8 +52,8 @@ describe('Registro de usuário', () => {
     const dbUser = await Usuario.findOne({ where: { email: usuario.email } });
 
     expect(dbUser).toBeDefined();
-    expect(dbUser!.isAdmin).toBe(usuario.isAdmin);
-    expect(dbUser!.email).toBe(usuario.email);
-    expect(dbUser!.senha).toBe(usuario.senha);
+    expect(dbUser?.isAdmin).toBe(usuario.isAdmin);
+    expect(dbUser?.email).toBe(usuario.email);
+    expect(dbUser?.senha).toBe(usuario.senha);
   });
 });
