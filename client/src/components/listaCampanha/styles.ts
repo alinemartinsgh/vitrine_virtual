@@ -10,7 +10,7 @@ export const ListaContainer = styled.div`
   box-shadow: 0px 0px 10px 2px rgba(30, 30, 36, 0.43);
   border-radius: 0.5rem;
   margin: 3rem auto;
-  padding: 2.5rem 0.5rem;
+  padding: 1.5rem 0.5rem;
 `;
 
 export const Table = styled.table`
@@ -19,50 +19,26 @@ export const Table = styled.table`
   height: 100%;
 `;
 
-export const TableR = styled.tr`
-  width: 80%;
+export const TableR = styled.tr``;
+
+export const TableH = styled.thead`
+  height: 4rem;
+  color: #011627;
+  text-transform: uppercase;
 `;
 
-export const TableB = styled.tbody``;
-
-export const TableH = styled.thead``;
+export const TableB = styled.tbody`
+  font-size: 0.9rem;
+  font-weight: 300;
+`;
 
 export const TableD = styled.td`
   text-align: center;
+  padding: 0.5rem 0rem;
 `;
 
-//TODO width em pixel
-
-export const ButtonEditing = styled.button`
-  background: #f48c06;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  width: 90px;
-  height: 1.5rem;
-  border: none;
-  color: #fff;
-  border-radius: 2rem;
-  cursor: pointer;
-  margin: 0;
-
-  :hover {
-    background: #a61d19;
-  }
-`;
-
-export const ButtonDeleting = styled.button`
-  background: #6a040f;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-  width: 90px;
-  height: 1.5rem;
-  border: none;
-  color: #fff;
-  border-radius: 2rem;
-  cursor: pointer;
-  margin: 0;
-
-  :hover {
-    background: #a61d19;
-  }
+export const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 `;

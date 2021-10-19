@@ -11,11 +11,12 @@ import {
   IconeContainer,
   TituloBemVindo,
   FormContainer,
+  IconClaro,
+  IconHitss,
 } from './styles';
 
 import { Input } from '../../components/input';
 import { Botao } from '../../components/botao';
-import { Icone } from '../../components/icone';
 
 const LoginPage: React.FC = () => {
   const [dadosLogin, setDadosLogin] = useState({
@@ -33,9 +34,6 @@ const LoginPage: React.FC = () => {
   }
 
   const dispatch = useDispatch();
-
-  const HitssPath = '../../../assets/img/hitss.svg';
-  const ClaroPath = '../../../assets/img/logotipo_da_empresa_claro.svg';
 
   const handleLogin = (e: any): void => {
     e.preventDefault();
@@ -69,12 +67,12 @@ const LoginPage: React.FC = () => {
         </InputContainer>
         <ReguaHorizontal />
         <BotaoContainer>
-          <Botao type="submit" conteudo="Login" />
+          <Botao bgColor="enviar" type="submit" conteudo="Login" />
         </BotaoContainer>
       </FormContainer>
       <IconeContainer>
-        <Icone image={HitssPath} />
-        <Icone image={ClaroPath} />
+        <IconClaro />
+        <IconHitss />
       </IconeContainer>
       {erroLogin !== undefined ? <div>{erroLogin.message}</div> : null}
     </Container>

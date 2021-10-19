@@ -4,7 +4,7 @@ import { configureStore } from './store';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import CampanhaPage from './pages/CampanhaPage';
+import CampanhaPage from './pages/NovaCampanha';
 import EditarPage from './pages/EditarPage';
 import { Redirect } from 'react-router';
 import { getToken } from './utils/token';

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
 import apiStorage from 'src/api/apiStorage';
 import { Botao } from 'src/components/botao';
-import Categorias from 'src/components/FormCampanha/Categorias';
+import Categorias from 'src/components/FormCampanha/Categoria';
 import {
+  Box,
   ButtonContainer,
   DataContainer,
   DataInput,
@@ -16,36 +16,26 @@ import {
   ImagemLabel,
   Select,
 } from 'src/components/FormCampanha/style';
-import Header from 'src/components/header';
 import { Input } from 'src/components/input';
 import { actions } from 'src/store/campanhas';
-import { Campanha } from 'src/store/campanhas/types';
-import { CampanhaImgMini, CampanhaImgMiniContainer } from './style';
+import { Link } from 'react-router-dom';
+import Header from 'src/components/header';
 
-interface CustomState {
-  id: '';
-  Campanha: Campanha;
-}
-
-//TODO validação de data na atualização
-
-const EditarCampanha: React.FC = () => {
+const CampanhaPage: React.FC = () => {
   const dispatch = useDispatch();
 
-  const [confirmacaoEnvio, setConfirmacaoEnvio] = useState(false);
+  const [imagem] = useState('');
 
-  let data = useLocation();
-  const state = data.state as CustomState;
+  const [erroData, setErroData] = useState('');
 
-  const [imagem] = useState(state.Campanha.imagem);
   const [dadosCampanha, setdadosCampanha] = useState({
-    nome: state.Campanha.nome,
-    descricao: state.Campanha.descricao,
-    categoria: state.Campanha.categoria,
-    urlDestino: state.Campanha.urlDestino,
-    imagem: state.Campanha.imagem,
-    dataInicio: state.Campanha.dataInicio,
-    dataFim: state.Campanha.dataFim,
+    nome: '',
+    descricao: '',
+    categoria: '',
+    urlDestino: '',
+    imagem: '',
+    dataInicio: '',
+    dataFim: '',
   });
 
   const handleUploadImage = (imagemUpload: any) => {
@@ -53,10 +43,10 @@ const EditarCampanha: React.FC = () => {
       const formData = new FormData();
       formData.append('imagem', imagemUpload);
       apiStorage.post('/uploadImagem', formData).then((res) => {
-        const dataImage: any = res.data;
+        const data: any = res.data;
         setdadosCampanha({
           ...dadosCampanha,
-          imagem: dataImage.location,
+          imagem: data.location,
         });
       });
     } catch (err: any) {
@@ -83,13 +73,18 @@ const EditarCampanha: React.FC = () => {
     e.preventDefault();
 
     if (dadosCampanha.dataInicio > dadosCampanha.dataFim) {
-      setConfirmacaoEnvio(false);
+      setErroData('Data de fim da campanha vêm antes da data de início');
       return;
     }
 
-    if (dadosCampanha) {
-      dispatch(actions.atualizarCampanha(state.id, dadosCampanha));
-      setConfirmacaoEnvio(true);
+    if (dadosCampanha.imagem === '') {
+      setErroData('Imagem não selecionada');
+      return;
+    }
+
+    const envio = dispatch(actions.adicionarCampanha(dadosCampanha));
+    if (envio.payload.data !== null) {
+      setErroData('');
     }
   };
 
@@ -100,62 +95,64 @@ const EditarCampanha: React.FC = () => {
         <Input
           nome="nome"
           type="text"
-          defaultValue={state.Campanha.nome}
+          value={dadosCampanha.nome}
           onchange={handleInput}
           placeholder="Campanha"
         />
         <Input
           nome="descricao"
           type="text"
-          defaultValue={state.Campanha.descricao}
           onchange={handleInput}
+          value={dadosCampanha.descricao}
           placeholder="Descrição"
         />
         <Input
           nome="urlDestino"
           type="text"
-          defaultValue={state.Campanha.urlDestino}
           onchange={handleInput}
+          value={dadosCampanha.urlDestino}
           placeholder="URL de Destino"
         />
         <DataContainer>
           <Select
             onChange={handleInput}
             name="categoria"
-            defaultValue={state.Campanha.categoria}
+            value={dadosCampanha.categoria}
             required
           >
+            <option value="" disabled hidden>
+              Selecione...
+            </option>
             {Categorias.map((item, index) => (
-              <option
-                value={item}
-                defaultValue={state.Campanha.categoria}
-                key={index}
-              >
+              <option value={item} key={index}>
                 {item}
               </option>
             ))}
           </Select>
-          <DataLabel>Inicia em</DataLabel>
-          <DataInput
-            name="dataInicio"
-            type="date"
-            onChange={handleInput}
-            defaultValue={state.Campanha.dataInicio}
-            required
-          />
-          <DataLabel>Termina em</DataLabel>
-          <DataInput
-            name="dataFim"
-            type="date"
-            onChange={handleInput}
-            defaultValue={state.Campanha.dataFim}
-            datatype="DD/MM/YYYY"
-            required
-          />
+
+          <Box>
+            <DataLabel>Inicia em</DataLabel>
+
+            <DataInput
+              name="dataInicio"
+              type="date"
+              onChange={handleInput}
+              value={dadosCampanha.dataInicio}
+              required
+            />
+          </Box>
+          <Box>
+            <DataLabel>Termina em</DataLabel>
+
+            <DataInput
+              name="dataFim"
+              type="date"
+              onChange={handleInput}
+              value={dadosCampanha.dataFim}
+              required
+            />
+          </Box>
         </DataContainer>
-        <CampanhaImgMiniContainer>
-          <CampanhaImgMini src={state.Campanha.imagem} />
-        </CampanhaImgMiniContainer>
         <ImagemContainer>
           <ImagemLabel htmlFor="imagem">Selecione sua imagem</ImagemLabel>
           <ImagemInput
@@ -165,6 +162,7 @@ const EditarCampanha: React.FC = () => {
             onChange={handleInput}
           />
         </ImagemContainer>
+        {erroData === '' ? null : <div>{erroData}</div>}
         <ButtonContainer>
           <Link
             to={{
@@ -173,16 +171,11 @@ const EditarCampanha: React.FC = () => {
           >
             <Botao bgColor="editar" conteudo="Voltar" type="button" />
           </Link>
-          <Botao bgColor="enviar" conteudo="Atualizar" type="submit" />
+          <Botao bgColor="enviar" conteudo="Enviar" type="submit" />
         </ButtonContainer>
-        {confirmacaoEnvio ? (
-          <div>Campanha Atualizada</div>
-        ) : (
-          <div>Falha na atualização</div>
-        )}
       </FormContainer>
     </>
   );
 };
 
-export default EditarCampanha;
+export default CampanhaPage;

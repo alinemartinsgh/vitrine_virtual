@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import _ from 'lodash';
 import { useDispatch } from 'react-redux';
 import apiStorage from 'src/api/apiStorage';
 import { Botao } from 'src/components/botao';
@@ -152,7 +151,7 @@ const CampanhaPage: React.FC = () => {
         />
       </ImagemContainer>
       {erroData === '' ? null : <div>{erroData}</div>}
-      <Botao conteudo="Enviar" type="submit" />
+      <Botao conteudo="Enviar" type="submit" bgColor={''} />
     </FormContainer>
   );
 };

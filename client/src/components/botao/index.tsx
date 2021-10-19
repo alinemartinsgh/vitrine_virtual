@@ -7,11 +7,23 @@ interface Props {
   type: 'submit' | 'button';
   onClick?: () => void;
   onSubmit?: () => void;
+  bgColor: string;
 }
 
-export const Botao = ({ conteudo, type, onClick, onSubmit }: Props) => {
+export const Botao = ({
+  conteudo,
+  type,
+  onClick,
+  onSubmit,
+  bgColor,
+}: Props) => {
   return (
-    <BotaoCustomizado type={type} onClick={onClick} onSubmit={onSubmit}>
+    <BotaoCustomizado
+      type={type}
+      bgColor={bgColor}
+      onClick={onClick}
+      onSubmit={onSubmit}
+    >
       {conteudo}
     </BotaoCustomizado>
   );
