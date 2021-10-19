@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import _ from 'lodash';
 import { useDispatch } from 'react-redux';
 import apiStorage from 'src/api/apiStorage';
 import { Botao } from 'src/components/botao';
-import Categorias from 'src/components/FormCampanha/Categoria';
+import Categorias from 'src/components/FormCampanha/Categorias';
 import {
   Box,
   ButtonContainer,
