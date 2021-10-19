@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 import { api } from 'src/api';
-import { Campanha, CampanhaForm, ListaCampanhas } from './types';
+import { CampanhaForm, ListaCampanhas } from './types';
 
 export const buscaCampanhaQuery = gql`
   query {
@@ -48,21 +48,6 @@ export const updateCampanhaMutation = gql`
   }
 `;
 
-export const buscaCampanhaPorIdQuery = gql`
-  query ($buscaPorIdId: String!) {
-    buscaCampanhaPorId(id: $buscaPorIdId) {
-      id
-      nome
-      descricao
-      urlDestino
-      categoria
-      imagem
-      dataInicio
-      dataFim
-    }
-  }
-`;
-
 export const deletaCampanhaMutation = gql`
   mutation ($id: String!) {
     deletarCampanha(id: $id) {
@@ -76,14 +61,6 @@ async function listaTodasCampanhas(): Promise<ListaCampanhas> {
     query: buscaCampanhaQuery,
   });
   return listaCampanhas.data.buscaCampanhas;
-}
-
-async function buscaPorId(id: string): Promise<Campanha> {
-  const campanha = await api.query({
-    query: buscaCampanhaPorIdQuery,
-    variables: { id },
-  });
-  return campanha.data;
 }
 
 async function criaNovaCampanha(data: CampanhaForm) {
@@ -126,6 +103,5 @@ export {
   listaTodasCampanhas,
   criaNovaCampanha,
   atualizaCampanha,
-  buscaPorId,
   deletaCampanha,
 };

@@ -5,17 +5,17 @@ export const FormContainer = styled.form`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 70vw;
+  width: 50vw;
   height: 80vh;
   margin: 3rem auto;
   background: #fff;
   box-shadow: 0px 0px 10px 2px rgba(30, 30, 36, 0.43);
   border-radius: 0.5rem;
-  padding: 2.5rem 0.5rem;
+  padding: 1.5rem 0.5rem;
 `;
 
 export const Select = styled.select`
-  width: 20%;
+  width: 25%;
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0px 0px 9px 1px rgba(198, 198, 204, 1);
   border-radius: 0.2rem;
@@ -35,7 +35,6 @@ export const Select = styled.select`
 export const ImagemContainer = styled.div``;
 
 export const ImagemLabel = styled.label`
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 0.5rem;
   width: 18vw;
   background: #212529;
@@ -60,10 +59,15 @@ export const DataContainer = styled.div`
   width: 80%;
 `;
 
+export const Box = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 20vw;
+`;
+
 export const DataLabel = styled.label`
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #3c354e;
-  margin-left: 2%;
 `;
 
 export const DataInput = styled.input`
@@ -74,4 +78,10 @@ export const DataInput = styled.input`
   border-radius: 0.2rem;
   box-shadow: 0px 0px 9px 1px rgba(198, 198, 204, 1);
   background: rgba(255, 255, 255, 0.15);
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 30vw;
 `;

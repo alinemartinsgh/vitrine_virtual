@@ -2,7 +2,7 @@ import { put, call } from 'redux-saga/effects';
 
 import * as sagas from '../sagas';
 import * as repository from '../repository';
-import { actions } from '../';
+import { actions } from '..';
 /* eslint-disable jest/no-mocks-import */
 import { CampanhaBuilderMock } from '../__mocks__/campanha.mock';
 import { CampanhaFormBuilderMock } from '../__mocks__/campanhaForm.mock ';
