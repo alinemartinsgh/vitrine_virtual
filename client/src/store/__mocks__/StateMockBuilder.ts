@@ -1,18 +1,26 @@
+import { LoginState } from 'src/store/login/types';
 import { CampanhaState } from '../campanhas/types';
 
-import { initialState } from './initialState.mock';
+import { InitialState } from './initialState.mock';
 
 export class StateMockBuilder {
-  campanhaReducer: CampanhaState = initialState.campanhaReducer;
+  campanhaReducer = InitialState.campanhaReducer;
+  loginReducer = InitialState.loginReducer;
 
   withCampanha(state: CampanhaState) {
     this.campanhaReducer = state;
     return this;
   }
 
+  withLogin(state: LoginState) {
+    this.loginReducer = state;
+    return this;
+  }
+
   build = () => {
     return {
       campanhaReducer: this.campanhaReducer,
+      loginReducer: this.loginReducer,
     };
   };
 }

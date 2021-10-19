@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import apiStorage from 'src/api/apiStorage';
 import { Botao } from 'src/components/botao';
-import Categorias from 'src/components/FormCampanha/Categoria';
+import Categorias from 'src/components/FormCampanha/Categorias';
 import {
   ButtonContainer,
   DataContainer,
@@ -31,6 +31,8 @@ interface CustomState {
 
 const EditarCampanha: React.FC = () => {
   const dispatch = useDispatch();
+
+  const [confirmacaoEnvio, setConfirmacaoEnvio] = useState(false);
 
   let data = useLocation();
   const state = data.state as CustomState;
@@ -76,16 +78,19 @@ const EditarCampanha: React.FC = () => {
       });
     }
   }
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
     if (dadosCampanha.dataInicio > dadosCampanha.dataFim) {
-      //TODO avisar de alguma forma ao usuário
-      alert('nao foi');
+      setConfirmacaoEnvio(false);
       return;
     }
 
-    dispatch(actions.atualizarCampanha(state.id, dadosCampanha));
+    if (dadosCampanha) {
+      dispatch(actions.atualizarCampanha(state.id, dadosCampanha));
+      setConfirmacaoEnvio(true);
+    }
   };
 
   return (
@@ -170,6 +175,11 @@ const EditarCampanha: React.FC = () => {
           </Link>
           <Botao bgColor="enviar" conteudo="Atualizar" type="submit" />
         </ButtonContainer>
+        {confirmacaoEnvio ? (
+          <div>Campanha Atualizada</div>
+        ) : (
+          <div>Falha na atualização</div>
+        )}
       </FormContainer>
     </>
   );

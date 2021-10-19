@@ -1,4 +1,4 @@
-import { all, takeLatest } from '@redux-saga/core/effects';
+import { all } from '@redux-saga/core/effects';
 
 import sagasCampanha from './campanhas/sagas';
 import sagasLogin from './login/sagas';

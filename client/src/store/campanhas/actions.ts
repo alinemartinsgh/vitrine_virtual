@@ -23,15 +23,6 @@ const actions = {
     payload: { listaCampanhas },
   }),
 
-  /*   buscaPorId: () => ({
-    type: CampanhaTypes.BUSCA_POR_ID_CAMPANHA,
-  }),
-
-  setCampanhaPorId: (campanha: Campanha) => ({
-    type: CampanhaTypes.SET_CAMPANHA,
-    payload: { campanha },
-  }), */
-
   adicionarCampanha: (
     data: CampanhaForm,
   ): CampanhaAction<{ data: Campanha }> => ({

@@ -13,8 +13,6 @@ export type Usuario = {
 export type LoginState = {
   isLogged: boolean;
   isLoading: boolean;
-  currentUser: Usuario | undefined;
-  email: string;
   error?: Error;
 };
 

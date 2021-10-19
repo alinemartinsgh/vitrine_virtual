@@ -15,17 +15,6 @@ export function* buscaCampanhas(): any {
   }
 }
 
-/* export function* buscaCampanhaPorId(id: string): any {
-  try {
-    const campanha = yield call(repository.buscaPorId, id);
-    if (campanha) {
-      yield put(actions.setCampanhaPorId(campanha));
-    }
-  } catch (err: any) {
-    yield put(actions.setError(err.message));
-  }
-} */
-
 export function* criaCampanha(data: any) {
   try {
     yield put(actions.setError());
@@ -72,7 +61,6 @@ export function* deletarCampanha(id: any): any {
 
 const sagas = [
   takeLatest(CampanhaTypes.BUSCA_LISTA_CAMPANHA, buscaCampanhas),
-  //takeLatest(CampanhaTypes.BUSCA_POR_ID_CAMPANHA, buscaCampanhaPorId),
   takeLatest(CampanhaTypes.ATUALIZAR_CAMPANHA, atualizarCampanha),
   takeLatest(CampanhaTypes.ADICIONAR_CAMPANHA, criaCampanha),
   takeLatest(CampanhaTypes.DELETE_CAMPANHA, deletarCampanha),
