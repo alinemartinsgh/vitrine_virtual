@@ -9,10 +9,5 @@ export const InitialState: RootState = {
   loginReducer: {
     isLogged: false,
     isLoading: false,
-    currentUser: {
-      email: 'email@email.com',
-      senha: '12345',
-    },
-    email: 'email@email.com',
   },
 };

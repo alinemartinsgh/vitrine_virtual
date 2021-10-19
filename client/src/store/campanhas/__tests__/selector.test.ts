@@ -1,5 +1,4 @@
 /* eslint-disable jest/no-mocks-import */
-
 import { CampanhaBuilderMock } from '../__mocks__/campanha.mock';
 import { StateMockBuilder } from '../../__mocks__/StateMockBuilder';
 
