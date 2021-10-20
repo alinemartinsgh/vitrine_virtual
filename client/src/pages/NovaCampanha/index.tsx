@@ -5,6 +5,8 @@ import { Botao } from 'src/components/botao';
 import Categorias from 'src/components/FormCampanha/Categorias';
 import {
   Box,
+  BoxConfirm,
+  BoxErro,
   ButtonContainer,
   DataContainer,
   DataInput,
@@ -26,6 +28,9 @@ const CampanhaPage: React.FC = () => {
   const [imagem] = useState('');
 
   const [erroData, setErroData] = useState('');
+
+  const [confirmacaoEnvio, setConfirmacaoEnvio] = useState(false);
+  const [erroEnvio, setErroEnvio] = useState(false);
 
   const [dadosCampanha, setdadosCampanha] = useState({
     nome: '',
@@ -73,18 +78,25 @@ const CampanhaPage: React.FC = () => {
 
     if (dadosCampanha.dataInicio > dadosCampanha.dataFim) {
       setErroData('Data de fim da campanha vêm antes da data de início');
+      setErroEnvio(true);
       return;
     }
 
     if (dadosCampanha.imagem === '') {
       setErroData('Imagem não selecionada');
+      setErroEnvio(true);
       return;
     }
 
     const envio = dispatch(actions.adicionarCampanha(dadosCampanha));
     if (envio.payload.data !== null) {
       setErroData('');
+      setErroEnvio(false);
+      setConfirmacaoEnvio(true);
     }
+
+    window.location.reload();
+    window.location.href = '/homePage';
   };
 
   return (
@@ -172,6 +184,15 @@ const CampanhaPage: React.FC = () => {
           </Link>
           <Botao bgColor="enviar" conteudo="Enviar" type="submit" />
         </ButtonContainer>
+        {confirmacaoEnvio ? (
+          <BoxConfirm confirm={confirmacaoEnvio}>
+            Campanha criada com sucesso
+          </BoxConfirm>
+        ) : (
+          <BoxErro erro={erroEnvio}>
+            Campanha não enviada, verifique se todos os campos estão corretos
+          </BoxErro>
+        )}
       </FormContainer>
     </>
   );

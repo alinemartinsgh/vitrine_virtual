@@ -6,6 +6,8 @@ import apiStorage from 'src/api/apiStorage';
 import { Botao } from 'src/components/botao';
 import Categorias from 'src/components/FormCampanha/Categorias';
 import {
+  BoxConfirm,
+  BoxErro,
   ButtonContainer,
   DataContainer,
   DataInput,
@@ -36,12 +38,13 @@ const EditarCampanha: React.FC = () => {
   console.log(stateCampanha);
 
   const [confirmacaoEnvio, setConfirmacaoEnvio] = useState(false);
+  const [erroEnvio, setErroEnvio] = useState(false);
 
   let data = useLocation();
 
   const state = data.state as CustomState;
 
-  const campanha = stateCampanha.find((campanha) => campanha.id === state.id);
+  const campanha = stateCampanha.find((item) => item.id === state.id);
 
   console.log(campanha);
 
@@ -91,12 +94,13 @@ const EditarCampanha: React.FC = () => {
     e.preventDefault();
 
     if (dadosCampanha.dataInicio > dadosCampanha.dataFim) {
-      setConfirmacaoEnvio(false);
+      setErroEnvio(true);
       return;
     }
 
     if (dadosCampanha) {
       dispatch(actions.atualizarCampanha(state.id, dadosCampanha));
+      setErroEnvio(false);
       setConfirmacaoEnvio(true);
     }
 
@@ -188,9 +192,11 @@ const EditarCampanha: React.FC = () => {
           <Botao bgColor="enviar" conteudo="Atualizar" type="submit" />
         </ButtonContainer>
         {confirmacaoEnvio ? (
-          <div>Campanha Atualizada</div>
+          <BoxConfirm confirm={confirmacaoEnvio}>
+            Campanha Atualizada
+          </BoxConfirm>
         ) : (
-          <div>Falha na atualização</div>
+          <BoxErro erro={erroEnvio}>Campanha não atualizada, verifique se todos os campos estão corretos</BoxErro>
         )}
       </FormContainer>
     </>
