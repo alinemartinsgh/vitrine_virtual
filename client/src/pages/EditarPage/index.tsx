@@ -4,7 +4,6 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import apiStorage from 'src/api/apiStorage';
 import { Botao } from 'src/components/botao';
-import Categorias from 'src/components/FormCampanha/Categorias';
 import {
   BoxConfirm,
   BoxErro,
@@ -16,10 +15,10 @@ import {
   ImagemContainer,
   ImagemInput,
   ImagemLabel,
-  Select,
 } from 'src/components/FormCampanha/style';
 import Header from 'src/components/header';
 import { Input } from 'src/components/input';
+import { Select } from 'src/components/select';
 import { actions } from 'src/store/campanhas';
 import { Campanha } from 'src/store/campanhas/types';
 import { CampanhaImgMini, CampanhaImgMiniContainer } from './style';
@@ -135,21 +134,10 @@ const EditarCampanha: React.FC = () => {
         />
         <DataContainer>
           <Select
-            onChange={handleInput}
+            onchange={handleInput}
             name="categoria"
             defaultValue={state.Campanha.categoria}
-            required
-          >
-            {Categorias.map((item, index) => (
-              <option
-                value={item}
-                defaultValue={state.Campanha.categoria}
-                key={index}
-              >
-                {item}
-              </option>
-            ))}
-          </Select>
+          />
           <DataLabel>Inicia em</DataLabel>
           <DataInput
             name="dataInicio"
@@ -196,7 +184,9 @@ const EditarCampanha: React.FC = () => {
             Campanha Atualizada
           </BoxConfirm>
         ) : (
-          <BoxErro erro={erroEnvio}>Campanha não atualizada, verifique se todos os campos estão corretos</BoxErro>
+          <BoxErro erro={erroEnvio}>
+            Campanha não atualizada, verifique se todos os campos estão corretos
+          </BoxErro>
         )}
       </FormContainer>
     </>

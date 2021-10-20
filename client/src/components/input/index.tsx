@@ -6,7 +6,7 @@ interface Props {
   type: string;
   placeholder?: string;
   nome: string;
-  value?: string; // trocar para obrigatório depois
+  value?: string;
   defaultValue?: string;
   onchange?: ChangeEventHandler<HTMLInputElement>;
 }

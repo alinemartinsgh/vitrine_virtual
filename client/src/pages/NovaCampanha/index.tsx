@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import apiStorage from 'src/api/apiStorage';
 import { Botao } from 'src/components/botao';
-import Categorias from 'src/components/FormCampanha/Categorias';
+
 import {
   Box,
   BoxConfirm,
@@ -15,9 +15,9 @@ import {
   ImagemContainer,
   ImagemInput,
   ImagemLabel,
-  Select,
 } from 'src/components/FormCampanha/style';
 import { Input } from 'src/components/input';
+import { Select } from 'src/components/select';
 import { actions } from 'src/store/campanhas';
 import { Link } from 'react-router-dom';
 import Header from 'src/components/header';
@@ -126,21 +126,10 @@ const CampanhaPage: React.FC = () => {
         />
         <DataContainer>
           <Select
-            onChange={handleInput}
+            onchange={handleInput}
             name="categoria"
             value={dadosCampanha.categoria}
-            required
-          >
-            <option value="" disabled hidden>
-              Selecione...
-            </option>
-            {Categorias.map((item, index) => (
-              <option value={item} key={index}>
-                {item}
-              </option>
-            ))}
-          </Select>
-
+          />
           <Box>
             <DataLabel>Inicia em</DataLabel>
 
