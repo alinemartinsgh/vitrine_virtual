@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const InputCustomizado = styled.input`
+export const CustomInput = styled.input`
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0px 0px 9px 1px rgba(198,198,204,1);
   border-radius: 0.2rem;

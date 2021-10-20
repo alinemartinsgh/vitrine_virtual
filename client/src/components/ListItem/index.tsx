@@ -9,13 +9,15 @@ interface Props {
   dataFim: string;
 }
 
-const CampanhaItem = ({ nome, categoria, dataInicio, dataFim }: Props) => {
+export const ListItem = ({
+  nome,
+  categoria,
+  dataInicio,
+  dataFim,
+}: Props) => {
   return (
     <Item>
       {nome} | {categoria} | {dataInicio} | {dataFim}
     </Item>
-
   );
 };
-
-export default CampanhaItem;

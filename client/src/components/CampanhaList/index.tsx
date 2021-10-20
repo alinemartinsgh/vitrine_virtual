@@ -1,23 +1,23 @@
 import React, { useEffect } from 'react';
-import { actions } from 'src/store/campanhas';
 import { useDispatch, useSelector } from 'react-redux';
-import { getListaCampanhas } from 'src/store/campanhas/selectors';
+import { Link } from 'react-router-dom';
 
+import { getListaCampanhas } from 'src/store/campanhas/selectors';
+import { actions } from 'src/store/campanhas';
 import {
   Table,
-  ListaContainer,
+  ContainerList,
   TableH,
   TableR,
   TableD,
   TableB,
   ButtonContainer,
 } from './styles';
-import { Link } from 'react-router-dom';
-import { Botao } from '../botao';
+import { Button } from '../button';
 
-const ListaCampanha: React.FC = () => {
+export const CampanhaList: React.FC = () => {
   const dispatch = useDispatch();
-  const listaCampanhas = useSelector(getListaCampanhas);
+  const getAllCampanhas = useSelector(getListaCampanhas);
 
   useEffect(() => {
     dispatch(actions.buscaListaCampanhas());
@@ -29,7 +29,7 @@ const ListaCampanha: React.FC = () => {
   };
 
   return (
-    <ListaContainer>
+    <ContainerList>
       <Table>
         <TableH>
           <TableR>
@@ -40,7 +40,7 @@ const ListaCampanha: React.FC = () => {
             <TableD>Ações</TableD>
           </TableR>
         </TableH>
-        {listaCampanhas.map((item) => {
+        {getAllCampanhas.map((item) => {
           return (
             <TableB>
               <TableR>
@@ -56,11 +56,11 @@ const ListaCampanha: React.FC = () => {
                         state: { id: item.id, Campanha: item },
                       }}
                     >
-                      <Botao bgColor="editar" conteudo="Editar" type="button" />
+                      <Button bgColor="editar" content="Editar" type="button" />
                     </Link>
-                    <Botao
+                    <Button
                       bgColor="deletar"
-                      conteudo="Excluir"
+                      content="Excluir"
                       key={item.id}
                       type="button"
                       onClick={() => deletar(item.id)}
@@ -72,8 +72,6 @@ const ListaCampanha: React.FC = () => {
           );
         })}
       </Table>
-    </ListaContainer>
+    </ContainerList>
   );
 };
-
-export default ListaCampanha;
