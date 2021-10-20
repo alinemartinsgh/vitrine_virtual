@@ -21,42 +21,42 @@
 <h3> Tecnologias e pacotes utilizados: </h3>
 
 <h4> App </h4>
-* Typescript
-* React Native
-* Redux
-* Redux-Saga
-* Apollo Client
-* Styled-Components
-* React Native Snap Carousel
-* Navigation
-* Jest
+- Typescript
+- React Native
+- Redux
+- Redux-Saga
+- Apollo Client
+- Styled-Components
+- React Native Snap Carousel
+- Navigation
+- Jest
 
 <h4> Client </h4>
-* Typescript
-* React
-* Redux
-* Redux-Saga
-* Apollo Client
-* Axios
-* JWT
-* Styled-Components
-* Jest
+- Typescript
+- React
+- Redux
+- Redux-Saga
+- Apollo Client
+- Axios
+- JWT
+- Styled-Components
+- Jest
 
 <h4> Server </h4>
-* Typescript
-* Node
-* Express
-* Apollo Server
-* GraphQl
-* TypeORM
-* Type GraphQL
-* MongoDb
-* AWS-SDK
-* Multer / Multer-S3
-* JWT
-* bcrypt
-* Jest
-* Supertest
+- Typescript
+- Node
+- Express
+- Apollo Server
+- GraphQl
+- TypeORM
+- Type GraphQL
+- MongoDb
+- AWS-SDK
+- Multer / Multer-S3
+- JWT
+- bcrypt
+- Jest
+- Supertest
 
 <h3> Como instalar na sua máquina? </h3>
 
@@ -74,6 +74,6 @@
 
 <h4> Considerações finais: </h4>
 
-Como de praxe sempre existem coisas a corrigir e melhorar, por isso agradecemos qualquer crítica nesse sentido! Até a próxima o/
+Sempre existem itens a corrigir e melhorar, por isso agradecemos qualquer crítica nesse sentido! Até a próxima o/
 
 Autores: [Aline](https://github.com/alinemartinsgh) e [Leonardo](https://github.com/Leonardo-Antunes)
