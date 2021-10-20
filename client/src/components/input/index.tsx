@@ -1,18 +1,18 @@
 import React, { ChangeEventHandler } from 'react';
 
-import { InputCustomizado } from './styles';
+import { CustomInput } from './styles';
 
 interface Props {
   type: string;
   placeholder?: string;
-  nome: string;
+  name: string;
   value?: string;
   defaultValue?: string;
   onchange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 export const Input = ({
-  nome,
+  name,
   type,
   placeholder,
   onchange,
@@ -20,8 +20,8 @@ export const Input = ({
   defaultValue,
 }: Props) => {
   return (
-    <InputCustomizado
-      name={nome}
+    <CustomInput
+      name={name}
       type={type}
       placeholder={placeholder}
       onChange={onchange}

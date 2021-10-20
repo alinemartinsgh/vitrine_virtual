@@ -3,22 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import apiStorage from 'src/api/apiStorage';
-import { Botao } from 'src/components/botao';
 import {
-  BoxConfirm,
-  BoxErro,
+  Button,
+  DateInput,
+  Warningbox,
+  Header,
+  Input,
+  ImageInput,
+  Select,
+} from '../../components';
+import {
   ButtonContainer,
-  DataContainer,
-  DataInput,
-  DataLabel,
+  DateContainer,
   FormContainer,
-  ImagemContainer,
-  ImagemInput,
-  ImagemLabel,
-} from 'src/components/FormCampanha/style';
-import Header from 'src/components/header';
-import { Input } from 'src/components/input';
-import { Select } from 'src/components/select';
+} from 'src/components/form/style';
 import { actions } from 'src/store/campanhas';
 import { Campanha } from 'src/store/campanhas/types';
 import { CampanhaImgMini, CampanhaImgMiniContainer } from './style';
@@ -34,7 +32,6 @@ const EditarCampanha: React.FC = () => {
   const dispatch = useDispatch();
 
   const stateCampanha = useSelector(selectors.getListaCampanhas);
-  console.log(stateCampanha);
 
   const [confirmacaoEnvio, setConfirmacaoEnvio] = useState(false);
   const [erroEnvio, setErroEnvio] = useState(false);
@@ -112,81 +109,78 @@ const EditarCampanha: React.FC = () => {
       <Header />
       <FormContainer onSubmit={handleSubmit} method="POST">
         <Input
-          nome="nome"
+          name="nome"
           type="text"
           defaultValue={state.Campanha.nome}
           onchange={handleInput}
           placeholder="Campanha"
         />
         <Input
-          nome="descricao"
+          name="descricao"
           type="text"
           defaultValue={state.Campanha.descricao}
           onchange={handleInput}
           placeholder="Descrição"
         />
         <Input
-          nome="urlDestino"
+          name="urlDestino"
           type="text"
           defaultValue={state.Campanha.urlDestino}
           onchange={handleInput}
           placeholder="URL de Destino"
         />
-        <DataContainer>
+        <DateContainer>
           <Select
             onchange={handleInput}
             name="categoria"
             defaultValue={state.Campanha.categoria}
           />
-          <DataLabel>Inicia em</DataLabel>
-          <DataInput
+          <DateInput
             name="dataInicio"
-            type="date"
-            onChange={handleInput}
+            labelText="Inicia em"
             defaultValue={state.Campanha.dataInicio}
-            required
+            onchange={handleInput}
           />
-          <DataLabel>Termina em</DataLabel>
-          <DataInput
+          <DateInput
             name="dataFim"
-            type="date"
-            onChange={handleInput}
+            labelText="Termina em"
             defaultValue={state.Campanha.dataFim}
-            datatype="DD/MM/YYYY"
-            required
+            onchange={handleInput}
           />
-        </DataContainer>
+        </DateContainer>
         <CampanhaImgMiniContainer>
           <CampanhaImgMini src={state.Campanha.imagem} />
         </CampanhaImgMiniContainer>
-        <ImagemContainer>
-          <ImagemLabel htmlFor="imagem">Selecione sua imagem</ImagemLabel>
-          <ImagemInput
-            type="file"
-            name="imagem"
-            id="imagem"
-            onChange={handleInput}
-          />
-        </ImagemContainer>
+        <ImageInput
+          content="Altere sua imagem"
+          id="imagem"
+          name="imagem"
+          onchange={handleInput}
+          htmlFor="imagem"
+        />
         <ButtonContainer>
           <Link
             to={{
               pathname: '/homePage',
             }}
           >
-            <Botao bgColor="editar" conteudo="Voltar" type="button" />
+            <Button bgColor="editar" content="Voltar" type="button" />
           </Link>
 
-          <Botao bgColor="enviar" conteudo="Atualizar" type="submit" />
+          <Button bgColor="enviar" content="Atualizar" type="submit" />
         </ButtonContainer>
         {confirmacaoEnvio ? (
-          <BoxConfirm confirm={confirmacaoEnvio}>
-            Campanha Atualizada
-          </BoxConfirm>
+          <Warningbox
+            boxType="ok"
+            messageReturn={confirmacaoEnvio}
+            content="Campanha Atualizada"
+          />
         ) : (
-          <BoxErro erro={erroEnvio}>
-            Campanha não atualizada, verifique se todos os campos estão corretos
-          </BoxErro>
+          <Warningbox
+            boxType="error"
+            messageReturn={erroEnvio}
+            content="Campanha não atualizada, verifique se todos os campos estão corretos"
+          />
         )}
       </FormContainer>
     </>

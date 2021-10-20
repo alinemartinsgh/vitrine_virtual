@@ -1,15 +1,13 @@
 import React from 'react';
-import Header from 'src/components/header';
-import ListaCampanha from '../../components/listaCampanha';
+import { CampanhaList, Header } from '../../components';
 
 interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
-
   return (
     <>
       <Header />
-      <ListaCampanha />
+      <CampanhaList />
     </>
   );
 };

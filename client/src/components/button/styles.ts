@@ -4,13 +4,18 @@ interface Props {
   bgColor: string;
 }
 
-export const BotaoCustomizado = styled.button<Props>`
-  background: ${(props) =>
-    props.bgColor === 'enviar'
-      ? '#e3262e'
-      : props.bgColor === 'editar'
-      ? '#ffb703'
-      : '#000814'};
+const buttonColor = (props: Props) => {
+  if (props.bgColor === 'enviar') {
+    return '#e3262e';
+  } else if (props.bgColor === 'editar') {
+    return '#ffb703';
+  } else {
+    return '#000814';
+  }
+};
+
+export const CustomizedButton = styled.button<Props>`
+  background: ${(props) => buttonColor(props)};
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   width: 10rem;
