@@ -21,6 +21,7 @@
 <h3> Tecnologias e pacotes utilizados: </h3>
 
 <h4> App </h4>
+
 - Typescript
 - React Native
 - Redux
@@ -32,6 +33,7 @@
 - Jest
 
 <h4> Client </h4>
+
 - Typescript
 - React
 - Redux
@@ -43,6 +45,7 @@
 - Jest
 
 <h4> Server </h4>
+
 - Typescript
 - Node
 - Express
@@ -65,15 +68,15 @@
 
 - Entre na pasta root `cd vitrine_virtual` e instale as dependencias com
   `yarn`
-- Entre na pasta root `cd vitrine_virtual/server` e instale as dependencias com
+- Entre na pasta `cd vitrine_virtual/server` e instale as dependencias com
   `yarn`. Inicie com `yarn start`
 - Entre na pasta `cd vitrine_virtual/client` e instale as dependencias com
   `yarn`. Inicie com `yarn start`
-- Entre na pasta root `cd vitrine_virtual/app` e instale as dependencias com
+- Entre na pasta `cd vitrine_virtual/app` e instale as dependencias com
   `yarn`. Faça o build para o emulador com `yarn android` e inicie a aplicação com `yarn start`
 
 <h4> Considerações finais: </h4>
 
-Sempre existem itens a corrigir e melhorar, por isso agradecemos qualquer crítica nesse sentido! Até a próxima o/
+Sempre existem itens a corrigir e códigos para melhorar, por isso agradecemos qualquer crítica nesse sentido! Até a próxima o/
 
 Autores: [Aline](https://github.com/alinemartinsgh) e [Leonardo](https://github.com/Leonardo-Antunes)
