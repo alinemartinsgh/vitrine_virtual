@@ -3,21 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import apiStorage from 'src/api/apiStorage';
-import { Botao } from 'src/components/botao';
-import Categorias from 'src/components/FormCampanha/Categorias';
+import {
+  Button,
+  DateInput,
+  Warningbox,
+  Header,
+  Input,
+  ImageInput,
+  Select,
+} from '../../components';
 import {
   ButtonContainer,
-  DataContainer,
-  DataInput,
-  DataLabel,
+  DateContainer,
   FormContainer,
-  ImagemContainer,
-  ImagemInput,
-  ImagemLabel,
-  Select,
-} from 'src/components/FormCampanha/style';
-import Header from 'src/components/header';
-import { Input } from 'src/components/input';
+} from 'src/components/form/style';
 import { actions } from 'src/store/campanhas';
 import { Campanha } from 'src/store/campanhas/types';
 import { CampanhaImgMini, CampanhaImgMiniContainer } from './style';
@@ -33,15 +32,15 @@ const EditarCampanha: React.FC = () => {
   const dispatch = useDispatch();
 
   const stateCampanha = useSelector(selectors.getListaCampanhas);
-  console.log(stateCampanha);
 
   const [confirmacaoEnvio, setConfirmacaoEnvio] = useState(false);
+  const [erroEnvio, setErroEnvio] = useState(false);
 
   let data = useLocation();
 
   const state = data.state as CustomState;
 
-  const campanha = stateCampanha.find((campanha) => campanha.id === state.id);
+  const campanha = stateCampanha.find((item) => item.id === state.id);
 
   console.log(campanha);
 
@@ -91,12 +90,13 @@ const EditarCampanha: React.FC = () => {
     e.preventDefault();
 
     if (dadosCampanha.dataInicio > dadosCampanha.dataFim) {
-      setConfirmacaoEnvio(false);
+      setErroEnvio(true);
       return;
     }
 
     if (dadosCampanha) {
       dispatch(actions.atualizarCampanha(state.id, dadosCampanha));
+      setErroEnvio(false);
       setConfirmacaoEnvio(true);
     }
 
@@ -109,88 +109,78 @@ const EditarCampanha: React.FC = () => {
       <Header />
       <FormContainer onSubmit={handleSubmit} method="POST">
         <Input
-          nome="nome"
+          name="nome"
           type="text"
           defaultValue={state.Campanha.nome}
           onchange={handleInput}
           placeholder="Campanha"
         />
         <Input
-          nome="descricao"
+          name="descricao"
           type="text"
           defaultValue={state.Campanha.descricao}
           onchange={handleInput}
           placeholder="Descrição"
         />
         <Input
-          nome="urlDestino"
+          name="urlDestino"
           type="text"
           defaultValue={state.Campanha.urlDestino}
           onchange={handleInput}
           placeholder="URL de Destino"
         />
-        <DataContainer>
+        <DateContainer>
           <Select
-            onChange={handleInput}
+            onchange={handleInput}
             name="categoria"
             defaultValue={state.Campanha.categoria}
-            required
-          >
-            {Categorias.map((item, index) => (
-              <option
-                value={item}
-                defaultValue={state.Campanha.categoria}
-                key={index}
-              >
-                {item}
-              </option>
-            ))}
-          </Select>
-          <DataLabel>Inicia em</DataLabel>
-          <DataInput
+          />
+          <DateInput
             name="dataInicio"
-            type="date"
-            onChange={handleInput}
+            labelText="Inicia em"
             defaultValue={state.Campanha.dataInicio}
-            required
+            onchange={handleInput}
           />
-          <DataLabel>Termina em</DataLabel>
-          <DataInput
+          <DateInput
             name="dataFim"
-            type="date"
-            onChange={handleInput}
+            labelText="Termina em"
             defaultValue={state.Campanha.dataFim}
-            datatype="DD/MM/YYYY"
-            required
+            onchange={handleInput}
           />
-        </DataContainer>
+        </DateContainer>
         <CampanhaImgMiniContainer>
           <CampanhaImgMini src={state.Campanha.imagem} />
         </CampanhaImgMiniContainer>
-        <ImagemContainer>
-          <ImagemLabel htmlFor="imagem">Selecione sua imagem</ImagemLabel>
-          <ImagemInput
-            type="file"
-            name="imagem"
-            id="imagem"
-            onChange={handleInput}
-          />
-        </ImagemContainer>
+        <ImageInput
+          content="Altere sua imagem"
+          id="imagem"
+          name="imagem"
+          onchange={handleInput}
+          htmlFor="imagem"
+        />
         <ButtonContainer>
           <Link
             to={{
               pathname: '/homePage',
             }}
           >
-            <Botao bgColor="editar" conteudo="Voltar" type="button" />
+            <Button bgColor="editar" content="Voltar" type="button" />
           </Link>
 
-          <Botao bgColor="enviar" conteudo="Atualizar" type="submit" />
+          <Button bgColor="enviar" content="Atualizar" type="submit" />
         </ButtonContainer>
         {confirmacaoEnvio ? (
-          <div>Campanha Atualizada</div>
+          <Warningbox
+            boxType="ok"
+            messageReturn={confirmacaoEnvio}
+            content="Campanha Atualizada"
+          />
         ) : (
-          <div>Falha na atualização</div>
+          <Warningbox
+            boxType="error"
+            messageReturn={erroEnvio}
+            content="Campanha não atualizada, verifique se todos os campos estão corretos"
+          />
         )}
       </FormContainer>
     </>

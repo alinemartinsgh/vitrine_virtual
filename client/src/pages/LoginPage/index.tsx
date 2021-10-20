@@ -15,8 +15,7 @@ import {
   IconHitss,
 } from './styles';
 
-import { Input } from '../../components/input';
-import { Botao } from '../../components/botao';
+import { Input, Button } from '../../components';
 
 const LoginPage: React.FC = () => {
   const [dadosLogin, setDadosLogin] = useState({
@@ -51,14 +50,14 @@ const LoginPage: React.FC = () => {
       <FormContainer onSubmit={handleLogin} method="POST">
         <InputContainer>
           <Input
-            nome="email"
+            name="email"
             type="text"
             placeholder="Email"
             value={dadosLogin.email}
             onchange={handleInput}
           />
           <Input
-            nome="senha"
+            name="senha"
             type="password"
             placeholder="Senha"
             value={dadosLogin.senha}
@@ -67,7 +66,7 @@ const LoginPage: React.FC = () => {
         </InputContainer>
         <ReguaHorizontal />
         <BotaoContainer>
-          <Botao bgColor="enviar" type="submit" conteudo="Login" />
+          <Button bgColor="enviar" type="submit" content="Login" />
         </BotaoContainer>
       </FormContainer>
       <IconeContainer>

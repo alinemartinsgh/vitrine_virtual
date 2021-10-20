@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ListaContainer = styled.div`
+export const ContainerList = styled.div`
   align-items: center;
   justify-content: center;
   max-height: 80vh;

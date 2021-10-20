@@ -11,7 +11,7 @@ export const HeaderContainer = styled.header`
   padding: 1rem 2rem;
 `;
 
-export const ImagemContainer = styled.div`
+export const ImageContainer = styled.div`
   background: url(${MCM});
   background-repeat: no-repeat;
   background-size: contain;

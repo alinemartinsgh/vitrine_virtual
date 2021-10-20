@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import apiStorage from 'src/api/apiStorage';
-import { Botao } from 'src/components/botao';
-import Categorias from 'src/components/FormCampanha/Categorias';
+
 import {
-  Box,
-  ButtonContainer,
-  DataContainer,
-  DataInput,
-  DataLabel,
-  FormContainer,
-  ImagemContainer,
-  ImagemInput,
-  ImagemLabel,
+  Button,
+  DateInput,
+  Header,
+  ImageInput,
+  Input,
+  Warningbox,
   Select,
-} from 'src/components/FormCampanha/style';
-import { Input } from 'src/components/input';
+} from 'src/components';
+
+import {
+  ButtonContainer,
+  DateContainer,
+  FormContainer,
+} from 'src/components/form/style';
 import { actions } from 'src/store/campanhas';
 import { Link } from 'react-router-dom';
-import Header from 'src/components/header';
 
 const CampanhaPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,6 +26,9 @@ const CampanhaPage: React.FC = () => {
   const [imagem] = useState('');
 
   const [erroData, setErroData] = useState('');
+
+  const [confirmacaoEnvio, setConfirmacaoEnvio] = useState(false);
+  const [erroEnvio, setErroEnvio] = useState(false);
 
   const [dadosCampanha, setdadosCampanha] = useState({
     nome: '',
@@ -73,18 +76,25 @@ const CampanhaPage: React.FC = () => {
 
     if (dadosCampanha.dataInicio > dadosCampanha.dataFim) {
       setErroData('Data de fim da campanha vêm antes da data de início');
+      setErroEnvio(true);
       return;
     }
 
     if (dadosCampanha.imagem === '') {
       setErroData('Imagem não selecionada');
+      setErroEnvio(true);
       return;
     }
 
     const envio = dispatch(actions.adicionarCampanha(dadosCampanha));
     if (envio.payload.data !== null) {
       setErroData('');
+      setErroEnvio(false);
+      setConfirmacaoEnvio(true);
     }
+
+    window.location.reload();
+    window.location.href = '/homePage';
   };
 
   return (
@@ -92,75 +102,52 @@ const CampanhaPage: React.FC = () => {
       <Header />
       <FormContainer onSubmit={handleSubmit} method="POST">
         <Input
-          nome="nome"
+          name="nome"
           type="text"
           value={dadosCampanha.nome}
           onchange={handleInput}
           placeholder="Campanha"
         />
         <Input
-          nome="descricao"
+          name="descricao"
           type="text"
           onchange={handleInput}
           value={dadosCampanha.descricao}
           placeholder="Descrição"
         />
         <Input
-          nome="urlDestino"
+          name="urlDestino"
           type="text"
           onchange={handleInput}
           value={dadosCampanha.urlDestino}
           placeholder="URL de Destino"
         />
-        <DataContainer>
+        <DateContainer>
           <Select
-            onChange={handleInput}
+            onchange={handleInput}
             name="categoria"
             value={dadosCampanha.categoria}
-            required
-          >
-            <option value="" disabled hidden>
-              Selecione...
-            </option>
-            {Categorias.map((item, index) => (
-              <option value={item} key={index}>
-                {item}
-              </option>
-            ))}
-          </Select>
-
-          <Box>
-            <DataLabel>Inicia em</DataLabel>
-
-            <DataInput
-              name="dataInicio"
-              type="date"
-              onChange={handleInput}
-              value={dadosCampanha.dataInicio}
-              required
-            />
-          </Box>
-          <Box>
-            <DataLabel>Termina em</DataLabel>
-
-            <DataInput
-              name="dataFim"
-              type="date"
-              onChange={handleInput}
-              value={dadosCampanha.dataFim}
-              required
-            />
-          </Box>
-        </DataContainer>
-        <ImagemContainer>
-          <ImagemLabel htmlFor="imagem">Selecione sua imagem</ImagemLabel>
-          <ImagemInput
-            type="file"
-            name="imagem"
-            id="imagem"
-            onChange={handleInput}
           />
-        </ImagemContainer>
+          <DateInput
+            name="dataInicio"
+            labelText="Inicia em"
+            value={dadosCampanha.dataInicio}
+            onchange={handleInput}
+          />
+          <DateInput
+            name="dataFim"
+            labelText="Termina em"
+            value={dadosCampanha.dataFim}
+            onchange={handleInput}
+          />
+        </DateContainer>
+        <ImageInput
+          content="Altere sua imagem"
+          id="imagem"
+          name="imagem"
+          onchange={handleInput}
+          htmlFor="imagem"
+        />
         {erroData === '' ? null : <div>{erroData}</div>}
         <ButtonContainer>
           <Link
@@ -168,10 +155,23 @@ const CampanhaPage: React.FC = () => {
               pathname: '/homePage',
             }}
           >
-            <Botao bgColor="editar" conteudo="Voltar" type="button" />
+            <Button bgColor="editar" content="Voltar" type="button" />
           </Link>
-          <Botao bgColor="enviar" conteudo="Enviar" type="submit" />
+          <Button bgColor="enviar" content="Enviar" type="submit" />
         </ButtonContainer>
+        {confirmacaoEnvio ? (
+          <Warningbox
+            boxType="ok"
+            messageReturn={confirmacaoEnvio}
+            content="Campanha enviada com sucesso"
+          />
+        ) : (
+          <Warningbox
+            boxType="error"
+            messageReturn={erroEnvio}
+            content="Campanha não enviada, verifique se todos os campos estão corretos"
+          />
+        )}
       </FormContainer>
     </>
   );

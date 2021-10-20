@@ -1,30 +1,30 @@
 import React from 'react';
 
-import { BotaoCustomizado } from './styles';
+import { CustomizedButton } from './styles';
 
 interface Props {
-  conteudo: string;
+  content: string;
   type: 'submit' | 'button';
   onClick?: () => void;
   onSubmit?: () => void;
   bgColor: string;
 }
 
-export const Botao = ({
-  conteudo,
+export const Button = ({
+  content,
   type,
   onClick,
   onSubmit,
   bgColor,
 }: Props) => {
   return (
-    <BotaoCustomizado
+    <CustomizedButton
       type={type}
       bgColor={bgColor}
       onClick={onClick}
       onSubmit={onSubmit}
     >
-      {conteudo}
-    </BotaoCustomizado>
+      {content}
+    </CustomizedButton>
   );
 };
