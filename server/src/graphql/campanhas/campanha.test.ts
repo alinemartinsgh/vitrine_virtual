@@ -16,16 +16,15 @@ afterAll(async () => {
 });
 
 const adicionarCampanhaMutation = `
-mutation($data: AdicionarCampanhaInput!) {
+mutation ($data: CampanhaForm!) {
   adicionarCampanha(data: $data) {
-    categoria
-    createdAt
-    dataFim
-    dataInicio
-    descricao
-    imagem
     nome
-    updatedAt
+    descricao
+    categoria
+    urlDestino
+    imagem
+    dataInicio
+    dataFim
   }
 }
 `;
@@ -39,19 +38,17 @@ mutation($id: String!){
 `;
 
 const atualizarCampanhaMutation = `
-mutation($data: AdicionarCampanhaInput!, $id: String!){
-  atualizarCampanha(data: $data, id: $id) {
-    nome
-    categoria
-    createdAt
-    dataFim
-    dataInicio
-    descricao
-    imagem
-    nome
-    updatedAt
+ mutation ($data: CampanhaForm!, $id: String!) {
+    atualizarCampanha(data: $data, id: $id) {
+      nome
+      descricao
+      categoria
+      urlDestino
+      imagem
+      dataInicio
+      dataFim
+    }
   }
-}
 `;
 
 describe('Registro de campanha', () => {
@@ -63,8 +60,7 @@ describe('Registro de campanha', () => {
       dataFim: `${faker.date.future()}`,
       descricao: faker.company.catchPhraseAdjective(),
       imagem: faker.image.business(),
-      createdAt: `${faker.date.past()}`,
-      updatedAt: `${faker.date.soon()}`,
+      urlDestino: faker.name.findName(),
     };
 
     const resposta = await gCall({
@@ -83,8 +79,7 @@ describe('Registro de campanha', () => {
           dataFim: campanha.dataFim,
           descricao: campanha.descricao,
           imagem: campanha.imagem,
-          createdAt: campanha.createdAt,
-          updatedAt: campanha.updatedAt,
+          urlDestino: campanha.urlDestino,
         },
       },
     });
@@ -99,8 +94,7 @@ describe('Registro de campanha', () => {
     expect(dbUser?.dataFim).toBe(campanha.dataFim);
     expect(dbUser?.descricao).toBe(campanha.descricao);
     expect(dbUser?.imagem).toBe(campanha.imagem);
-    expect(dbUser?.createdAt).toBe(campanha.createdAt);
-    expect(dbUser?.updatedAt).toBe(campanha.updatedAt);
+    expect(dbUser?.urlDestino).toBe(campanha.urlDestino);
 
     const campanhaEditada = {
       nome: faker.name.firstName(),
@@ -109,8 +103,7 @@ describe('Registro de campanha', () => {
       dataFim: `${faker.date.future()}`,
       descricao: faker.company.catchPhraseAdjective(),
       imagem: faker.image.business(),
-      createdAt: `${faker.date.past()}`,
-      updatedAt: `${faker.date.soon()}`,
+      urlDestino: campanha.urlDestino,
     };
 
     const atualizarResposta = await gCall({
@@ -129,8 +122,7 @@ describe('Registro de campanha', () => {
           dataFim: campanhaEditada.dataFim,
           descricao: campanhaEditada.descricao,
           imagem: campanhaEditada.imagem,
-          createdAt: campanhaEditada.createdAt,
-          updatedAt: campanhaEditada.updatedAt,
+          urlDestino: campanha.urlDestino,
           nome: campanhaEditada.nome,
         },
       },
@@ -148,8 +140,7 @@ describe('Registro de campanha', () => {
     expect(dbUserEditado?.dataFim).toBe(campanhaEditada.dataFim);
     expect(dbUserEditado?.descricao).toBe(campanhaEditada.descricao);
     expect(dbUserEditado?.imagem).toBe(campanhaEditada.imagem);
-    expect(dbUserEditado?.createdAt).toBe(campanhaEditada.createdAt);
-    expect(dbUserEditado?.updatedAt).toBe(campanhaEditada.updatedAt);
+    expect(dbUser?.urlDestino).toBe(campanhaEditada.urlDestino);
 
     const deletarResposta = await gCall({
       source: exclusaoCampanhaMutation,

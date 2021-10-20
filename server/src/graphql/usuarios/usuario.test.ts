@@ -54,6 +54,5 @@ describe('Registro de usuário', () => {
     expect(dbUser).toBeDefined();
     expect(dbUser?.isAdmin).toBe(usuario.isAdmin);
     expect(dbUser?.email).toBe(usuario.email);
-    expect(dbUser?.senha).toBe(usuario.senha);
   });
 });
