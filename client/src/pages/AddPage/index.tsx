@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import apiStorage from 'src/api/apiStorage';
+import { Link } from 'react-router-dom';
 
+import { actions } from 'src/store/campanhas';
+import apiStorage from 'src/api/apiStorage';
 import {
   Button,
   DateInput,
@@ -17,10 +19,8 @@ import {
   DateContainer,
   FormContainer,
 } from 'src/components/form/style';
-import { actions } from 'src/store/campanhas';
-import { Link } from 'react-router-dom';
 
-const CampanhaPage: React.FC = () => {
+const AddPage: React.FC = () => {
   const dispatch = useDispatch();
 
   const [imagem] = useState('');
@@ -177,4 +177,4 @@ const CampanhaPage: React.FC = () => {
   );
 };
 
-export default CampanhaPage;
+export default AddPage;
