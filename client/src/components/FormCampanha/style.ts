@@ -5,7 +5,7 @@ export const FormContainer = styled.form`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 50vw;
+  width: 60vw;
   height: 80vh;
   margin: 3rem auto;
   background: #fff;
@@ -56,7 +56,7 @@ export const DataContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 80%;
+  width: 50vw;
 `;
 
 export const Box = styled.div`
@@ -84,4 +84,23 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   width: 30vw;
+`;
+
+interface propsErro {
+  erro: boolean;
+}
+
+interface propsOK {
+  confirm: boolean;
+}
+
+export const BoxConfirm = styled.div<propsOK>`
+  display: ${({ confirm }) => (confirm === true ? 'block' : 'none')};
+  color: #6a994e;
+  font-weight: 500;
+`;
+export const BoxErro = styled.div<propsErro>`
+  display: ${({ erro }) => (erro === true ? 'block' : 'none')};
+  color: #e3262e;
+  font-weight: 500;
 `;

@@ -14,7 +14,7 @@ export class UsuarioResolver {
   async buscaUsuarioPorId(
     @Arg('usuarioId') usuarioId: string,
   ): Promise<Usuario | undefined | null> {
-    return await Usuario.findOne(usuarioId);
+    return Usuario.findOne(usuarioId);
   }
 
   @Mutation(() => Usuario)
@@ -23,11 +23,10 @@ export class UsuarioResolver {
     { email, senha, isAdmin }: AdicionarUsuarioInput,
   ): Promise<Usuario> {
     const hashedSenha = await hash(senha, 13);
-    const usuario = await Usuario.create({
+    return Usuario.create({
       email,
       senha: hashedSenha,
       isAdmin,
     }).save();
-    return usuario;
   }
 }

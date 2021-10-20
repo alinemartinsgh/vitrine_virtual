@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import claro from '../../assets/Claro.png';
 import hitss from '../../assets/gh.png';
 
-interface props {
+interface Props {
   background: string;
 }
 
-export const IconeEstilizado = styled.div<props>`
-  background-image: url(${(props) => props.background === 'claro' ? { claro } : { hitss }});
+export const IconeEstilizado = styled.div<Props>`
+  background-image: url(${(Props) => Props.background === 'claro' ? { claro } : { hitss }});
   background-repeat: no-repeat;
   background-size: cover;
   height: 50px;
