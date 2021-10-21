@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { s3 } from '../config';
 import { listaImagens, deletaImagem, uploadImagem } from '../imagem';
 import { mockListaObjetosS3 } from '../__mocks__';

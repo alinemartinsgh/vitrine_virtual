@@ -94,7 +94,8 @@ const AddPage: React.FC = () => {
     }
 
     window.location.reload();
-    window.location.href = '/homePage';
+    /*     window.location.href = '/homePage';
+     */
   };
 
   return (

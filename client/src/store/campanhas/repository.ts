@@ -59,6 +59,7 @@ export const deletaCampanhaMutation = gql`
 async function listaTodasCampanhas(): Promise<ListaCampanhas> {
   const listaCampanhas = await api.query({
     query: buscaCampanhaQuery,
+    fetchPolicy: 'network-only',
   });
   return listaCampanhas.data.buscaCampanhas;
 }
@@ -67,6 +68,7 @@ async function criaNovaCampanha(data: CampanhaForm) {
   const novaCampanha = await api.mutate({
     mutation: addCampanhaMutation,
     variables: { data },
+    fetchPolicy: 'network-only',
   });
   if (novaCampanha.data) {
     return novaCampanha.data;
@@ -79,6 +81,7 @@ async function atualizaCampanha(id: string, data: CampanhaForm) {
   const campanhaAtualizada = await api.mutate({
     mutation: updateCampanhaMutation,
     variables: { id, data },
+    fetchPolicy: 'network-only',
   });
   if (campanhaAtualizada.data) {
     return campanhaAtualizada.data;
@@ -91,6 +94,7 @@ async function deletaCampanha(id: string) {
   const campanhaDeletada = await api.mutate({
     mutation: deletaCampanhaMutation,
     variables: { id },
+    fetchPolicy: 'network-only',
   });
   if (campanhaDeletada.data) {
     return campanhaDeletada.data;
