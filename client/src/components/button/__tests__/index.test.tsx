@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
-import { BotaoCustomizado } from '../styles';
+import { CustomizedButton } from '../styles';
 
 describe('Componente de input', () => {
   const onClick = jest.fn();
@@ -9,7 +9,7 @@ describe('Componente de input', () => {
 
   it('recebe as props corretamente e clicar no botão', () => {
     const { getByRole } = render(
-      <BotaoCustomizado
+      <CustomizedButton
         type="button"
         onClick={onClick}
         onSubmit={onSubmit}
@@ -25,7 +25,7 @@ describe('Componente de input', () => {
 
   it('recebe as props corretamente enviar o form', () => {
     const { getByRole } = render(
-      <BotaoCustomizado
+      <CustomizedButton
         type="submit"
         onClick={onClick}
         onSubmit={onSubmit}
