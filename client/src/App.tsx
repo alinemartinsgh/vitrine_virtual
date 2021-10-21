@@ -12,7 +12,6 @@ import { getToken } from './utils/token';
 const { store } = configureStore();
 
 export default function App() {
-  //
   const isLogged = getToken();
 
   return (
