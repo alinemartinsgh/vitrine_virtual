@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { setToken } from 'src/utils/token';
 import { loginActions } from '.';

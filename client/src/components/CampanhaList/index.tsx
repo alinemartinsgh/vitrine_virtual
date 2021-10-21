@@ -40,10 +40,10 @@ export const CampanhaList: React.FC = () => {
             <TableD>Ações</TableD>
           </TableR>
         </TableH>
-        {getAllCampanhas.map((item) => {
-          return (
-            <TableB>
-              <TableR>
+        <TableB>
+          {getAllCampanhas.map((item) => {
+            return (
+              <TableR key={item.id}>
                 <TableD>{item.nome}</TableD>
                 <TableD>{item.dataInicio}</TableD>
                 <TableD>{item.dataFim}</TableD>
@@ -68,9 +68,9 @@ export const CampanhaList: React.FC = () => {
                   </ButtonContainer>
                 </TableD>
               </TableR>
-            </TableB>
-          );
-        })}
+            );
+          })}
+        </TableB>
       </Table>
     </ContainerList>
   );

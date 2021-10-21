@@ -93,9 +93,10 @@ const AddPage: React.FC = () => {
       setConfirmacaoEnvio(true);
     }
 
-    window.location.reload();
-    /*     window.location.href = '/homePage';
-     */
+    /*
+      window.location.reload();
+      window.location.href = '/homePage';
+    */
   };
 
   return (

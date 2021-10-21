@@ -18,6 +18,7 @@ export const Select = ({ name, onchange, value, defaultValue }: Props) => {
       value={value}
       defaultValue={defaultValue}
       required
+      data-testid="select-option"
     >
       <option value="" disabled hidden>
         Selecione...
