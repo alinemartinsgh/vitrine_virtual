@@ -4,20 +4,12 @@ import * as imagem from '../imagem';
 import { mockListaObjetosS3, mockKey } from '../__mocks__';
 
 const listaImagensSpy = jest.spyOn(imagem, 'listaImagens');
-const uploadImagemSpy = jest.spyOn(imagem, 'uploadImagem');
 const deletaImagemSpy = jest.spyOn(imagem, 'deletaImagem');
 
 describe('POST /upload', () => {
   it('Rota Post Upload de imagem deve retornar statusCode 200', async () => {
     const res = await request(app).post('/uploadImagem');
     expect(res.statusCode).toBe(200);
-  });
-  it('Rota Post Upload de imagem deve retornar um objeto', async () => {
-    uploadImagemSpy.mockRejectedValue({
-      file: {},
-    });
-    const res = await request(app).post('/uploadImagem');
-    expect(res.body).toEqual({});
   });
 });
 

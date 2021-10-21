@@ -45,7 +45,7 @@ export class LoginResolver {
     const verify = await compare(senha, usuario.senha);
 
     if (!verify) {
-      throw new Error('Senha ruim');
+      throw new Error('Senha Incorreta');
     }
 
     return {
