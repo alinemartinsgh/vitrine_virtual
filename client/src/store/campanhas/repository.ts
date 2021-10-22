@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-import { api } from 'src/api';
+import { api } from '../../api/index';
 import { CampanhaForm, ListaCampanhas } from './types';
 
 export const buscaCampanhaQuery = gql`

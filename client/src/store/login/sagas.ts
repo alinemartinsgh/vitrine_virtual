@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { setToken } from 'src/utils/token';
+import { setToken } from '../../utils/token';
 import { loginActions } from '.';
 
 import * as repository from './repository';
@@ -24,7 +24,7 @@ export function* requestEmailPassword(
       }
     }
   } catch (err) {
-    yield put(loginActions.loginError(err))
+    yield put(loginActions.loginError(err));
   }
 }
 

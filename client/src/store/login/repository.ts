@@ -1,4 +1,4 @@
-import { api } from 'src/api';
+import { api } from '../../api/';
 import { gql } from '@apollo/client';
 
 export const LoginMutation = gql`
